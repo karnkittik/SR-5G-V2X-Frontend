@@ -18,12 +18,26 @@
 @border-color-base: #d9d9d9; // major border color
 @box-shadow-base: 0 3px 6px -4px rgba(0, 0, 0, 0.12),
   0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05); // major shadow for layers
-
+@title-dark: #ebd80c;
 /*---- Common ----*/
 body {
   font-family: "Kanit", sans-serif;
 }
+.header {
+  background-color: white;
+}
+.header-title {
+  font-size: 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
 
+.content {
+  // background-color: white;
+}
 /*---- Sider ----*/
 .sider-weblogo {
   margin: 40px 0;
@@ -31,4 +45,20 @@ body {
   text-align: center;
   font-size: 20px;
   font-weight: 700;
+  color: @primary-color;
+}
+.sider {
+  height: 100vh;
+  box-shadow: 5px 0 5px -2px rgb(240, 240, 240);
+}
+@media only screen and (max-width: 768px) {
+  .sider {
+    position: absolute;
+  }
+}
+.sider-menu {
+  //
+}
+.sider-menu-item {
+  //
 }

@@ -15,7 +15,8 @@ const Sider = (props) => {
       theme="light"
       //collapsible
       breakpoint="lg"
-      collapsedWidth="80"
+      collapsedWidth="0"
+      className="sider"
     >
       <Logo />
       <Menu
@@ -23,17 +24,38 @@ const Sider = (props) => {
         mode="inline"
         defaultSelectedKeys={["1"]}
         //defaultOpenKeys={['sub1']}
+        className="sider-menu"
       >
-        <Menu.Item key="1" onClick={handleClick} icon={<EnvironmentOutlined />}>
+        <Menu.Item
+          key="1"
+          className="sider-menu-item"
+          onClick={handleClick}
+          icon={<EnvironmentOutlined />}
+        >
           Accident Map
         </Menu.Item>
-        <Menu.Item key="2" onClick={handleClick} icon={<HeatMapOutlined />}>
+        <Menu.Item
+          key="2"
+          className="sider-menu-item"
+          onClick={handleClick}
+          icon={<HeatMapOutlined />}
+        >
           Drowsiness Overview
         </Menu.Item>
-        <Menu.Item key="3" onClick={handleClick} icon={<PieChartOutlined />}>
+        <Menu.Item
+          key="3"
+          className="sider-menu-item"
+          onClick={handleClick}
+          icon={<PieChartOutlined />}
+        >
           Accident Overview
         </Menu.Item>
-        <Menu.Item key="4" onClick={handleClick} icon={<BarChartOutlined />}>
+        <Menu.Item
+          key="4"
+          className="sider-menu-item"
+          onClick={handleClick}
+          icon={<BarChartOutlined />}
+        >
           Accident By Day
         </Menu.Item>
       </Menu>

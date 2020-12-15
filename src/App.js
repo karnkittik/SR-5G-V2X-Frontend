@@ -2,23 +2,18 @@ import React, { useState } from "react";
 import { Layout } from "antd";
 import Sider from "./Sider";
 import "./App.less";
+import AccidentMap from "./pages/AccidentMap";
+import Drowsiness from "./pages/Drowsiness";
+import Accident from "./pages/Accident";
+import AccidentDay from "./pages/AccidentDay";
 
 const { Content } = Layout;
 const App = () => {
-  const style = {
-    fontSize: "30px",
-    height: "100%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    margin: "10px 0",
-  };
-
-  const components = {
-    1: <div style={style}>อุบัติเหตุทั้งหมด</div>,
-    2: <div style={style}>อาการง่วงนอนทั้งหมด</div>,
-    3: <div style={style}>ภาพรวมอุบัติเหตุ</div>,
-    4: <div style={style}>ภาพรวมอุบัติเหตุรายวัน</div>,
+  const pageList = {
+    1: <AccidentMap />,
+    2: <Drowsiness />,
+    3: <Accident />,
+    4: <AccidentDay />,
   };
 
   const [render, updateRender] = useState(1);
@@ -32,7 +27,7 @@ const App = () => {
       <Layout style={{ minHeight: "100vh" }}>
         <Sider handleClick={handleMenuClick} />
         <Layout>
-          <Content>{components[render]}</Content>
+          <Content className="content">{pageList[render]}</Content>
         </Layout>
       </Layout>
     </div>
