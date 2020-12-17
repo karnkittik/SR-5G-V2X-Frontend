@@ -6,7 +6,7 @@ const { Content } = Layout;
 const AccidentDay = () => {
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <PageHeader title="ภาพรวมอุบัติเหตุรายวัน" />
+      <PageHeader title={"ภาพรวมอุบัติเหตุรายวัน"} />
       <Content className="content"></Content>
     </Layout>
   );

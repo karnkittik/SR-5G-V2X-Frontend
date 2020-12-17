@@ -22,22 +22,34 @@
 /*---- Common ----*/
 body {
   font-family: "Kanit", sans-serif;
+  height: 100%;
 }
+
 .header {
   background-color: white;
+  height: 48px !important;
 }
 .header-title {
-  font-size: 20px;
+  font-size: 18px;
   height: 100%;
-  display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10px 0;
+  margin: 0;
+  display: flex;
 }
 
 .content {
   // background-color: white;
 }
+
+.loading-map {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /*---- Sider ----*/
 .sider-weblogo {
   margin: 40px 0;
@@ -54,6 +66,7 @@ body {
 @media only screen and (max-width: 768px) {
   .sider {
     position: absolute;
+    z-index: 9999;
   }
 }
 .sider-menu {
@@ -62,3 +75,4 @@ body {
 .sider-menu-item {
   //
 }
+/*---- AccidentMap ----*/

@@ -6,7 +6,7 @@ import {
   EnvironmentOutlined,
   BarChartOutlined,
 } from "@ant-design/icons";
-const Logo = () => <div className="sider-weblogo">5G V2X</div>;
+const Logo = () => <div className="sider-weblogo">5G-V2X</div>;
 const Sider = (props) => {
   const { handleClick } = props;
 

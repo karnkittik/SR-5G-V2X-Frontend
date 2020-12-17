@@ -6,7 +6,7 @@ const { Content } = Layout;
 const Drowsiness = () => {
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <PageHeader title="อาการง่วงนอนทั้งหมด" />
+      <PageHeader title={"อาการง่วงนอนทั้งหมด"} />
       <Content className="content"></Content>
     </Layout>
   );

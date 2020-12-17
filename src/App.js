@@ -24,7 +24,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Layout style={{ minHeight: "100vh" }}>
+      <Layout style={{ height: "100vh" }}>
         <Sider handleClick={handleMenuClick} />
         <Layout>
           <Content className="content">{pageList[render]}</Content>
