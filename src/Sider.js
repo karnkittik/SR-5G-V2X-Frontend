@@ -40,7 +40,7 @@ const Sider = (props) => {
           onClick={handleClick}
           icon={<HeatMapOutlined />}
         >
-          Drowsiness Overview
+          Drowsiness Heatmap
         </Menu.Item>
         <Menu.Item
           key="3"

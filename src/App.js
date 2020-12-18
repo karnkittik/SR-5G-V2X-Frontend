@@ -3,7 +3,7 @@ import { Layout } from "antd";
 import Sider from "./Sider";
 import "./App.less";
 import AccidentMap from "./pages/AccidentMap";
-import Drowsiness from "./pages/Drowsiness";
+import DrowsinessMap from "./pages/DrowsinessMap";
 import Accident from "./pages/Accident";
 import AccidentDay from "./pages/AccidentDay";
 
@@ -11,7 +11,7 @@ const { Content } = Layout;
 const App = () => {
   const pageList = {
     1: <AccidentMap />,
-    2: <Drowsiness />,
+    2: <DrowsinessMap />,
     3: <Accident />,
     4: <AccidentDay />,
   };
