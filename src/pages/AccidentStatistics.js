@@ -4,12 +4,12 @@ import PageHeader from "../components/common/PageHeader";
 
 const { Content } = Layout;
 
-const Accident = () => {
+const AccidentStatistics = () => {
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <PageHeader title={"ภาพรวมอุบัติเหตุ"} />
+      <PageHeader title={"Accident Statistics"} />
       <Content className="content"></Content>
     </Layout>
   );
 };
-export default Accident;
+export default AccidentStatistics;

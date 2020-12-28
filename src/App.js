@@ -3,17 +3,15 @@ import { Layout } from "antd";
 import Sider from "./Sider";
 import "./App.less";
 import AccidentMap from "./pages/AccidentMap";
-import DrowsinessMap from "./pages/DrowsinessMap";
-import Accident from "./pages/Accident";
-import AccidentDay from "./pages/AccidentDay";
+import AccidentHeatMap from "./pages/AccidentHeatMap";
+import AccidentStatistics from "./pages/AccidentStatistics";
 
 const { Content } = Layout;
 const App = () => {
   const pageList = {
     1: <AccidentMap />,
-    2: <DrowsinessMap />,
-    3: <Accident />,
-    4: <AccidentDay />,
+    2: <AccidentHeatMap />,
+    3: <AccidentStatistics />,
   };
 
   const [render, updateRender] = useState(1);

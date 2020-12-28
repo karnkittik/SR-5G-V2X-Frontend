@@ -1,7 +1,6 @@
 import React from "react";
 import { Menu, Layout } from "antd";
 import {
-  PieChartOutlined,
   HeatMapOutlined,
   EnvironmentOutlined,
   BarChartOutlined,
@@ -14,7 +13,7 @@ const Sider = (props) => {
     <Layout.Sider
       theme="light"
       //collapsible
-      breakpoint="lg"
+      breakpoint="md"
       collapsedWidth="0"
       className="sider"
     >
@@ -40,23 +39,15 @@ const Sider = (props) => {
           onClick={handleClick}
           icon={<HeatMapOutlined />}
         >
-          Drowsiness Heatmap
+          Accident Heatmap
         </Menu.Item>
         <Menu.Item
           key="3"
           className="sider-menu-item"
           onClick={handleClick}
-          icon={<PieChartOutlined />}
-        >
-          Accident Overview
-        </Menu.Item>
-        <Menu.Item
-          key="4"
-          className="sider-menu-item"
-          onClick={handleClick}
           icon={<BarChartOutlined />}
         >
-          Accident By Day
+          Accident Statistics
         </Menu.Item>
       </Menu>
     </Layout.Sider>
