@@ -16,13 +16,16 @@ const TimeRangePicker = (props) => {
     props.setTime(value);
   };
   return (
-    <Select
-      className="time-range-picker"
-      placeholder="Select time"
-      onChange={handleChange}
-    >
-      {times}
-    </Select>
+    <div className="time-range">
+      <div className="time-range-label">Select time:</div>
+      <Select
+        className="time-range-picker"
+        // placeholder={now}
+        onChange={handleChange}
+      >
+        {times}
+      </Select>
+    </div>
   );
 };
 
@@ -37,7 +40,7 @@ const AccidentHeatMap = () => {
   return (
     <Layout style={{ height: "100vh" }}>
       <PageHeader title={"Accident Heatmap"} />
-      <Content className="fullmap-content" style={{ height: "100%" }}>
+      <Content style={{ height: "100%" }}>
         <TimeRangePicker n={n} setTime={setTime} />
         <MyMapComponent zoom={16} isShownHere heatMapData={data} />
       </Content>

@@ -20,6 +20,12 @@
   0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05); // major shadow for layers
 @title-dark: #ebd80c;
 /*---- Common ----*/
+// @screen-xs: 480px;
+// @screen-sm: 576px;
+// @screen-md: 768px;
+// @screen-lg: 992px;
+// @screen-xl: 1200px;
+// @screen-xxl: 1600px;
 body {
   font-family: "Kanit", sans-serif;
   height: 100%;
@@ -61,12 +67,12 @@ body {
 }
 .sider {
   height: 100vh;
-  box-shadow: 5px 0 5px -2px rgb(240, 240, 240);
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: @screen-md) {
   .sider {
     position: absolute;
     z-index: 9999;
+    box-shadow: 5px 0 5px -2px rgb(191, 191, 191);
   }
 }
 // .sider-menu {
@@ -76,14 +82,27 @@ body {
 //   //
 // }
 /*---- AccidentHeatMap ----*/
-.time-range-picker {
-  width: 120px;
+.content-block-full {
+  height: 100%;
+}
+.time-range {
+  display: flex;
+  align-items: center;
   position: absolute;
   z-index: 9998;
   margin: 10px 10px;
+  background-color: #ffffff;
 }
-@media only screen and (max-width: 768px) {
-  .time-range-picker {
+.time-range-label {
+  width: 90px;
+  text-align: center;
+}
+.time-range-picker {
+  width: 120px;
+}
+@media only screen and (max-width: @screen-md) {
+  .time-range {
     margin-left: 50px;
   }
 }
+/*---- AccidentStatistics ----*/

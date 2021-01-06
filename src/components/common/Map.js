@@ -44,6 +44,26 @@ const Here = () => (
     <img src={pin} height="50" width="50" alt="I'm here" />
   </div>
 );
+const createMapOptions = (maps) => {
+  return {
+    panControl: false,
+    mapTypeControl: false,
+    scrollwheel: true,
+    zoomControl: false,
+    fullscreenControl: false,
+    mapTypeId: "roadmap",
+    styles: [
+      {
+        stylers: [
+          { saturation: -100 },
+          { gamma: 0.8 },
+          { lightness: 4 },
+          { visibility: "on" },
+        ],
+      },
+    ],
+  };
+};
 const MyMapComponent = (props) => {
   const { location, cancelLocationWatch, error } = useWatchLocation();
   useEffect(() => {
@@ -56,7 +76,7 @@ const MyMapComponent = (props) => {
     console.log(error);
   }
   return (
-    <div style={{ height: "100%", width: "100%" }}>
+    <div className="content-block-full">
       {location ? (
         <GoogleMapReact
           bootstrapURLKeys={{
@@ -64,15 +84,19 @@ const MyMapComponent = (props) => {
             language: config.googleMapLang,
             libraries: ["visualization"],
           }}
-          center={{ lat: location.latitude, lng: location.longitude }}
+          center={{
+            lat: location?.latitude,
+            lng: location?.longitude,
+          }}
           defaultZoom={props.zoom || 18}
+          options={createMapOptions}
           heatmap={{
             positions: props.heatMapData || [],
             options: { radius: 30, opacity: 0.6 },
           }}
         >
           {props.isShownHere && (
-            <Here lat={location.latitude} lng={location.longitude} />
+            <Here lat={location?.latitude} lng={location?.longitude} />
           )}
           {props.markers?.map((marker) => (
             <Marker

@@ -9,7 +9,7 @@ const AccidentMap = () => {
   return (
     <Layout style={{ height: "100vh" }}>
       <PageHeader title={"Accident Map"} />
-      <Content className="fullmap-content" style={{ height: "100%" }}>
+      <Content style={{ height: "100%" }}>
         <MyMapComponent markers={Accident} isShownHere />
       </Content>
     </Layout>
