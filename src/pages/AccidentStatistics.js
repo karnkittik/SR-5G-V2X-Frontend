@@ -4,6 +4,7 @@ import PageHeader from "../components/common/PageHeader";
 import MyResponsiveLine from "../components/TimeLineChart";
 import DashbordCard from "../components/common/DashbordCard";
 import MyResponsiveCalendar from "../components/HeatMapCalendar";
+import MyResponsivePie from "../components/PieChart";
 const { Content } = Layout;
 
 const AccidentStatistics = () => {
@@ -20,6 +21,13 @@ const AccidentStatistics = () => {
           <Col xs={24} lg={12}>
             <DashbordCard className="accident-stat-timechart">
               <MyResponsiveLine />
+            </DashbordCard>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={24} lg={12}>
+            <DashbordCard className="accident-stat-pie">
+              <MyResponsivePie />
             </DashbordCard>
           </Col>
         </Row>

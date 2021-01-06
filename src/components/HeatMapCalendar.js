@@ -72,26 +72,32 @@ var options = {
         ranges: [
           {
             from: 0,
+            to: 0,
+            name: "none",
+            color: "#EEEEEE",
+          },
+          {
+            from: 1,
             to: 5,
-            name: "low",
+            name: "1-5",
             color: "#FAD738",
           },
           {
             from: 6,
             to: 20,
-            name: "medium",
+            name: "6-20",
             color: "#BDC182",
           },
           {
             from: 21,
             to: 45,
-            name: "high",
+            name: "21-45",
             color: "#74A9BE",
           },
           {
             from: 46,
             to: 100,
-            name: "extreme",
+            name: "46-100",
             color: "#128FF8",
           },
         ],
@@ -114,7 +120,7 @@ var options = {
         fontWeight: "inherit",
       },
       title: {
-        formatter: (seriesName) => "",
+        formatter: (seriesName) => "Count:",
       },
     },
   },

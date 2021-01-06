@@ -7,6 +7,6 @@ const DashbordCard = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  height: 400px;
+  height: 312px;
 `;
 export default DashbordCard;

@@ -21,7 +21,7 @@ var options = {
         zoom: false,
         zoomin: true,
         zoomout: true,
-        pan: false,
+        pan: true,
         reset: true | '<img src="/static/icons/reset.png" width="20">',
         customIcons: [],
       },

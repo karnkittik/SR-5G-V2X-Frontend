@@ -629,3 +629,7 @@ export const AccidentCalendar = [
     value: 47,
   },
 ];
+export const AccidentRoadPie = {
+  series: [1, 20, 3, 40],
+  labels: ["Rd. Rama 1", "Rd. Rama 4", "Rd. Phayathai", "Rd. Henri Dunant"],
+};
