@@ -1,8 +1,8 @@
 import { React, useState, useEffect } from "react";
 import { Layout, Select } from "antd";
-import PageHeader from "../components/common/PageHeader";
-import MyMapComponent from "../components/common/Map";
-import { AccidentHeat } from "../mock/Coordinate";
+import PageHeader from "../../components/common/PageHeader";
+import MyMapComponent from "../../components/common/Map";
+import { AccidentHeat } from "../../mock/Coordinate";
 const { Content } = Layout;
 const { Option } = Select;
 
@@ -38,9 +38,8 @@ const AccidentHeatMap = () => {
     setData(AccidentHeat[time]);
   }, [time]);
   return (
-    <Layout style={{ height: "100vh" }}>
-      <PageHeader title={"Accident Heatmap"} />
-      <Content style={{ height: "100%" }}>
+    <Layout style={{ height: "100%" }}>
+      <Content>
         <TimeRangePicker n={n} setTime={setTime} />
         <MyMapComponent zoom={16} isShownHere heatMapData={data} />
       </Content>

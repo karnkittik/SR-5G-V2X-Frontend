@@ -77,40 +77,34 @@ const MyMapComponent = (props) => {
   }
   return (
     <div className="content-block-full">
-      {location ? (
-        <GoogleMapReact
-          bootstrapURLKeys={{
-            key: config.googleMapAPI,
-            language: config.googleMapLang,
-            libraries: ["visualization"],
-          }}
-          center={{
-            lat: location?.latitude,
-            lng: location?.longitude,
-          }}
-          defaultZoom={props.zoom || 18}
-          options={createMapOptions}
-          heatmap={{
-            positions: props.heatMapData || [],
-            options: { radius: 30, opacity: 0.6 },
-          }}
-        >
-          {props.isShownHere && (
-            <Here lat={location?.latitude} lng={location?.longitude} />
-          )}
-          {props.markers?.map((marker) => (
-            <Marker
-              key={marker.key}
-              lat={marker.coordinate.lat}
-              lng={marker.coordinate.lng}
-            />
-          ))}
-        </GoogleMapReact>
-      ) : (
-        <div className="loading-map">
-          <p>Loading...</p>
-        </div>
-      )}
+      <GoogleMapReact
+        bootstrapURLKeys={{
+          key: config.googleMapAPI,
+          language: config.googleMapLang,
+          libraries: ["visualization"],
+        }}
+        center={{
+          lat: location?.latitude,
+          lng: location?.longitude,
+        }}
+        defaultZoom={props.zoom || 18}
+        options={createMapOptions}
+        heatmap={{
+          positions: props.heatMapData || [],
+          options: { radius: 30, opacity: 0.6 },
+        }}
+      >
+        {props.isShownHere && location && (
+          <Here lat={location?.latitude} lng={location?.longitude} />
+        )}
+        {props.markers?.map((marker) => (
+          <Marker
+            key={marker.key}
+            lat={marker.coordinate.lat}
+            lng={marker.coordinate.lng}
+          />
+        ))}
+      </GoogleMapReact>
     </div>
   );
 };

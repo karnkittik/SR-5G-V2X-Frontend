@@ -1,46 +1,34 @@
-import React, { useState } from "react";
-import { Layout } from "antd";
-import Sider from "./Sider";
+import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
-import AccidentMap from "./pages/AccidentMap";
-import AccidentHeatMap from "./pages/AccidentHeatMap";
-import AccidentStatistics from "./pages/AccidentStatistics";
-
-const { Content } = Layout;
+import General from "./pages/general/index";
+import Admin from "./pages/admin/index";
+import styled from "styled-components";
 const App = () => {
-  const pageList = {
-    1: <AccidentMap />,
-    2: <AccidentHeatMap />,
-    3: <AccidentStatistics />,
-  };
-
-  const [render, updateRender] = useState(1);
-
-  const handleMenuClick = (menu) => {
-    updateRender(menu.key);
-  };
-  const eiei = () => {
-    window.less
-      .modifyVars({
-        "@primary-color": "#529bc2",
-      })
-      .then(() => {
-        //do other stuff here
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-  eiei();
   return (
-    <div className="App">
-      <Layout style={{ height: "100vh" }}>
-        <Sider handleClick={handleMenuClick} />
-        <Layout>
-          <Content className="content">{pageList[render]}</Content>
-        </Layout>
-      </Layout>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <General />
+        </Route>
+        <Route path="/admin">
+          <Admin />
+        </Route>
+        <Route path="*">
+          <NotFound />
+        </Route>
+      </Switch>
+    </Router>
   );
+};
+const FullPage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  height: calc(var(--vh, 1vh) * 100);
+`;
+const NotFound = () => {
+  return <FullPage>404: Page Not Found</FullPage>;
 };
 export default App;

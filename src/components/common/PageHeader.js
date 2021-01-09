@@ -3,7 +3,7 @@ const { Header } = Layout;
 
 const PageHeader = ({ title }) => {
   return (
-    <Header className="header" style={{ backgroundColor: "white" }}>
+    <Header className="header">
       <div className="header-title">{title}</div>
     </Header>
   );
