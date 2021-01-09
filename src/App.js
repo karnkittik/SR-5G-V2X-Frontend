@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Layout } from "antd";
 import Sider from "./Sider";
-import "./App.less";
+import "./App.css";
 import AccidentMap from "./pages/AccidentMap";
 import AccidentHeatMap from "./pages/AccidentHeatMap";
 import AccidentStatistics from "./pages/AccidentStatistics";
@@ -19,7 +19,19 @@ const App = () => {
   const handleMenuClick = (menu) => {
     updateRender(menu.key);
   };
-
+  const eiei = () => {
+    window.less
+      .modifyVars({
+        "@primary-color": "#529bc2",
+      })
+      .then(() => {
+        //do other stuff here
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  eiei();
   return (
     <div className="App">
       <Layout style={{ height: "100vh" }}>

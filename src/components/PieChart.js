@@ -93,19 +93,6 @@ var options = {
       color: "#666",
     },
   },
-  responsive: [
-    {
-      breakpoint: 480,
-      options: {
-        chart: {
-          width: 200,
-        },
-        legend: {
-          position: "bottom",
-        },
-      },
-    },
-  ],
   tooltip: {
     enabled: true,
     enabledOnSeries: undefined,
