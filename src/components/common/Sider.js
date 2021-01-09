@@ -11,13 +11,13 @@ const Sider = (props) => {
       collapsedWidth="0"
       className="sider"
     >
+      {logo}
       <Menu
         theme="light"
         mode="inline"
         defaultSelectedKeys={["0"]}
         className="sider-menu"
       >
-        {logo}
         {pageList.map((page, index) => (
           <Menu.Item
             key={index}

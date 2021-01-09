@@ -25,6 +25,11 @@ const Admin = () => {
       component: <div></div>,
       icon: <BarChartOutlined />,
     },
+    {
+      title: "Test 4",
+      component: <div></div>,
+      icon: <BarChartOutlined />,
+    },
   ];
   const Logo = () => (
     <>
@@ -48,7 +53,7 @@ const Admin = () => {
   const handleMenuClick = (menu) => {
     updateRender(menu.key);
   };
-  const eiei = () => {
+  const setTheme = () => {
     window.less
       .modifyVars({
         "@primary-color": "#38c49a",
@@ -60,17 +65,17 @@ const Admin = () => {
         console.error(error);
       });
   };
-  eiei();
+  setTheme();
   return (
     <div className="App">
-      <Layout style={{ height: "calc(var(--vh, 1vh) * 100)" }}>
+      <Layout className="full">
         <Sider
           handleClick={handleMenuClick}
           pageList={pageList}
           logo={<Logo />}
           bottom={<SignOut />}
         />
-        <Layout>
+        <Layout className="full real-layout">
           <Header className="header">
             <div className="header-title">{pageList[render].title}</div>
           </Header>

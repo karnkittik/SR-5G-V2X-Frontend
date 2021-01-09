@@ -52,7 +52,7 @@ const General = () => {
   const handleMenuClick = (menu) => {
     updateRender(menu.key);
   };
-  const eiei = () => {
+  const setTheme = () => {
     window.less
       .modifyVars({
         "@primary-color": "#529bc2",
@@ -64,7 +64,7 @@ const General = () => {
         console.error(error);
       });
   };
-  eiei();
+  setTheme();
   return (
     <div className="App">
       <Layout className="full">
@@ -74,7 +74,7 @@ const General = () => {
           logo={<Logo />}
           bottom={<SignIn />}
         />
-        <Layout className="full">
+        <Layout className="full real-layout">
           <Header className="header">
             <div className="header-title">{pageList[render].title}</div>
           </Header>

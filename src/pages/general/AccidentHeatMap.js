@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from "react";
 import { Layout, Select } from "antd";
-import PageHeader from "../../components/common/PageHeader";
 import MyMapComponent from "../../components/common/Map";
 import { AccidentHeat } from "../../mock/Coordinate";
 const { Content } = Layout;

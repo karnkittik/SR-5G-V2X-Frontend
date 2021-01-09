@@ -1,6 +1,5 @@
 import { React } from "react";
 import { Layout } from "antd";
-import PageHeader from "../../components/common/PageHeader";
 import MyMapComponent from "../../components/common/Map";
 import { Accident } from "../../mock/Coordinate";
 const { Content } = Layout;
