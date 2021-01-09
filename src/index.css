@@ -21,3 +21,15 @@ code {
   left: 10px;
   z-index: 9999;
 }
+.ant-layout-sider-children {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-wrap: wrap;
+  overflow-wrap: normal;
+}
+.ant-ribbon-corner {
+  z-index: 9999;
+}

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Layout } from "antd";
+import { Layout, Button, Badge } from "antd";
 import Sider from "../../components/common/Sider";
 import AccidentMap from "./AccidentMap";
 import AccidentHeatMap from "./AccidentHeatMap";
 import AccidentStatistics from "./AccidentStatistics";
 import {
+  LoginOutlined,
   HeatMapOutlined,
   EnvironmentOutlined,
   BarChartOutlined,
@@ -29,7 +30,23 @@ const General = () => {
       icon: <BarChartOutlined />,
     },
   ];
-  const Logo = () => <div className="sider-weblogo">5G-V2X</div>;
+  const Logo = () => (
+    <>
+      <Badge.Ribbon text="public" placement="end"></Badge.Ribbon>
+      <div className="sider-weblogo">5G-V2X</div>
+    </>
+  );
+  const SignIn = () => (
+    <Button
+      type="link"
+      size="large"
+      icon={<LoginOutlined />}
+      className="sider-bottom-button"
+      href="/admin"
+    >
+      Sign In
+    </Button>
+  );
   const [render, updateRender] = useState(0);
 
   const handleMenuClick = (menu) => {
@@ -55,6 +72,7 @@ const General = () => {
           handleClick={handleMenuClick}
           pageList={pageList}
           logo={<Logo />}
+          bottom={<SignIn />}
         />
         <Layout className="full">
           <Header className="header">

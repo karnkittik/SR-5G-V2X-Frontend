@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Layout, Badge } from "antd";
+import { Layout, Badge, Button } from "antd";
 import Sider from "../../components/common/Sider";
 import {
+  LogoutOutlined,
   HeatMapOutlined,
   EnvironmentOutlined,
   BarChartOutlined,
@@ -26,11 +27,23 @@ const Admin = () => {
     },
   ];
   const Logo = () => (
-    <Badge.Ribbon text="Admin">
+    <>
+      <Badge.Ribbon text="admin" placement="end"></Badge.Ribbon>
       <div className="sider-weblogo admin">5G-V2X</div>
-    </Badge.Ribbon>
+    </>
   );
-  const [render, updateRender] = useState(1);
+  const SignOut = () => (
+    <Button
+      type="link"
+      size="large"
+      icon={<LogoutOutlined />}
+      className="sider-bottom-button"
+      href="/"
+    >
+      Sign Out
+    </Button>
+  );
+  const [render, updateRender] = useState(0);
 
   const handleMenuClick = (menu) => {
     updateRender(menu.key);
@@ -38,7 +51,7 @@ const Admin = () => {
   const eiei = () => {
     window.less
       .modifyVars({
-        "@primary-color": "#52c2a0",
+        "@primary-color": "#38c49a",
       })
       .then(() => {
         //do other stuff here
@@ -55,6 +68,7 @@ const Admin = () => {
           handleClick={handleMenuClick}
           pageList={pageList}
           logo={<Logo />}
+          bottom={<SignOut />}
         />
         <Layout>
           <Header className="header">

@@ -1,7 +1,8 @@
 import React from "react";
 import { Menu, Layout } from "antd";
+
 const Sider = (props) => {
-  const { handleClick, pageList, logo } = props;
+  const { handleClick, pageList, logo, bottom } = props;
   return (
     <Layout.Sider
       theme="light"
@@ -10,13 +11,13 @@ const Sider = (props) => {
       collapsedWidth="0"
       className="sider"
     >
-      {logo}
       <Menu
         theme="light"
         mode="inline"
         defaultSelectedKeys={["0"]}
         className="sider-menu"
       >
+        {logo}
         {pageList.map((page, index) => (
           <Menu.Item
             key={index}
@@ -28,6 +29,7 @@ const Sider = (props) => {
           </Menu.Item>
         ))}
       </Menu>
+      <div className="sider-bottom">{bottom}</div>
     </Layout.Sider>
   );
 };
