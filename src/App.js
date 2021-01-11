@@ -1,16 +1,43 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import "./App.css";
 import General from "./pages/general/index";
 import Admin from "./pages/admin/index";
+import LogInPage from "./pages/admin/LogIn";
 import styled from "styled-components";
+import cookie from "js-cookie";
 const App = () => {
+  const [islogin, setIsLogin] = useState(false);
+  useEffect(() => {
+    if (!cookie.get("5G-V2X")) {
+      setIsLogin(false);
+    } else {
+      setIsLogin(true);
+    }
+  }, [islogin]);
   return (
     <Router>
       <Switch>
         <Route exact path="/">
           <General />
         </Route>
+        <Route
+          path="/admin"
+          exact
+          render={(props) => (!islogin ? <Redirect to="/login" /> : <Admin />)}
+        />
+        <Route
+          path="/login"
+          exact
+          render={(props) =>
+            islogin ? <Redirect to="/admin" /> : <LogInPage />
+          }
+        />
         <Route path="/admin">
           <Admin />
         </Route>

@@ -128,3 +128,36 @@
   width: 120px;
 }
 /*---- AccidentStatistics ----*/
+/*---------- LogIn------------*/
+.login {
+  height: calc(var(--vh, 1vh) * 100);
+  background-color: white;
+}
+.login-logo {
+  height: calc(var(--vh, 1vh) * 40);
+  max-height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 4rem;
+  font-weight: 700;
+  padding-bottom: 50px;
+  color: #5272c2;
+}
+.login-logo-text {
+  width: 400px;
+  text-align: center;
+  padding-top: 20px;
+}
+.login-form {
+  max-width: 400px;
+  align-self: center;
+  margin: auto;
+}
+.login-label {
+  font-size: 16px !important;
+}
+.login-button {
+  width: 100%;
+  margin-top: 20px;
+}

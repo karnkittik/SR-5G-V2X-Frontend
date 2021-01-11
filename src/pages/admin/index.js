@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Layout, Badge, Button } from "antd";
 import Sider from "../../components/common/Sider";
 import {
@@ -7,6 +7,7 @@ import {
   EnvironmentOutlined,
   BarChartOutlined,
 } from "@ant-design/icons";
+import cookie from "js-cookie";
 const { Content, Header } = Layout;
 const Admin = () => {
   const pageList = [
@@ -37,17 +38,24 @@ const Admin = () => {
       <div className="sider-weblogo admin">5G-V2X</div>
     </>
   );
-  const SignOut = () => (
-    <Button
-      type="link"
-      size="large"
-      icon={<LogoutOutlined />}
-      className="sider-bottom-button"
-      href="/"
-    >
-      Sign Out
-    </Button>
-  );
+  const SignOutButton = () => {
+    const signOut = () => {
+      console.log("sign out");
+      cookie.remove("5G-V2X");
+      window.location.reload();
+    };
+    return (
+      <Button
+        type="link"
+        size="large"
+        icon={<LogoutOutlined />}
+        className="sider-bottom-button"
+        onClick={signOut}
+      >
+        Sign Out
+      </Button>
+    );
+  };
   const [render, updateRender] = useState(0);
 
   const handleMenuClick = (menu) => {
@@ -65,7 +73,10 @@ const Admin = () => {
         console.error(error);
       });
   };
-  setTheme();
+  useEffect(() => {
+    setTheme();
+  }, []);
+
   return (
     <div className="App">
       <Layout className="full">
@@ -73,7 +84,7 @@ const Admin = () => {
           handleClick={handleMenuClick}
           pageList={pageList}
           logo={<Logo />}
-          bottom={<SignOut />}
+          bottom={<SignOutButton />}
         />
         <Layout className="full real-layout">
           <Header className="header">

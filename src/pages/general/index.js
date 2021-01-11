@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Layout, Button, Badge } from "antd";
 import Sider from "../../components/common/Sider";
 import AccidentMap from "./AccidentMap";
@@ -64,7 +64,10 @@ const General = () => {
         console.error(error);
       });
   };
-  setTheme();
+  useEffect(() => {
+    setTheme();
+  }, []);
+
   return (
     <div className="App">
       <Layout className="full">
