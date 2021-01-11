@@ -72,7 +72,7 @@ const LogInPage = () => {
           <Form
             {...layout}
             name="login"
-            class="login-form"
+            className="login-form"
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
           >

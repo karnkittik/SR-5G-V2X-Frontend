@@ -5,31 +5,49 @@ import {
   LogoutOutlined,
   HeatMapOutlined,
   EnvironmentOutlined,
-  BarChartOutlined,
+  TeamOutlined,
+  LineChartOutlined,
 } from "@ant-design/icons";
 import cookie from "js-cookie";
+import { useHistory } from "react-router-dom";
+import AccidentDayMap from "./AccidentDayMap";
+import DrowsinessHeatMap from "./DrowsinessHeatMap";
 const { Content, Header } = Layout;
 const Admin = () => {
-  const pageList = [
+  const pageListGroup = [
     {
-      title: "Employee List",
-      component: <div></div>,
-      icon: <EnvironmentOutlined />,
+      name: "Overview",
+      pageList: [
+        {
+          title: "Daily Accident Map",
+          component: <AccidentDayMap />,
+          icon: <EnvironmentOutlined />,
+          key: 0,
+        },
+        {
+          title: "Drowsiness HeatMap",
+          component: <DrowsinessHeatMap />,
+          icon: <HeatMapOutlined />,
+          key: 1,
+        },
+      ],
     },
     {
-      title: "Test 2",
-      component: <div></div>,
-      icon: <HeatMapOutlined />,
-    },
-    {
-      title: "Test 3",
-      component: <div></div>,
-      icon: <BarChartOutlined />,
-    },
-    {
-      title: "Test 4",
-      component: <div></div>,
-      icon: <BarChartOutlined />,
+      name: "Employee",
+      pageList: [
+        {
+          title: "Employee List",
+          component: <div></div>,
+          icon: <TeamOutlined />,
+          key: 2,
+        },
+        {
+          title: "Employee Statistic",
+          component: <div></div>,
+          icon: <LineChartOutlined />,
+          key: 3,
+        },
+      ],
     },
   ];
   const Logo = () => (
@@ -39,10 +57,11 @@ const Admin = () => {
     </>
   );
   const SignOutButton = () => {
+    let history = useHistory();
     const signOut = () => {
       console.log("sign out");
       cookie.remove("5G-V2X");
-      window.location.reload();
+      history.push("/");
     };
     return (
       <Button
@@ -57,14 +76,18 @@ const Admin = () => {
     );
   };
   const [render, updateRender] = useState(0);
-
+  const [firstIndex, setFirstIndex] = useState(0);
+  const [secondIndex, setSecondIndex] = useState(0);
+  const [firstLength, setFirstLength] = useState(
+    pageListGroup[0].pageList.length
+  );
   const handleMenuClick = (menu) => {
     updateRender(menu.key);
   };
   const setTheme = () => {
     window.less
       .modifyVars({
-        "@primary-color": "#38c49a",
+        "@primary-color": "#5272c2",
       })
       .then(() => {
         //do other stuff here
@@ -76,21 +99,31 @@ const Admin = () => {
   useEffect(() => {
     setTheme();
   }, []);
+  useEffect(() => {
+    var a = render >= firstLength ? 1 : 0;
+    var b = a ? render - a - 1 : render;
+    setFirstIndex(a);
+    setSecondIndex(b);
+  }, [render, firstLength, firstIndex, secondIndex]);
 
   return (
     <div className="App">
       <Layout className="full">
         <Sider
           handleClick={handleMenuClick}
-          pageList={pageList}
+          pageListGroup={pageListGroup}
           logo={<Logo />}
           bottom={<SignOutButton />}
         />
         <Layout className="full real-layout">
           <Header className="header">
-            <div className="header-title">{pageList[render].title}</div>
+            <div className="header-title">
+              {pageListGroup[firstIndex].pageList[secondIndex].title}
+            </div>
           </Header>
-          <Content className="content">{pageList[render].component}</Content>
+          <Content className="content">
+            {pageListGroup[firstIndex].pageList[secondIndex].component}
+          </Content>
         </Layout>
       </Layout>
     </div>

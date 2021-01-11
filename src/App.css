@@ -81,7 +81,8 @@
   color: #529bc2;
 }
 .admin {
-  color: #38c49a;
+  /* color: #38c49a; */
+  color: #5272c2;
 }
 .sider-menu {
   overflow-y: auto;
@@ -98,6 +99,13 @@
   position: fixed !important;
   left: 0;
   z-index: 9998;
+}
+.sider-menu-group-name {
+  margin-top: 25px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
 }
 .sider-bottom {
   text-align: center;
