@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Layout, Button, Badge } from "antd";
 import Sider from "../../components/common/Sider";
-import AccidentMap from "./AccidentMap";
 import AccidentHeatMap from "./AccidentHeatMap";
 import AccidentStatistics from "./AccidentStatistics";
 import {
   LoginOutlined,
-  HeatMapOutlined,
   EnvironmentOutlined,
   BarChartOutlined,
 } from "@ant-design/icons";
@@ -16,13 +14,8 @@ const General = () => {
   const pageList = [
     {
       title: "Accident Map",
-      component: <AccidentMap />,
-      icon: <EnvironmentOutlined />,
-    },
-    {
-      title: "Accident HeatMap",
       component: <AccidentHeatMap />,
-      icon: <HeatMapOutlined />,
+      icon: <EnvironmentOutlined />,
     },
     {
       title: "Accident Statistics",

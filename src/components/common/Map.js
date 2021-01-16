@@ -114,7 +114,7 @@ const MyMapComponent = (props) => {
         defaultZoom={props.zoom || 18}
         options={createMapOptions}
         heatmap={{
-          positions: props.heatMapData || [],
+          positions: !!props.heatMapData ? props.heatMapData : [],
           options: { radius: 30, opacity: 0.6 },
         }}
         hoverDistance={20}
@@ -122,14 +122,15 @@ const MyMapComponent = (props) => {
         {props.isShownHere && location && (
           <Here lat={location?.latitude} lng={location?.longitude} />
         )}
-        {props.markers?.map((marker) => (
-          <Marker
-            key={marker.key}
-            lat={marker.coordinate.lat}
-            lng={marker.coordinate.lng}
-            time={marker.time}
-          />
-        ))}
+        {!!props.markers &&
+          props.markers.map((marker, index) => (
+            <Marker
+              key={index + "m"}
+              lat={marker.coordinate.lat}
+              lng={marker.coordinate.lng}
+              time={marker.time}
+            />
+          ))}
       </GoogleMapReact>
     </div>
   );
