@@ -1,11 +1,11 @@
 export const Accident = [
-  { key: 1, coordinate: { lat: 13.756331, lng: 100.401762 } },
-  { key: 2, coordinate: { lat: 13, lng: 89 } },
-  { key: 3, coordinate: { lat: 13.766341, lng: 100.501862 } },
-  { key: 4, coordinate: { lat: 13.776361, lng: 100.401762 } },
-  { key: 5, coordinate: { lat: 13.786381, lng: 100.601662 } },
-  { key: 6, coordinate: { lat: 13.796501, lng: 100.901562 } },
-  { key: 7, coordinate: { lat: 13.706631, lng: 100.301462 } },
+  { key: 1, time: "13.01", coordinate: { lat: 13.756331, lng: 100.401762 } },
+  { key: 2, time: "13.41", coordinate: { lat: 13, lng: 89 } },
+  { key: 3, time: "13.29", coordinate: { lat: 13.766341, lng: 100.501862 } },
+  { key: 4, time: "13.36", coordinate: { lat: 13.776361, lng: 100.401762 } },
+  { key: 5, time: "13.56", coordinate: { lat: 13.786381, lng: 100.601662 } },
+  { key: 6, time: "13.24", coordinate: { lat: 13.796501, lng: 100.901562 } },
+  { key: 7, time: "13.13", coordinate: { lat: 13.706631, lng: 100.301462 } },
 ];
 export const AccidentHeat = [
   [

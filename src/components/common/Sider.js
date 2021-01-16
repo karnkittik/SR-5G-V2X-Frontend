@@ -33,23 +33,22 @@ const Sider = (props) => {
         {pageListGroup?.map(({ name, pageList }, pageListIndex) => {
           return (
             <React.Fragment key={pageListIndex + "f"}>
-              <div key={pageListIndex + "d"} className="sider-menu-group-name">
-                {name}
-              </div>
-              <Menu.Divider key={pageListIndex + "g"} />
-              {/* <Divider key={pageListIndex + "d"}>{name}</Divider> */}
-              {pageList.map((page, index) => {
-                return (
-                  <Menu.Item
-                    key={pageListIndex + index + (pageListIndex !== 0 ? 1 : 0)}
-                    className="sider-menu-item"
-                    onClick={handleClick}
-                    icon={page.icon}
-                  >
-                    {page.title}
-                  </Menu.Item>
-                );
-              })}
+              <Menu.ItemGroup key={"g" + pageListIndex} title={name}>
+                {pageList.map((page, index) => {
+                  return (
+                    <Menu.Item
+                      key={
+                        pageListIndex + index + (pageListIndex !== 0 ? 1 : 0)
+                      }
+                      className="sider-menu-item"
+                      onClick={handleClick}
+                      icon={page.icon}
+                    >
+                      {page.title}
+                    </Menu.Item>
+                  );
+                })}
+              </Menu.ItemGroup>
             </React.Fragment>
           );
         })}

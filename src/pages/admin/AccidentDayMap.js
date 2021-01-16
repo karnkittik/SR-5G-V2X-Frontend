@@ -37,7 +37,7 @@ const AccidentDayMap = () => {
     <Layout style={{ height: "100%" }}>
       <Content>
         <div className="time-range">
-          <div className="time-range-label">Select Date:</div>
+          <div className="time-range-label">Select date:</div>
           <DatePicker onChange={setDate} disabledDate={disabledDate} />
         </div>
         <MyMapComponent zoom={16} isShownHere markers={data} />

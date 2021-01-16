@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from "react";
 import GoogleMapReact from "google-map-react";
 import marker from "../../assets/marker.png";
 import pin from "../../assets/pin.png";
-
+import styled from "styled-components";
 const useWatchLocation = (options = {}) => {
   const [location, setLocation] = useState();
   const [error, setError] = useState();
@@ -34,11 +34,35 @@ const useWatchLocation = (options = {}) => {
   }, [options]);
   return { location, cancelLocationWatch, error };
 };
-const Marker = () => (
-  <div style={{ position: "absolute", transform: "translate(-50%, -50%)" }}>
-    <img src={marker} height="32" width="32" alt="marker" />
-  </div>
-);
+const Marker = (props) => {
+  const HoverMessage = styled.div`
+    padding: 5px 0;
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
+    width: 60px;
+    transform: translateX(-50%) translateY(calc(-100% - 20px));
+    position: absolute;
+    height: auto;
+    word-wrap: break-word;
+  `;
+  return (
+    <div>
+      {props.$hover && (
+        <HoverMessage style={{ backgroundColor: "white" }}>
+          {props.time}
+        </HoverMessage>
+      )}
+      <img
+        src={marker}
+        height="32"
+        width="32"
+        alt="marker"
+        style={{ transform: "translate(-50%, -50%)" }}
+      />
+    </div>
+  );
+};
 const Here = () => (
   <div style={{ position: "absolute", transform: "translate(-50%, -100%)" }}>
     <img src={pin} height="50" width="50" alt="I'm here" />
@@ -93,6 +117,7 @@ const MyMapComponent = (props) => {
           positions: props.heatMapData || [],
           options: { radius: 30, opacity: 0.6 },
         }}
+        hoverDistance={20}
       >
         {props.isShownHere && location && (
           <Here lat={location?.latitude} lng={location?.longitude} />
@@ -102,6 +127,7 @@ const MyMapComponent = (props) => {
             key={marker.key}
             lat={marker.coordinate.lat}
             lng={marker.coordinate.lng}
+            time={marker.time}
           />
         ))}
       </GoogleMapReact>

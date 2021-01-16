@@ -100,13 +100,13 @@
   left: 0;
   z-index: 9998;
 }
-.sider-menu-group-name {
+/* .sider-menu-group-name {
   margin-top: 25px;
   margin-bottom: 20px;
   text-align: center;
   font-size: 16px;
   font-weight: 500;
-}
+} */
 .sider-bottom {
   text-align: center;
   padding: 0px 30px 20px 10px;
@@ -168,4 +168,15 @@
 .login-button {
   width: 100%;
   margin-top: 20px;
+}
+@media only screen and (max-width: 768px) {
+  .login-logo-text {
+    width: 100%;
+    padding: 0 32px;
+    padding-top: 20px;
+  }
+  .login-form {
+    width: 100%;
+    padding: 0 32px;
+  }
 }
