@@ -12,6 +12,7 @@ import cookie from "js-cookie";
 import { useHistory } from "react-router-dom";
 import AccidentMap from "./AccidentMap";
 import DrowsinessMap from "./DrowsinessMap";
+import EmployeeList from "./EmployeeList";
 
 const { Content, Header } = Layout;
 const Admin = () => {
@@ -36,7 +37,7 @@ const Admin = () => {
       pageList: [
         {
           title: "Employee List",
-          component: <div></div>,
+          component: <EmployeeList />,
           icon: <TeamOutlined />,
         },
         {
