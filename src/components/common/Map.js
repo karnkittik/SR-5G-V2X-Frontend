@@ -36,12 +36,13 @@ const useWatchLocation = (options = {}) => {
 };
 const Marker = (props) => {
   const HoverMessage = styled.div`
-    padding: 5px 0;
+    padding: 5px 5px;
     text-align: center;
     background-color: white;
     border-radius: 5px;
-    width: 60px;
+    max-width: 120px;
     transform: translateX(-50%) translateY(calc(-100% - 20px));
+    z-index: 9995;
     position: absolute;
     height: auto;
     word-wrap: break-word;
@@ -50,7 +51,7 @@ const Marker = (props) => {
     <div>
       {props.$hover && (
         <HoverMessage style={{ backgroundColor: "white" }}>
-          {props.time}
+          {props?.detail.time}
         </HoverMessage>
       )}
       <img
@@ -58,7 +59,11 @@ const Marker = (props) => {
         height="32"
         width="32"
         alt="marker"
-        style={{ transform: "translate(-50%, -50%)" }}
+        style={{
+          transform: "translate(-50%, -50%)",
+          borderRadius: "50%",
+          border: props.$hover && "3px solid blue",
+        }}
       />
     </div>
   );
@@ -128,7 +133,7 @@ const MyMapComponent = (props) => {
               key={index + "m"}
               lat={marker.coordinate.lat}
               lng={marker.coordinate.lng}
-              time={marker.time}
+              detail={marker.detail}
             />
           ))}
       </GoogleMapReact>

@@ -9,22 +9,61 @@ export const Accident = [
 ];
 export const AccidentData = [
   [
-    { time: "00.01", coordinate: { lat: 13.756331, lng: 100.501762 } },
-    { time: "00.11", coordinate: { lat: 13.757331, lng: 100.502762 } },
-    { time: "00.21", coordinate: { lat: 13.758331, lng: 100.503762 } },
-    { time: "00.31", coordinate: { lat: 13.759331, lng: 100.503462 } },
-    { time: "00.41", coordinate: { lat: 13.755331, lng: 100.504762 } },
-    { time: "00.51", coordinate: { lat: 13.754331, lng: 100.505662 } },
-    { time: "00.13", coordinate: { lat: 13.753331, lng: 100.509762 } },
+    {
+      detail: { time: "00.01" },
+      coordinate: { lat: 13.756331, lng: 100.501762 },
+    },
+    {
+      detail: { time: "00.11" },
+      coordinate: { lat: 13.757331, lng: 100.502762 },
+    },
+    {
+      detail: { time: "00.21" },
+      coordinate: { lat: 13.758331, lng: 100.503762 },
+    },
+    {
+      detail: { time: "00.31" },
+      coordinate: { lat: 13.759331, lng: 100.503462 },
+    },
+    {
+      detail: { time: "00.41" },
+      coordinate: { lat: 13.755331, lng: 100.504762 },
+    },
+    {
+      detail: { time: "00.51" },
+      coordinate: { lat: 13.754331, lng: 100.505662 },
+    },
+    {
+      detail: { time: "00.13" },
+      coordinate: { lat: 13.753331, lng: 100.509762 },
+    },
   ],
   [
-    { time: "01.01", coordinate: { lat: 13.755331, lng: 100.504562 } },
-    { time: "01.11", coordinate: { lat: 13.764331, lng: 100.508062 } },
-    { time: "01.21", coordinate: { lat: 13.773331, lng: 100.505962 } },
-    { time: "01.31", coordinate: { lat: 13.785331, lng: 100.508762 } },
-    { time: "01.41", coordinate: { lat: 13.794331, lng: 100.509762 } },
-    { time: "01.51", coordinate: { lat: 13.743331, lng: 100.505762 } },
-    { time: "01.13", coordinate: { lat: 13, lng: 89 } },
+    {
+      detail: { time: "01.01" },
+      coordinate: { lat: 13.755331, lng: 100.504562 },
+    },
+    {
+      detail: { time: "01.11" },
+      coordinate: { lat: 13.764331, lng: 100.508062 },
+    },
+    {
+      detail: { time: "01.21" },
+      coordinate: { lat: 13.773331, lng: 100.505962 },
+    },
+    {
+      detail: { time: "01.31" },
+      coordinate: { lat: 13.785331, lng: 100.508762 },
+    },
+    {
+      detail: { time: "01.41" },
+      coordinate: { lat: 13.794331, lng: 100.509762 },
+    },
+    {
+      detail: { time: "01.51" },
+      coordinate: { lat: 13.743331, lng: 100.505762 },
+    },
+    { detail: { time: "01.13" }, coordinate: { lat: 13, lng: 89 } },
   ],
 ];
 export const AccidentHeat = [

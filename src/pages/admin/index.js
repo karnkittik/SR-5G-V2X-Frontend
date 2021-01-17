@@ -3,15 +3,16 @@ import { Layout, Badge, Button } from "antd";
 import Sider from "../../components/common/Sider";
 import {
   LogoutOutlined,
-  HeatMapOutlined,
-  EnvironmentOutlined,
+  BellOutlined,
+  ExclamationCircleOutlined,
   TeamOutlined,
   LineChartOutlined,
 } from "@ant-design/icons";
 import cookie from "js-cookie";
 import { useHistory } from "react-router-dom";
-import AccidentDayMap from "./AccidentDayMap";
-import DrowsinessHeatMap from "./DrowsinessHeatMap";
+import AccidentMap from "./AccidentMap";
+import DrowsinessMap from "./DrowsinessMap";
+
 const { Content, Header } = Layout;
 const Admin = () => {
   const pageListGroup = [
@@ -19,14 +20,14 @@ const Admin = () => {
       name: "Overview",
       pageList: [
         {
-          title: "Daily Accident Map",
-          component: <AccidentDayMap />,
-          icon: <EnvironmentOutlined />,
+          title: "Accident Map",
+          component: <AccidentMap />,
+          icon: <ExclamationCircleOutlined />,
         },
         {
-          title: "Drowsiness HeatMap",
-          component: <DrowsinessHeatMap />,
-          icon: <HeatMapOutlined />,
+          title: "Drowsiness Map",
+          component: <DrowsinessMap />,
+          icon: <BellOutlined />,
         },
       ],
     },

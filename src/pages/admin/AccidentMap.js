@@ -1,9 +1,18 @@
 import { React, useState, useEffect } from "react";
 import { Layout } from "antd";
 import MyMapComponent from "../../components/common/Map";
-import DateTimeTypePicker from "../../components/common/DateTimeTypePicker";
 import { AccidentData } from "../../mock/Coordinate";
+import * as dayjs from "dayjs";
+import DateTimeTypePicker from "../../components/common/DateTimeTypePicker";
 const { Content } = Layout;
+
+const disabledDate = (current) => {
+  // Can not select days before today and today
+  return (
+    current &&
+    (current > dayjs().endOf("day") || current < dayjs().startOf("year"))
+  );
+};
 
 const AccidentMap = () => {
   var d = new Date();

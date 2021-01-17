@@ -1,11 +1,11 @@
 import { React, useState, useEffect } from "react";
 import { Layout } from "antd";
 import MyMapComponent from "../../components/common/Map";
-import DateTimeTypePicker from "../../components/common/DateTimeTypePicker";
 import { AccidentData } from "../../mock/Coordinate";
+import DateTimeTypePicker from "../../components/common/DateTimeTypePicker";
 const { Content } = Layout;
 
-const AccidentMap = () => {
+const DrowsinessMap = () => {
   var d = new Date();
   var n = d.getHours();
   const [time, setTime] = useState(n);
@@ -28,4 +28,4 @@ const AccidentMap = () => {
     </Layout>
   );
 };
-export default AccidentMap;
+export default DrowsinessMap;

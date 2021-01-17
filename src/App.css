@@ -120,16 +120,6 @@
 .content-block-full {
   height: 100%;
 }
-.today-date {
-  position: absolute;
-  z-index: 9995;
-  right: 0;
-  bottom: 0;
-  /* margin: 10px; */
-  padding: 5px;
-  background-color: #ffffff;
-  border-radius: 10px;
-}
 .time-range {
   display: flex;
   align-items: center;
@@ -138,6 +128,7 @@
   margin: 10px 10px;
   background-color: #ffffff;
   border-radius: 10px;
+  padding: 3px 3px;
 }
 .time-range-label {
   width: 90px;
