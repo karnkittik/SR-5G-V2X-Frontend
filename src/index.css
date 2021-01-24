@@ -26,3 +26,6 @@ code {
   overflow-y: auto;
   overflow-x: hidden;
 }
+.apexcharts-tooltip {
+  background: white;
+}

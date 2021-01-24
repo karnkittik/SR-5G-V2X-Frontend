@@ -38,7 +38,7 @@ export const AddDriverModal = () => {
         icon={<UserAddOutlined />}
         className="add-employee-btn"
       >
-        Employee
+        Driver
       </Button>
       <Modal
         title="New employee"

@@ -3,11 +3,14 @@ import { Layout, Row, Col } from "antd";
 import MyResponsiveLine from "../../components/TimeLineChart";
 import DashbordCard from "../../components/common/DashbordCard";
 import MyResponsiveCalendar from "../../components/HeatMapCalendar";
-import MyResponsivePie from "../../components/PieChart";
-const { Content } = Layout;
+import MyResponsivePie from "../../components/common/PieChart";
+const { Content, Header } = Layout;
 const DrowsinessStatistics = () => {
   return (
     <Layout>
+      <Header className="header">
+        <div className="header-title">Drowsiness Statistics</div>
+      </Header>
       <Content className="real-content">
         <Row>
           <Col xs={24} lg={12}>

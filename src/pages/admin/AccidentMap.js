@@ -4,7 +4,7 @@ import MyMapComponent from "../../components/common/Map";
 import { AccidentData } from "../../mock/Coordinate";
 import * as dayjs from "dayjs";
 import DateTimeTypePicker from "../../components/common/DateTimeTypePicker";
-const { Content } = Layout;
+const { Content, Header } = Layout;
 
 const disabledDate = (current) => {
   // Can not select days before today and today
@@ -25,6 +25,9 @@ const AccidentMap = () => {
   }, [time]);
   return (
     <Layout style={{ height: "100%" }}>
+      <Header className="header">
+        <div className="header-title">Accident Map</div>
+      </Header>
       <Content>
         <DateTimeTypePicker n={n} setTime={setTime} setHeatMap={setHeatMap} />
         <MyMapComponent

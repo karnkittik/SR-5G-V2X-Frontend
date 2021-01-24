@@ -1,23 +1,16 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  useParams,
-} from "react-router-dom";
-import DriverInfo from "./DriverInfo";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import DriverIndiv from "./DriverIndiv";
 import DriverList from "./DriverList";
 const Driver = () => {
-  //   let { id } = useParams();
   return (
     <Router>
       <Switch>
-        {/* <Route path="/:id" children={<Child />} /> */}
         <Route exact path="/admin">
           <DriverList />
         </Route>
         <Route path="/admin/driver/:driver_id">
-          <DriverInfo />
+          <DriverIndiv />
         </Route>
       </Switch>
     </Router>

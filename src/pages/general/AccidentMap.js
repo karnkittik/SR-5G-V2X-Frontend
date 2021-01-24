@@ -3,7 +3,7 @@ import { Layout } from "antd";
 import MyMapComponent from "../../components/common/Map";
 import DateTimeTypePicker from "../../components/common/DateTimeTypePicker";
 import { AccidentData } from "../../mock/Coordinate";
-const { Content } = Layout;
+const { Content, Header } = Layout;
 
 const AccidentMap = () => {
   var d = new Date();
@@ -16,6 +16,9 @@ const AccidentMap = () => {
   }, [time]);
   return (
     <Layout style={{ height: "100%" }}>
+      <Header className="header">
+        <div className="header-title">Accident Map</div>
+      </Header>
       <Content>
         <DateTimeTypePicker n={n} setTime={setTime} setHeatMap={setHeatMap} />
         <MyMapComponent

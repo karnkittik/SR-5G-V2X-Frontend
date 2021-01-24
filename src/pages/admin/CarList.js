@@ -12,7 +12,7 @@ import {
 import { UserAddOutlined } from "@ant-design/icons";
 import styled from "styled-components";
 import { DriverData } from "../../mock/Driver";
-const { Content } = Layout;
+const { Content, Header } = Layout;
 const { Option } = Select;
 const columns = [
   {
@@ -162,6 +162,9 @@ export const AddModal = () => {
 const CarList = () => {
   return (
     <Layout>
+      <Header className="header">
+        <div className="header-title">Car List</div>
+      </Header>
       <Content>
         {/* <AddSection>
           <AddModal />

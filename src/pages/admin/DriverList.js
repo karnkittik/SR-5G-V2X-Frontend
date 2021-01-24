@@ -5,8 +5,9 @@ import styled from "styled-components";
 import { DriverData } from "../../mock/Driver";
 import dayjs from "dayjs";
 import { useHistory } from "react-router-dom";
+import { AddDriverModal } from "../../components/AddDriverModal";
 
-const { Content } = Layout;
+const { Content, Header } = Layout;
 const columns = [
   {
     title: "ID",
@@ -32,7 +33,6 @@ const columns = [
   },
   {
     title: "Date of birth",
-    dataIndex: "DOB",
     key: "dob",
     render: (text, record) => (
       <div>{dayjs(record.DOB).format("DD/MM/YYYY")}</div>
@@ -51,11 +51,12 @@ const AddSection = styled.div`
 const DriverList = () => {
   let history = useHistory();
   return (
-    <Layout>
+    <Layout style={{ height: "100%" }}>
+      <Header className="header">
+        <AddDriverModal />
+        <div className="header-title">Driver</div>
+      </Header>
       <Content>
-        {/* <AddSection>
-          <AddModal />
-        </AddSection> */}
         <Table
           columns={columns}
           dataSource={DriverData}

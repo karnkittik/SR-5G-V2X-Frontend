@@ -12,7 +12,7 @@ import {
   BellOutlined,
 } from "@ant-design/icons";
 
-const { Content, Header } = Layout;
+const { Content } = Layout;
 const General = () => {
   const pageListGroup = [
     {
@@ -34,15 +34,15 @@ const General = () => {
       name: "Drowsiness",
       pageList: [
         {
-          title: "Drowsiness Map",
+          title: "Drowsiness HeatMap",
           component: <DrowsinessHeatMap />,
           icon: <BellOutlined />,
         },
-        {
-          title: "Drowsiness Statistics",
-          component: <DrowsinessStatistics />,
-          icon: <BarChartOutlined />,
-        },
+        // {
+        //   title: "Drowsiness Statistics",
+        //   component: <DrowsinessStatistics />,
+        //   icon: <BarChartOutlined />,
+        // },
       ],
     },
   ];
@@ -111,12 +111,6 @@ const General = () => {
           bottom={<SignIn />}
         />
         <Layout className="full real-layout">
-          <Header className="header">
-            {pageListGroup[firstIndex].pageList[secondIndex].special}
-            <div className="header-title">
-              {pageListGroup[firstIndex].pageList[secondIndex].title}
-            </div>
-          </Header>
           <Content className="content">
             {pageListGroup[firstIndex].pageList[secondIndex].component}
           </Content>

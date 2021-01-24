@@ -38,7 +38,8 @@ const App = () => {
             islogin ? <Redirect to="/admin" /> : <LogInPage />
           }
         />
-        <Route path="/admin">
+        <Route path="/admin" render={(props) => <Redirect to="/admin" />} />
+        <Route exact path="/admin">
           <Admin />
         </Route>
         <Route path="*">

@@ -164,7 +164,8 @@ var options = {
         fontWeight: "inherit",
       },
       title: {
-        formatter: (seriesName) => "Count:",
+        formatter: (seriesName) => `${seriesName}: 
+        count`,
       },
     },
   },

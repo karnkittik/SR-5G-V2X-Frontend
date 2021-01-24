@@ -12,7 +12,6 @@ import { useHistory } from "react-router-dom";
 import AccidentMap from "./AccidentMap";
 import DrowsinessMap from "./DrowsinessMap";
 import CarList from "./CarList";
-import { AddDriverModal } from "../../components/AddDriverModal";
 import Driver from "./Driver";
 
 const { Content, Header } = Layout;
@@ -38,7 +37,6 @@ const Admin = () => {
       pageList: [
         {
           title: "Driver",
-          special: <AddDriverModal />,
           component: <Driver />,
           icon: <TeamOutlined />,
         },
@@ -128,12 +126,6 @@ const Admin = () => {
           bottom={<SignOutButton />}
         />
         <Layout className="full real-layout">
-          <Header className="header">
-            {pageListGroup[firstIndex].pageList[secondIndex].special}
-            <div className="header-title">
-              {pageListGroup[firstIndex].pageList[secondIndex].title}
-            </div>
-          </Header>
           <Content className="content">
             {pageListGroup[firstIndex].pageList[secondIndex].component}
           </Content>

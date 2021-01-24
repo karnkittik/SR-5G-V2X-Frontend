@@ -30,10 +30,15 @@
 } */
 .header {
   background-color: white !important;
-  /* position: -webkit-sticky;
+  position: -webkit-sticky;
   position: sticky;
-  top: 0; */
+  top: 0;
   z-index: 9997;
+}
+@media only screen and (min-width: 768px) {
+  .header {
+    padding-left: 12px !important;
+  }
 }
 .header-title {
   font-size: 18px;
@@ -188,7 +193,7 @@
     padding: 0 32px;
   }
 }
-/*---------- LogIn------------*/
+/*---------- AddDriver------------*/
 .add-employee-modal {
   width: 70% !important;
   max-width: 800px !important;
@@ -202,4 +207,8 @@
   position: absolute !important;
   right: 10px;
   top: 16px;
+}
+/*---------- DriverMenu------------*/
+.driver-menu {
+  font-size: 16px;
 }
