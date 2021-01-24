@@ -1,45 +1,8 @@
-import React, { useState } from "react";
-import {
-  Layout,
-  Table,
-  Button,
-  Modal,
-  Form,
-  Input,
-  Select,
-  DatePicker,
-} from "antd";
+import { useState } from "react";
+import { Button, Modal, Form, Input, Select, DatePicker } from "antd";
 import { UserAddOutlined } from "@ant-design/icons";
-import styled from "styled-components";
-import { DriverData } from "../../mock/Driver";
-const { Content } = Layout;
 const { Option } = Select;
-const columns = [
-  {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
-  },
-  {
-    title: "Gender",
-    dataIndex: "gender",
-    key: "gender",
-  },
-  {
-    title: "Age",
-    dataIndex: "age",
-    key: "age",
-  },
-];
-const AddSection = styled.div`
-  display: flex;
-  width: 100%;
-  /* background-color: white; */
-  justify-content: flex-end;
-  /* padding: 10px 10px; */
-  /* padding-bottom: 10px; */
-`;
-export const AddModal = () => {
+export const AddDriverModal = () => {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const showModal = () => {
@@ -130,13 +93,7 @@ export const AddModal = () => {
               <Option value="other">other</Option>
             </Select>
           </Form.Item>
-          <Form.Item name="address" label="Address">
-            <Input.TextArea />
-          </Form.Item>
           <Form.Item label="Date of birth">
-            <DatePicker />
-          </Form.Item>
-          <Form.Item label="Start Date">
             <DatePicker />
           </Form.Item>
           <Form.Item
@@ -158,25 +115,3 @@ export const AddModal = () => {
     </>
   );
 };
-
-const CarList = () => {
-  return (
-    <Layout>
-      <Content>
-        {/* <AddSection>
-          <AddModal />
-        </AddSection> */}
-        <Table
-          // columns={columns}
-          // dataSource={DriverData}
-          pagination={{
-            pageSize: 10,
-            showTotal: (total) => `Total ${total} items`,
-          }}
-          rowKey="id"
-        />
-      </Content>
-    </Layout>
-  );
-};
-export default CarList;

@@ -12,7 +12,8 @@ import { useHistory } from "react-router-dom";
 import AccidentMap from "./AccidentMap";
 import DrowsinessMap from "./DrowsinessMap";
 import CarList from "./CarList";
-import DriverList, { AddModal } from "./DriverList";
+import { AddDriverModal } from "../../components/AddDriverModal";
+import Driver from "./Driver";
 
 const { Content, Header } = Layout;
 const Admin = () => {
@@ -36,9 +37,9 @@ const Admin = () => {
       name: "Driver",
       pageList: [
         {
-          title: "Driver List",
-          special: <AddModal />,
-          component: <DriverList />,
+          title: "Driver",
+          special: <AddDriverModal />,
+          component: <Driver />,
           icon: <TeamOutlined />,
         },
       ],
