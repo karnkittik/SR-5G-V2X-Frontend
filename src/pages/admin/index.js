@@ -12,7 +12,7 @@ import cookie from "js-cookie";
 import { useHistory } from "react-router-dom";
 import AccidentMap from "./AccidentMap";
 import DrowsinessMap from "./DrowsinessMap";
-import EmployeeList from "./EmployeeList";
+import EmployeeList, { AddModal } from "./EmployeeList";
 
 const { Content, Header } = Layout;
 const Admin = () => {
@@ -37,6 +37,7 @@ const Admin = () => {
       pageList: [
         {
           title: "Employee List",
+          special: <AddModal />,
           component: <EmployeeList />,
           icon: <TeamOutlined />,
         },
@@ -115,6 +116,7 @@ const Admin = () => {
         />
         <Layout className="full real-layout">
           <Header className="header">
+            {pageListGroup[firstIndex].pageList[secondIndex].special}
             <div className="header-title">
               {pageListGroup[firstIndex].pageList[secondIndex].title}
             </div>
