@@ -3,27 +3,50 @@ import { Layout, Button, Badge } from "antd";
 import Sider from "../../components/common/Sider";
 import AccidentMap from "./AccidentMap";
 import AccidentStatistics from "./AccidentStatistics";
-
+import DrowsinessHeatMap from "./DrowsinessHeatMap";
+import DrowsinessStatistics from "./DrowsinessStatistics";
 import {
   LoginOutlined,
   ExclamationCircleOutlined,
   BarChartOutlined,
+  BellOutlined,
 } from "@ant-design/icons";
 
 const { Content, Header } = Layout;
 const General = () => {
-  const pageList = [
+  const pageListGroup = [
     {
-      title: "Accident Map",
-      component: <AccidentMap />,
-      icon: <ExclamationCircleOutlined />,
+      name: "Accident",
+      pageList: [
+        {
+          title: "Accident Map",
+          component: <AccidentMap />,
+          icon: <ExclamationCircleOutlined />,
+        },
+        {
+          title: "Accident Statistics",
+          component: <AccidentStatistics />,
+          icon: <BarChartOutlined />,
+        },
+      ],
     },
     {
-      title: "Accident Statistics",
-      component: <AccidentStatistics />,
-      icon: <BarChartOutlined />,
+      name: "Drowsiness",
+      pageList: [
+        {
+          title: "Drowsiness Map",
+          component: <DrowsinessHeatMap />,
+          icon: <BellOutlined />,
+        },
+        {
+          title: "Drowsiness Statistics",
+          component: <DrowsinessStatistics />,
+          icon: <BarChartOutlined />,
+        },
+      ],
     },
   ];
+  const pageIndex = pageListGroup.map((group) => group.pageList.length);
   const Logo = () => (
     <>
       <Badge.Ribbon text="public" placement="end"></Badge.Ribbon>
@@ -42,7 +65,23 @@ const General = () => {
     </Button>
   );
   const [render, updateRender] = useState(0);
-
+  const [firstIndex, setFirstIndex] = useState(0);
+  const [secondIndex, setSecondIndex] = useState(0);
+  useEffect(() => {
+    var a = 0;
+    var b = parseInt(render) + 1;
+    for (var i = 0; i < pageIndex.length; i++) {
+      console.log(b, pageIndex[i], a);
+      if (b - pageIndex[i] > 0) {
+        b -= pageIndex[i];
+        a += 1;
+      } else {
+        break;
+      }
+    }
+    setFirstIndex(a);
+    setSecondIndex(b - 1);
+  }, [render, pageIndex]);
   const handleMenuClick = (menu) => {
     updateRender(menu.key);
   };
@@ -67,15 +106,20 @@ const General = () => {
       <Layout className="full">
         <Sider
           handleClick={handleMenuClick}
-          pageList={pageList}
+          pageListGroup={pageListGroup}
           logo={<Logo />}
           bottom={<SignIn />}
         />
         <Layout className="full real-layout">
           <Header className="header">
-            <div className="header-title">{pageList[render].title}</div>
+            {pageListGroup[firstIndex].pageList[secondIndex].special}
+            <div className="header-title">
+              {pageListGroup[firstIndex].pageList[secondIndex].title}
+            </div>
           </Header>
-          <Content className="content">{pageList[render].component}</Content>
+          <Content className="content">
+            {pageListGroup[firstIndex].pageList[secondIndex].component}
+          </Content>
         </Layout>
       </Layout>
     </div>

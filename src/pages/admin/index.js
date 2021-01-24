@@ -6,13 +6,13 @@ import {
   BellOutlined,
   ExclamationCircleOutlined,
   TeamOutlined,
-  LineChartOutlined,
 } from "@ant-design/icons";
 import cookie from "js-cookie";
 import { useHistory } from "react-router-dom";
 import AccidentMap from "./AccidentMap";
 import DrowsinessMap from "./DrowsinessMap";
-import EmployeeList, { AddModal } from "./EmployeeList";
+import CarList from "./CarList";
+import DriverList, { AddModal } from "./DriverList";
 
 const { Content, Header } = Layout;
 const Admin = () => {
@@ -33,22 +33,28 @@ const Admin = () => {
       ],
     },
     {
-      name: "Employee",
+      name: "Driver",
       pageList: [
         {
-          title: "Employee List",
+          title: "Driver List",
           special: <AddModal />,
-          component: <EmployeeList />,
+          component: <DriverList />,
           icon: <TeamOutlined />,
         },
+      ],
+    },
+    {
+      name: "Car",
+      pageList: [
         {
-          title: "Employee Statistic",
-          component: <div></div>,
-          icon: <LineChartOutlined />,
+          title: "Car List",
+          component: <CarList />,
+          icon: <TeamOutlined />,
         },
       ],
     },
   ];
+  const pageIndex = pageListGroup.map((group) => group.pageList.length);
   const Logo = () => (
     <>
       <Badge.Ribbon text="admin" placement="end"></Badge.Ribbon>
@@ -77,9 +83,21 @@ const Admin = () => {
   const [render, updateRender] = useState(0);
   const [firstIndex, setFirstIndex] = useState(0);
   const [secondIndex, setSecondIndex] = useState(0);
-  const [firstLength, setFirstLength] = useState(
-    pageListGroup[0].pageList.length
-  );
+  useEffect(() => {
+    var a = 0;
+    var b = parseInt(render) + 1;
+    for (var i = 0; i < pageIndex.length; i++) {
+      console.log(b, pageIndex[i], a);
+      if (b - pageIndex[i] > 0) {
+        b -= pageIndex[i];
+        a += 1;
+      } else {
+        break;
+      }
+    }
+    setFirstIndex(a);
+    setSecondIndex(b - 1);
+  }, [render, pageIndex]);
   const handleMenuClick = (menu) => {
     updateRender(menu.key);
   };
@@ -98,12 +116,6 @@ const Admin = () => {
   useEffect(() => {
     setTheme();
   }, []);
-  useEffect(() => {
-    var a = render >= firstLength ? 1 : 0;
-    var b = a ? render - a - 1 : render;
-    setFirstIndex(a);
-    setSecondIndex(b);
-  }, [render, firstLength, firstIndex, secondIndex]);
 
   return (
     <div className="App">

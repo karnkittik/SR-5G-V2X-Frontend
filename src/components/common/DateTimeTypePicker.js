@@ -24,14 +24,16 @@ const DateTimeTypePicker = (props) => {
       >
         {times}
       </Select>
-      <div className="toggle-map">
-        <Switch
-          unCheckedChildren={<EnvironmentOutlined />}
-          checkedChildren={<HeatMapOutlined />}
-          onChange={onChange}
-        />
-        <div>Heatmap</div>
-      </div>
+      {!props.disabledHeat && (
+        <div className="toggle-map">
+          <Switch
+            unCheckedChildren={<EnvironmentOutlined />}
+            checkedChildren={<HeatMapOutlined />}
+            onChange={onChange}
+          />
+          <div>Heatmap</div>
+        </div>
+      )}
     </div>
   );
 };

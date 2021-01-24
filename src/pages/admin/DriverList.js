@@ -30,19 +30,6 @@ const columns = [
     dataIndex: "age",
     key: "age",
   },
-  {
-    title: "Address",
-    dataIndex: "address",
-    key: "address",
-  },
-  {
-    title: "Working Age",
-    dataIndex: "workingAge",
-    key: "workingAge",
-    render: (info) => (
-      <div>{(info[0] ? `${info[0]} yr, ` : "") + `${info[1]} mth`}</div>
-    ),
-  },
 ];
 const AddSection = styled.div`
   display: flex;
@@ -172,7 +159,7 @@ export const AddModal = () => {
   );
 };
 
-const EmployeeList = () => {
+const DriverList = () => {
   return (
     <Layout>
       <Content>
@@ -186,9 +173,10 @@ const EmployeeList = () => {
             pageSize: 10,
             showTotal: (total) => `Total ${total} items`,
           }}
+          rowKey="id"
         />
       </Content>
     </Layout>
   );
 };
-export default EmployeeList;
+export default DriverList;

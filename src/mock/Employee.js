@@ -24,7 +24,7 @@ export const EmployeeData = [
     workingAge: [0, 6],
   },
   {
-    id: "1",
+    id: "4",
     name: "John Brown",
     gender: "Male",
     age: 32,
@@ -32,7 +32,7 @@ export const EmployeeData = [
     workingAge: [2, 1],
   },
   {
-    id: "2",
+    id: "5",
     name: "Jim Green",
     gender: "Female",
     age: 42,
@@ -40,7 +40,7 @@ export const EmployeeData = [
     workingAge: [1, 2],
   },
   {
-    id: "3",
+    id: "6",
     name: "Joe Black",
     gender: "Male",
     age: 32,
@@ -48,7 +48,7 @@ export const EmployeeData = [
     workingAge: [0, 6],
   },
   {
-    id: "1",
+    id: "7",
     name: "John Brown",
     gender: "Male",
     age: 32,
@@ -56,7 +56,7 @@ export const EmployeeData = [
     workingAge: [2, 1],
   },
   {
-    id: "2",
+    id: "8",
     name: "Jim Green",
     gender: "Female",
     age: 42,
@@ -64,7 +64,7 @@ export const EmployeeData = [
     workingAge: [1, 2],
   },
   {
-    id: "3",
+    id: "9",
     name: "Joe Black",
     gender: "Male",
     age: 32,
@@ -72,7 +72,7 @@ export const EmployeeData = [
     workingAge: [0, 6],
   },
   {
-    id: "1",
+    id: "10",
     name: "John Brown",
     gender: "Male",
     age: 32,
@@ -80,7 +80,7 @@ export const EmployeeData = [
     workingAge: [2, 1],
   },
   {
-    id: "2",
+    id: "11",
     name: "Jim Green",
     gender: "Female",
     age: 42,
@@ -88,7 +88,7 @@ export const EmployeeData = [
     workingAge: [1, 2],
   },
   {
-    id: "3",
+    id: "12",
     name: "Joe Black",
     gender: "Male",
     age: 32,
@@ -96,7 +96,7 @@ export const EmployeeData = [
     workingAge: [0, 6],
   },
   {
-    id: "1",
+    id: "13",
     name: "John Brown",
     gender: "Male",
     age: 32,
@@ -104,7 +104,7 @@ export const EmployeeData = [
     workingAge: [2, 1],
   },
   {
-    id: "2",
+    id: "14",
     name: "Jim Green",
     gender: "Female",
     age: 42,
@@ -112,7 +112,7 @@ export const EmployeeData = [
     workingAge: [1, 2],
   },
   {
-    id: "3",
+    id: "15",
     name: "Joe Black",
     gender: "Male",
     age: 32,

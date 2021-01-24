@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu, Layout, Divider } from "antd";
+import { Menu, Layout } from "antd";
 
 const Sider = (props) => {
   const { handleClick, pageList, pageListGroup, logo, bottom } = props;
@@ -19,37 +19,31 @@ const Sider = (props) => {
         className="sider-menu"
       >
         {pageList?.map((page, index) => (
-          <>
-            <Menu.Item
-              key={index}
-              className="sider-menu-item"
-              onClick={handleClick}
-              icon={page.icon}
-            >
-              {page.title}
-            </Menu.Item>
-          </>
+          <Menu.Item
+            key={index}
+            className="sider-menu-item"
+            onClick={handleClick}
+            icon={page.icon}
+          >
+            {page.title}
+          </Menu.Item>
         ))}
         {pageListGroup?.map(({ name, pageList }, pageListIndex) => {
           return (
-            <React.Fragment key={pageListIndex + "f"}>
-              <Menu.ItemGroup key={"g" + pageListIndex} title={name}>
-                {pageList.map((page, index) => {
-                  return (
-                    <Menu.Item
-                      key={
-                        pageListIndex + index + (pageListIndex !== 0 ? 1 : 0)
-                      }
-                      className="sider-menu-item"
-                      onClick={handleClick}
-                      icon={page.icon}
-                    >
-                      {page.title}
-                    </Menu.Item>
-                  );
-                })}
-              </Menu.ItemGroup>
-            </React.Fragment>
+            <Menu.ItemGroup key={"g" + pageListIndex} title={name}>
+              {pageList.map((page, index) => {
+                return (
+                  <Menu.Item
+                    key={pageListIndex + index + (pageListIndex !== 0 ? 1 : 0)}
+                    className="sider-menu-item"
+                    onClick={handleClick}
+                    icon={page.icon}
+                  >
+                    {page.title}
+                  </Menu.Item>
+                );
+              })}
+            </Menu.ItemGroup>
           );
         })}
       </Menu>
