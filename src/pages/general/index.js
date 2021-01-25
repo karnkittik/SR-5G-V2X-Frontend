@@ -71,7 +71,6 @@ const General = () => {
     var a = 0;
     var b = parseInt(render) + 1;
     for (var i = 0; i < pageIndex.length; i++) {
-      console.log(b, pageIndex[i], a);
       if (b - pageIndex[i] > 0) {
         b -= pageIndex[i];
         a += 1;

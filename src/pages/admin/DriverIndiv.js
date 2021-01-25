@@ -4,13 +4,16 @@ import { Layout, Table, Menu, Button, Row, Col } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import {
   DriverAccident,
+  DriverAccidentTimeBar,
   DriverAccidentTimePie,
   DriverDrowsiness,
   DriverDrowsinessTimePie,
+  DriverDrowsinessTimeBar,
 } from "../../mock/Driver";
 import DashbordCard from "../../components/common/DashbordCard";
 import MyResponsivePie from "../../components/common/PieChart";
 import dayjs from "dayjs";
+import TimeBarChart from "../../components/common/TimeBarChart";
 const { Header, Content } = Layout;
 const DriverIndivAccident = () => {
   const columns = [
@@ -44,7 +47,13 @@ const DriverIndivAccident = () => {
           <DashbordCard>
             <MyResponsivePie
               data={DriverAccidentTimePie}
-              title="Accident on Shift"
+              title="Accident Day & Night"
+            />
+          </DashbordCard>
+          <DashbordCard>
+            <TimeBarChart
+              data={DriverAccidentTimeBar}
+              title="Accident in Time"
             />
           </DashbordCard>
         </Col>
@@ -93,7 +102,13 @@ const DriverIndivDrowsiness = () => {
           <DashbordCard>
             <MyResponsivePie
               data={DriverDrowsinessTimePie}
-              title="Drowsiness on Shift"
+              title="Drowsiness Day & Night"
+            />
+          </DashbordCard>
+          <DashbordCard>
+            <TimeBarChart
+              data={DriverDrowsinessTimeBar}
+              title="Drowsiness on Hour"
             />
           </DashbordCard>
         </Col>

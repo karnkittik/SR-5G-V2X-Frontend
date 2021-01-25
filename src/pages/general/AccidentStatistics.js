@@ -1,10 +1,10 @@
 import { React } from "react";
 import { Layout, Row, Col } from "antd";
-import MyResponsiveLine from "../../components/TimeLineChart";
 import DashbordCard from "../../components/common/DashbordCard";
 import MyResponsiveCalendar from "../../components/HeatMapCalendar";
 import MyResponsivePie from "../../components/common/PieChart";
-import { AccidentRoadPie } from "../../mock/Statistics";
+import { AccidentRoadPie, AccidentTimeBar } from "../../mock/Statistics";
+import MyResponsiveBar from "../../components/common/TimeBarChart";
 const { Content, Header } = Layout;
 const AccidentStatistics = () => {
   return (
@@ -21,7 +21,10 @@ const AccidentStatistics = () => {
           </Col>
           <Col xs={24} lg={12}>
             <DashbordCard className="accident-stat-timechart">
-              <MyResponsiveLine />
+              <MyResponsiveBar
+                title="Accident on Hour"
+                data={AccidentTimeBar}
+              />
             </DashbordCard>
           </Col>
         </Row>

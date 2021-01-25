@@ -13,6 +13,7 @@ export const AccidentTime = [
     ],
   },
 ];
+export const AccidentTimeBar = [1, 4, 6, 3, 2, 11, 6, 16, 20];
 export const AccidentHeatMap = [
   {
     name: "Jan",
