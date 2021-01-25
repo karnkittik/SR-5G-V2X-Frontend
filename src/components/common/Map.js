@@ -4,6 +4,7 @@ import GoogleMapReact from "google-map-react";
 import marker from "../../assets/marker.png";
 import pin from "../../assets/pin.png";
 import styled from "styled-components";
+import dayjs from "dayjs";
 const useWatchLocation = (options = {}) => {
   const [location, setLocation] = useState();
   const [error, setError] = useState();
@@ -51,7 +52,12 @@ const Marker = (props) => {
     <div>
       {props.$hover && (
         <HoverMessage style={{ backgroundColor: "white" }}>
-          {props?.detail.time}
+          <div>
+            {props.detail != null
+              ? dayjs(props.detail.time).format("hh:mm")
+              : ""}
+          </div>
+          {props.showMore && <div>{`DriverID: ${props.detail.info}`}</div>}
         </HoverMessage>
       )}
       <img
@@ -134,6 +140,7 @@ const MyMapComponent = (props) => {
               lat={marker.coordinate.lat}
               lng={marker.coordinate.lng}
               detail={marker.detail}
+              showMore={props.showMore}
             />
           ))}
       </GoogleMapReact>

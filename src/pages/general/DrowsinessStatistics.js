@@ -1,7 +1,7 @@
 import { React } from "react";
 import { Layout, Row, Col } from "antd";
 import DashbordCard from "../../components/common/DashbordCard";
-import HeatMapCalendar from "../../components/HeatMapCalendar";
+import HeatMapCalendar from "../../components/common/HeatMapCalendar";
 import PieChart from "../../components/common/PieChart";
 import {
   AccidentHeatMap,

@@ -26,6 +26,7 @@ const DrowsinessMap = () => {
           markers={!heatMap && data}
           isShownHere
           heatMapData={heatMap && data?.map((point) => point.coordinate)}
+          showMore
         />
       </Content>
     </Layout>

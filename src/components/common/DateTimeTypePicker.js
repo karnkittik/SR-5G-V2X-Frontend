@@ -1,10 +1,11 @@
 import { Select, Switch } from "antd";
 import { HeatMapOutlined, EnvironmentOutlined } from "@ant-design/icons";
+import dayjs from "dayjs";
 const { Option } = Select;
 const DateTimeTypePicker = (props) => {
   var n = props.n;
   var times = [];
-  var d = new Date().toLocaleDateString();
+  var d = dayjs(new Date()).format("DD/MM/YYYY");
   for (var i = 0; i <= n; i++) {
     times.push(<Option value={i} key={i}>{`${i}.00 - ${i + 1}.00`}</Option>);
   }
