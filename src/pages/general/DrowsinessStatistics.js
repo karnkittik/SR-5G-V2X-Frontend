@@ -1,9 +1,14 @@
 import { React } from "react";
 import { Layout, Row, Col } from "antd";
-import MyResponsiveLine from "../../components/TimeLineChart";
 import DashbordCard from "../../components/common/DashbordCard";
-import MyResponsiveCalendar from "../../components/HeatMapCalendar";
-import MyResponsivePie from "../../components/common/PieChart";
+import HeatMapCalendar from "../../components/HeatMapCalendar";
+import PieChart from "../../components/common/PieChart";
+import {
+  AccidentHeatMap,
+  AccidentRoadPie,
+  AccidentTimeBar,
+} from "../../mock/Statistics";
+import TimeBarChart from "../../components/common/TimeBarChart";
 const { Content, Header } = Layout;
 const DrowsinessStatistics = () => {
   return (
@@ -15,19 +20,22 @@ const DrowsinessStatistics = () => {
         <Row>
           <Col xs={24} lg={12}>
             <DashbordCard className="accident-stat-calendar">
-              <MyResponsiveCalendar />
+              <HeatMapCalendar
+                title="Drowsiness Heatmap Calendar"
+                data={AccidentHeatMap}
+              />
             </DashbordCard>
           </Col>
           <Col xs={24} lg={12}>
             <DashbordCard className="accident-stat-timechart">
-              <MyResponsiveLine />
+              <TimeBarChart title="Drowsiness on Hour" data={AccidentTimeBar} />
             </DashbordCard>
           </Col>
         </Row>
         <Row>
           <Col xs={24} lg={12}>
             <DashbordCard className="accident-stat-pie">
-              <MyResponsivePie />
+              <PieChart data={AccidentRoadPie} title="Drowsiness On Road" />
             </DashbordCard>
           </Col>
         </Row>

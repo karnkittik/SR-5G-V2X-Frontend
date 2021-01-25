@@ -1,10 +1,14 @@
 import { React } from "react";
 import { Layout, Row, Col } from "antd";
 import DashbordCard from "../../components/common/DashbordCard";
-import MyResponsiveCalendar from "../../components/HeatMapCalendar";
-import MyResponsivePie from "../../components/common/PieChart";
-import { AccidentRoadPie, AccidentTimeBar } from "../../mock/Statistics";
-import MyResponsiveBar from "../../components/common/TimeBarChart";
+import HeatMapCalendar from "../../components/HeatMapCalendar";
+import PieChart from "../../components/common/PieChart";
+import {
+  AccidentHeatMap,
+  AccidentRoadPie,
+  AccidentTimeBar,
+} from "../../mock/Statistics";
+import TimeBarChart from "../../components/common/TimeBarChart";
 const { Content, Header } = Layout;
 const AccidentStatistics = () => {
   return (
@@ -16,25 +20,22 @@ const AccidentStatistics = () => {
         <Row>
           <Col xs={24} lg={12}>
             <DashbordCard className="accident-stat-calendar">
-              <MyResponsiveCalendar />
+              <HeatMapCalendar
+                title="Accident Heatmap Calendar"
+                data={AccidentHeatMap}
+              />
             </DashbordCard>
           </Col>
           <Col xs={24} lg={12}>
             <DashbordCard className="accident-stat-timechart">
-              <MyResponsiveBar
-                title="Accident on Hour"
-                data={AccidentTimeBar}
-              />
+              <TimeBarChart title="Accident on Hour" data={AccidentTimeBar} />
             </DashbordCard>
           </Col>
         </Row>
         <Row>
           <Col xs={24} lg={12}>
             <DashbordCard className="accident-stat-pie">
-              <MyResponsivePie
-                data={AccidentRoadPie}
-                title="Accident On Road"
-              />
+              <PieChart data={AccidentRoadPie} title="Accident On Road" />
             </DashbordCard>
           </Col>
         </Row>

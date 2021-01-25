@@ -1,6 +1,6 @@
 import Chart from "react-apexcharts";
 
-const MyResponsivePie = (props) => {
+const PieChart = (props) => {
   var { title, data } = props;
   var options = {
     labels: data.labels,
@@ -116,4 +116,4 @@ const MyResponsivePie = (props) => {
   );
 };
 
-export default MyResponsivePie;
+export default PieChart;

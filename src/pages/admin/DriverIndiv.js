@@ -11,7 +11,7 @@ import {
   DriverDrowsinessTimeBar,
 } from "../../mock/Driver";
 import DashbordCard from "../../components/common/DashbordCard";
-import MyResponsivePie from "../../components/common/PieChart";
+import PieChart from "../../components/common/PieChart";
 import dayjs from "dayjs";
 import TimeBarChart from "../../components/common/TimeBarChart";
 const { Header, Content } = Layout;
@@ -45,7 +45,7 @@ const DriverIndivAccident = () => {
       <Row style={{ height: "100%", backgroundColor: "white" }}>
         <Col xs={24} lg={12}>
           <DashbordCard>
-            <MyResponsivePie
+            <PieChart
               data={DriverAccidentTimePie}
               title="Accident Day & Night"
             />
@@ -100,7 +100,7 @@ const DriverIndivDrowsiness = () => {
       <Row style={{ height: "100%", backgroundColor: "white" }}>
         <Col xs={24} lg={12}>
           <DashbordCard>
-            <MyResponsivePie
+            <PieChart
               data={DriverDrowsinessTimePie}
               title="Drowsiness Day & Night"
             />

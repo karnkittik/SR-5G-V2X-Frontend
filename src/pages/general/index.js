@@ -38,11 +38,11 @@ const General = () => {
           component: <DrowsinessHeatMap />,
           icon: <BellOutlined />,
         },
-        // {
-        //   title: "Drowsiness Statistics",
-        //   component: <DrowsinessStatistics />,
-        //   icon: <BarChartOutlined />,
-        // },
+        {
+          title: "Drowsiness Statistics",
+          component: <DrowsinessStatistics />,
+          icon: <BarChartOutlined />,
+        },
       ],
     },
   ];
