@@ -6,6 +6,7 @@ import {
   BellOutlined,
   ExclamationCircleOutlined,
   TeamOutlined,
+  CarOutlined,
 } from "@ant-design/icons";
 import cookie from "js-cookie";
 import { useHistory } from "react-router-dom";
@@ -48,7 +49,7 @@ const Admin = () => {
         {
           title: "Car List",
           component: <CarList />,
-          icon: <TeamOutlined />,
+          icon: <CarOutlined />,
         },
       ],
     },

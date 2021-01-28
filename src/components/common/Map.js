@@ -43,6 +43,7 @@ const Marker = (props) => {
     border-radius: 5px;
     max-width: 120px;
     transform: translateX(-50%) translateY(calc(-100% - 20px));
+    /* transform: translateX(-50%) translateY(-100%); */
     z-index: 9995;
     position: absolute;
     height: auto;

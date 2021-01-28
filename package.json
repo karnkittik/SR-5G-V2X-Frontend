@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^12.5.0",
     "antd": "^4.10.0",
     "apexcharts": "^3.23.1",
+    "axios": "^0.21.1",
     "dayjs": "^1.10.3",
     "google-map-react": "^2.1.9",
     "js-cookie": "^2.2.1",

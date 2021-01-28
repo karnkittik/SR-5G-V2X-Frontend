@@ -11,34 +11,42 @@ import {
 } from "antd";
 import { UserAddOutlined } from "@ant-design/icons";
 import styled from "styled-components";
-import { DriverData } from "../../mock/Driver";
+import { CarData } from "../../mock/Car";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import { AddCarModal, CarTypeName } from "../../components/AddCarModal";
+dayjs.extend(relativeTime);
 const { Content, Header } = Layout;
 const { Option } = Select;
+
 const columns = [
   {
-    title: "Name",
-    dataIndex: "name",
-    key: "name",
+    title: "Car ID",
+    dataIndex: "car_id",
+    key: "car_id",
   },
   {
-    title: "Gender",
-    dataIndex: "gender",
-    key: "gender",
+    title: "Car Type",
+    key: "carType",
+    render: (text, record) => <div>{CarTypeName[record.car_type]}</div>,
+  },
+
+  {
+    title: "Regis Date",
+    key: "dob",
+    render: (text, record) => (
+      <div>{dayjs(record.DOB).format("DD/MM/YYYY")}</div>
+    ),
   },
   {
     title: "Age",
-    dataIndex: "age",
     key: "age",
+    render: (text, record) => (
+      <div>{dayjs().from(dayjs(record.DOB)).substr(3)}</div>
+    ),
   },
 ];
-const AddSection = styled.div`
-  display: flex;
-  width: 100%;
-  /* background-color: white; */
-  justify-content: flex-end;
-  /* padding: 10px 10px; */
-  /* padding-bottom: 10px; */
-`;
+
 export const AddModal = () => {
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
@@ -163,20 +171,18 @@ const CarList = () => {
   return (
     <Layout>
       <Header className="header">
+        <AddCarModal />
         <div className="header-title">Car List</div>
       </Header>
       <Content>
-        {/* <AddSection>
-          <AddModal />
-        </AddSection> */}
         <Table
-          // columns={columns}
-          // dataSource={DriverData}
+          columns={columns}
+          dataSource={CarData}
           pagination={{
             pageSize: 10,
             showTotal: (total) => `Total ${total} items`,
           }}
-          rowKey="id"
+          rowKey="car_id"
         />
       </Content>
     </Layout>

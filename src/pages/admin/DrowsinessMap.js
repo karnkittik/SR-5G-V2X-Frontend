@@ -1,8 +1,8 @@
 import { React, useState, useEffect } from "react";
 import { Layout } from "antd";
 import MyMapComponent from "../../components/common/Map";
-import { AccidentData } from "../../mock/Coordinate";
 import DateTimeTypePicker from "../../components/common/DateTimeTypePicker";
+import { DrowsinessData } from "../../mock/Drosiness";
 const { Content, Header } = Layout;
 
 const DrowsinessMap = () => {
@@ -12,7 +12,7 @@ const DrowsinessMap = () => {
   const [data, setData] = useState([]);
   const [heatMap, setHeatMap] = useState(false);
   useEffect(() => {
-    setData(AccidentData[time]);
+    setData(DrowsinessData[time]);
   }, [time]);
   return (
     <Layout style={{ height: "100%" }}>

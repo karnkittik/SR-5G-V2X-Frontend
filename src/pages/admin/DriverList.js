@@ -38,6 +38,13 @@ const columns = [
       <div>{dayjs(record.DOB).format("DD/MM/YYYY")}</div>
     ),
   },
+  {
+    title: "Age",
+    key: "age",
+    render: (text, record) => (
+      <div>{dayjs().from(dayjs(record.DOB)).substr(3)}</div>
+    ),
+  },
 ];
 const AddSection = styled.div`
   display: flex;

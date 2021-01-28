@@ -5,15 +5,15 @@ export const DriverData = [
     firstname: "John",
     lastname: "Swift",
     gender: "Male",
-    DOB: 1610242200000,
+    DOB: 810242200000,
   },
   {
     driver_id: "3",
     username: "trr",
     firstname: "Jonsds",
     lastname: "Cvsd",
-    gender: "Feale",
-    DOB: 1612242200000,
+    gender: "Female",
+    DOB: 912242200000,
   },
 ];
 export const DriverAccident = [

@@ -53,11 +53,11 @@ const TimeBarChart = (props) => {
       colors: [
         function ({ value, seriesIndex, w }) {
           if (value < 5) {
-            return "#fad738ff";
+            return "#BDD7E6";
           } else if (value >= 5 && value < 16) {
-            return "#adbf78ff";
+            return "#6AAED6";
           } else {
-            return "#469fcdff";
+            return "#0B519C";
           }
         },
       ],
