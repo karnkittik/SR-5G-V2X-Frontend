@@ -1,6 +1,8 @@
 import cookie from "js-cookie";
 import { Layout, Form, Input, Button, Badge } from "antd";
 import { useEffect } from "react";
+import { AuthService } from "../../utils/api";
+
 const layout = {
   labelCol: {
     span: 8,
@@ -32,13 +34,27 @@ const tailLayout = {
   },
 };
 const LogInPage = () => {
-  const signIn = () => {
-    cookie.set("5G-V2X", { user: "evermore" });
+  const signIn = async (username, password) => {
+    // cookie.set("5G-V2X", { user: "evermore" });
+    const payload = {
+      username: username,
+      password: password,
+    };
+
+    AuthService.login(
+      payload,
+      ({ data }) => {
+        console.log(data);
+      },
+      (response) => {
+        console.log(response);
+      }
+    );
     window.location.reload();
   };
   const onFinish = (values) => {
-    signIn();
     console.log("Success:", values);
+    signIn(values.username, values.password);
   };
 
   const onFinishFailed = (errorInfo) => {
