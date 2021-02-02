@@ -7,6 +7,16 @@ const DashbordCard = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  height: 312px;
+  height: ${(props) => props.height || "312px"}; ;
+`;
+export const ContentCard = styled.div`
+  height: 100%;
+  padding: 5px 10px;
+  .title-card {
+    font-size: 18px;
+    font-weight: 400;
+    color: #666;
+    margin-bottom: 15px;
+  }
 `;
 export default DashbordCard;

@@ -3,143 +3,87 @@ import { useHistory, useParams } from "react-router-dom";
 import { Layout, Table, Menu, Button, Row, Col } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import {
-  DriverAccident,
-  DriverAccidentTimeBar,
-  DriverAccidentTimePie,
   DriverDrowsiness,
   DriverDrowsinessTimePie,
   DriverDrowsinessTimeBar,
+  DriverData,
 } from "../../mock/Driver";
-import DashbordCard from "../../components/common/DashbordCard";
+import DashbordCard, {
+  ContentCard,
+} from "../../components/common/DashbordCard";
 import PieChart from "../../components/common/PieChart";
 import dayjs from "dayjs";
 import TimeBarChart from "../../components/common/TimeBarChart";
+import DriverIndivAccident from "./DriverIndivAccident";
+import DriverIndivDrowsiness from "./DriverIndivDrowsiness";
 const { Header, Content } = Layout;
-const DriverIndivAccident = () => {
-  const columns = [
-    {
-      title: "Time",
-      key: "time",
-      render: (text, record) => (
-        <div>{dayjs(record.time).format("DD/MM/YYYY h:mm ")}</div>
-      ),
-    },
-    {
-      title: "Coordinate",
-      key: "coordinate",
-      render: (text, record) => <div>{`${record.lat} ${record.lng}`}</div>,
-    },
-    {
-      title: "CarID",
-      dataIndex: "car_id",
-      key: "car_id",
-    },
-    {
-      title: "Road Name",
-      dataIndex: "roadname",
-      key: "roadname",
-    },
-  ];
-  return (
-    <>
-      <Row style={{ height: "100%", backgroundColor: "white" }}>
-        <Col xs={24} lg={12}>
-          <DashbordCard>
-            <PieChart
-              data={DriverAccidentTimePie}
-              title="Accident Day & Night"
-            />
-          </DashbordCard>
-          <DashbordCard>
-            <TimeBarChart
-              data={DriverAccidentTimeBar}
-              title="Accident in Time"
-            />
-          </DashbordCard>
-        </Col>
-        <Col xs={24} lg={12}>
-          <Table columns={columns} dataSource={DriverAccident} rowKey="time" />
-        </Col>
-      </Row>
-    </>
-  );
-};
 
-const DriverIndivDrowsiness = () => {
+export const ProfileDriver = () => {
+  const { driver_id: id } = useParams();
   const columns = [
     {
-      title: "Time",
-      key: "time",
+      title: "ID",
+      dataIndex: "driver_id",
+      key: "id",
+    },
+    {
+      title: "Name",
+      key: "name",
       render: (text, record) => (
-        <div>{dayjs(record.time).format("DD/MM/YYYY h:mm ")}</div>
+        <div>{`${record.firstname} ${record.lastname}`}</div>
       ),
     },
     {
-      title: "Coordinate",
-      key: "coordinate",
-      render: (text, record) => <div>{`${record.lat} ${record.lng}`}</div>,
+      title: "Username",
+      dataIndex: "username",
+      key: "username",
     },
     {
-      title: "CarID",
-      dataIndex: "car_id",
-      key: "car_id",
+      title: "Gender",
+      dataIndex: "gender",
+      key: "gender",
     },
     {
-      title: "Response Time (s)",
-      dataIndex: "response",
-      key: "response",
-    },
-    {
-      title: "Working Time (min)",
-      dataIndex: "working_time",
-      key: "working_time",
+      title: "Age",
+      key: "age",
+      render: (text, record) => (
+        <div>{dayjs().from(dayjs(record.DOB)).substr(3)}</div>
+      ),
     },
   ];
   return (
-    <>
-      <Row style={{ height: "100%", backgroundColor: "white" }}>
-        <Col xs={24} lg={12}>
-          <DashbordCard>
-            <PieChart
-              data={DriverDrowsinessTimePie}
-              title="Drowsiness Day & Night"
-            />
-          </DashbordCard>
-          <DashbordCard>
-            <TimeBarChart
-              data={DriverDrowsinessTimeBar}
-              title="Drowsiness on Hour"
-            />
-          </DashbordCard>
-        </Col>
-        <Col xs={24} lg={12}>
+    <ContentCard>
+      <div className="title-card">Profile</div>
+      <Row>
+        <Col xs={24}>
           <Table
             columns={columns}
-            dataSource={DriverDrowsiness}
-            rowKey="time"
+            dataSource={[
+              DriverData[DriverData.findIndex((x) => x.driver_id === id)],
+            ]}
+            rowKey="driver_id"
+            pagination={false}
           />
         </Col>
       </Row>
-    </>
+    </ContentCard>
   );
 };
-
 const DriverComp = {
-  0: <div></div>,
-  1: <DriverIndivAccident />,
-  2: <DriverIndivDrowsiness />,
+  0: <DriverIndivAccident />,
+  1: <DriverIndivDrowsiness />,
 };
 const DriverIndiv = () => {
   const { driver_id: id } = useParams();
   let history = useHistory();
-  const [render, updateRender] = useState(1);
+  const [render, updateRender] = useState(0);
   const handleClick = (menu) => {
     updateRender(menu.key);
   };
   return (
     <Layout>
       <Header className="header">
-        <Menu theme="light" mode="horizontal" defaultSelectedKeys={["1"]}>
+        <Menu theme="light" mode="horizontal" defaultSelectedKeys={["0"]}>
           <Button
             type="text"
             icon={<ArrowLeftOutlined />}
@@ -148,12 +92,9 @@ const DriverIndiv = () => {
             }}
           />
           <Menu.Item key="0" className="driver-menu" onClick={handleClick}>
-            Profile
-          </Menu.Item>
-          <Menu.Item key="1" className="driver-menu" onClick={handleClick}>
             Accident
           </Menu.Item>
-          <Menu.Item key="2" className="driver-menu" onClick={handleClick}>
+          <Menu.Item key="1" className="driver-menu" onClick={handleClick}>
             Drowsiness
           </Menu.Item>
         </Menu>
