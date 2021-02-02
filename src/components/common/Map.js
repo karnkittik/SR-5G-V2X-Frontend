@@ -1,11 +1,8 @@
 import { config } from "../../config/config";
 import React, { useEffect, useState, useRef } from "react";
 import GoogleMapReact from "google-map-react";
-import marker from "../../assets/marker.png";
-import pin from "../../assets/pin.png";
-import styled from "styled-components";
-import dayjs from "dayjs";
-const useWatchLocation = (options = {}) => {
+import { Here } from "./Marker";
+export const useWatchLocation = (options = {}) => {
   const [location, setLocation] = useState();
   const [error, setError] = useState();
   const locationWatchId = useRef(null);
@@ -35,51 +32,6 @@ const useWatchLocation = (options = {}) => {
   }, [options]);
   return { location, cancelLocationWatch, error };
 };
-const Marker = (props) => {
-  const HoverMessage = styled.div`
-    padding: 5px 5px;
-    text-align: center;
-    background-color: white;
-    border-radius: 5px;
-    max-width: 120px;
-    transform: translateX(-50%) translateY(calc(-100% - 20px));
-    /* transform: translateX(-50%) translateY(-100%); */
-    z-index: 9995;
-    position: absolute;
-    height: auto;
-    word-wrap: break-word;
-  `;
-  return (
-    <div>
-      {props.$hover && (
-        <HoverMessage style={{ backgroundColor: "white" }}>
-          <div>
-            {props.detail != null
-              ? dayjs(props.detail.time).format("hh:mm")
-              : ""}
-          </div>
-          {props.showMore && <div>{`DriverID: ${props.detail.info}`}</div>}
-        </HoverMessage>
-      )}
-      <img
-        src={marker}
-        height="32"
-        width="32"
-        alt="marker"
-        style={{
-          transform: "translate(-50%, -50%)",
-          borderRadius: "50%",
-          border: props.$hover && "3px solid blue",
-        }}
-      />
-    </div>
-  );
-};
-const Here = () => (
-  <div style={{ position: "absolute", transform: "translate(-50%, -100%)" }}>
-    <img src={pin} height="50" width="50" alt="I'm here" />
-  </div>
-);
 const createMapOptions = (maps) => {
   return {
     panControl: false,
@@ -104,9 +56,11 @@ const MyMapComponent = (props) => {
   const { location, cancelLocationWatch, error } = useWatchLocation();
   useEffect(() => {
     if (!location) return;
-    setTimeout(() => {
+    // setTimeout(() => {
+    return function cleanUp() {
       cancelLocationWatch();
-    }, 3000);
+    };
+    // }, 3000);
   }, [location, cancelLocationWatch]);
   if (error) {
     console.log(error);
@@ -123,7 +77,7 @@ const MyMapComponent = (props) => {
           lat: location?.latitude,
           lng: location?.longitude,
         }}
-        defaultZoom={props.zoom || 18}
+        defaultZoom={props.zoom || 8}
         options={createMapOptions}
         heatmap={{
           positions: !!props.heatMapData ? props.heatMapData : [],
@@ -134,16 +88,6 @@ const MyMapComponent = (props) => {
         {props.isShownHere && location && (
           <Here lat={location?.latitude} lng={location?.longitude} />
         )}
-        {!!props.markers &&
-          props.markers.map((marker, index) => (
-            <Marker
-              key={index + "m"}
-              lat={marker.coordinate.lat}
-              lng={marker.coordinate.lng}
-              detail={marker.detail}
-              showMore={props.showMore}
-            />
-          ))}
       </GoogleMapReact>
     </div>
   );

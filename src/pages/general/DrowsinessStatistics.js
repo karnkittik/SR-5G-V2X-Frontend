@@ -32,13 +32,6 @@ const DrowsinessStatistics = () => {
             </DashbordCard>
           </Col>
         </Row>
-        <Row>
-          <Col xs={24} lg={12}>
-            <DashbordCard className="accident-stat-pie">
-              <PieChart data={AccidentRoadPie} title="Drowsiness On Road" />
-            </DashbordCard>
-          </Col>
-        </Row>
       </Content>
     </Layout>
   );

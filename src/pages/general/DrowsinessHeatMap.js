@@ -21,7 +21,7 @@ const DrowsinessHeatMap = () => {
       <Content>
         <DateTimeTypePicker n={n} setTime={setTime} disabledHeat />
         <MyMapComponent
-          zoom={16}
+          zoom={8}
           isShownHere
           heatMapData={data?.map((point) => point.coordinate)}
         />

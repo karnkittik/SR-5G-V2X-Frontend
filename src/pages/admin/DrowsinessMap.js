@@ -1,8 +1,9 @@
 import { React, useState, useEffect } from "react";
 import { Layout } from "antd";
-import MyMapComponent from "../../components/common/Map";
+import MyMapComponent, { useWatchLocation } from "../../components/common/Map";
 import DateTimeTypePicker from "../../components/common/DateTimeTypePicker";
 import { DrowsinessData } from "../../mock/Drosiness";
+import GoogleMap from "../../components/common/ClusterMap";
 const { Content, Header } = Layout;
 
 const DrowsinessMap = () => {
@@ -11,6 +12,13 @@ const DrowsinessMap = () => {
   const [time, setTime] = useState(n);
   const [data, setData] = useState([]);
   const [heatMap, setHeatMap] = useState(false);
+  const { location, cancelLocationWatch, error } = useWatchLocation();
+  useEffect(() => {
+    if (!location) return;
+    return function cleanUp() {
+      cancelLocationWatch();
+    };
+  }, [location, cancelLocationWatch]);
   useEffect(() => {
     setData(DrowsinessData[time]);
   }, [time]);
@@ -21,13 +29,31 @@ const DrowsinessMap = () => {
       </Header>
       <Content>
         <DateTimeTypePicker n={n} setTime={setTime} setHeatMap={setHeatMap} />
-        <MyMapComponent
-          zoom={16}
-          markers={!heatMap && data}
-          isShownHere
-          heatMapData={heatMap && data?.map((point) => point.coordinate)}
-          showMore
-        />
+        {!!!heatMap && data ? (
+          <GoogleMap
+            isShownHere
+            markers={
+              data
+                ? data.map((point, index) => ({
+                    id: index,
+                    lat: point.coordinate.lat,
+                    lng: point.coordinate.lng,
+                    detail: point.detail,
+                  }))
+                : []
+            }
+            here={{
+              lat: location?.latitude,
+              lng: location?.longitude,
+            }}
+          />
+        ) : (
+          <MyMapComponent
+            zoom={8}
+            isShownHere
+            heatMapData={heatMap && data?.map((point) => point.coordinate)}
+          />
+        )}
       </Content>
     </Layout>
   );
