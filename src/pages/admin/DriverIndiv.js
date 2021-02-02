@@ -2,18 +2,9 @@ import { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { Layout, Table, Menu, Button, Row, Col } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
-import {
-  DriverDrowsiness,
-  DriverDrowsinessTimePie,
-  DriverDrowsinessTimeBar,
-  DriverData,
-} from "../../mock/Driver";
-import DashbordCard, {
-  ContentCard,
-} from "../../components/common/DashbordCard";
-import PieChart from "../../components/common/PieChart";
+import { DriverData } from "../../mock/Driver";
+import { ContentCard } from "../../components/common/DashbordCard";
 import dayjs from "dayjs";
-import TimeBarChart from "../../components/common/TimeBarChart";
 import DriverIndivAccident from "./DriverIndivAccident";
 import DriverIndivDrowsiness from "./DriverIndivDrowsiness";
 const { Header, Content } = Layout;

@@ -14,8 +14,9 @@ import AccidentMap from "./AccidentMap";
 import DrowsinessMap from "./DrowsinessMap";
 import CarList from "./CarList";
 import Driver from "./Driver";
+import Car from "./Car";
 
-const { Content, Header } = Layout;
+const { Content } = Layout;
 const Admin = () => {
   const pageListGroup = [
     {
@@ -48,7 +49,7 @@ const Admin = () => {
       pageList: [
         {
           title: "Car List",
-          component: <CarList />,
+          component: <Car />,
           icon: <CarOutlined />,
         },
       ],

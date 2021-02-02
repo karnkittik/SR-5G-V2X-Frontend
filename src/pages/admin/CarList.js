@@ -10,11 +10,11 @@ import {
   DatePicker,
 } from "antd";
 import { UserAddOutlined } from "@ant-design/icons";
-import styled from "styled-components";
 import { CarData } from "../../mock/Car";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { AddCarModal, CarTypeName } from "../../components/AddCarModal";
+import { useHistory } from "react-router-dom";
 dayjs.extend(relativeTime);
 const { Content, Header } = Layout;
 const { Option } = Select;
@@ -26,9 +26,14 @@ const columns = [
     key: "car_id",
   },
   {
-    title: "Car Type",
-    key: "carType",
-    render: (text, record) => <div>{CarTypeName[record.car_type]}</div>,
+    title: "Car Detail",
+    dataIndex: "car_detail",
+    key: "car_detail",
+    render: (text, record) => (
+      <div style={{ wordWrap: "break-word", wordBreak: "break-word" }}>
+        {text}
+      </div>
+    ),
   },
 
   {
@@ -168,8 +173,9 @@ export const AddModal = () => {
 };
 
 const CarList = () => {
+  let history = useHistory();
   return (
-    <Layout>
+    <Layout style={{ height: "100%" }}>
       <Header className="header">
         <AddCarModal />
         <div className="header-title">Car List</div>
@@ -183,6 +189,13 @@ const CarList = () => {
             showTotal: (total) => `Total ${total} items`,
           }}
           rowKey="car_id"
+          onRow={(record, rowIndex) => {
+            return {
+              onDoubleClick: (event) => {
+                history.push(`/admin/car/${record.car_id}`);
+              },
+            };
+          }}
         />
       </Content>
     </Layout>

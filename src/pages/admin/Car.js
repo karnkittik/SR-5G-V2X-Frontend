@@ -1,19 +1,19 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import DriverIndiv from "./DriverIndiv";
-import DriverList from "./DriverList";
-const Driver = () => {
+import CarIndiv from "./CarIndiv";
+import CarList from "./CarList";
+const Car = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/admin/driver/:driver_id">
-          <DriverIndiv />
+        <Route path="/admin/car/:car_id">
+          <CarIndiv />
         </Route>
         <Route path="*">
-          <DriverList />
+          <CarList />
         </Route>
       </Switch>
     </Router>
   );
 };
-export default Driver;
+export default Car;
