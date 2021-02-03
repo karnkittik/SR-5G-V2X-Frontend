@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Row, Col } from "antd";
+import { SelectClusterImg } from "./ClusterMarker";
 const DashbordCard = styled.div`
   margin: auto;
   padding: 20px;
@@ -7,7 +9,7 @@ const DashbordCard = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  height: ${(props) => props.height || "312px"}; ;
+  height: ${(props) => props.height || "312px"};
 `;
 export const ContentCard = styled.div`
   height: 100%;
@@ -19,4 +21,42 @@ export const ContentCard = styled.div`
     margin-bottom: 15px;
   }
 `;
+export const NumberCard = styled.div`
+  width: 100%;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .number {
+    font-size: 48px;
+    font-weight: 500;
+    color: #666;
+    /* text-shadow: 2px 2px 2px #666; */
+    /* -webkit-text-stroke: 1px #666; */
+    position: absolute;
+    top: 20px;
+  }
+  .image {
+    transform: scale(1.2);
+  }
+`;
+export const CountCard = (props) => {
+  return (
+    <ContentCard>
+      <div className="title-card">{props.title}</div>
+      <Row>
+        <Col xs={24}>
+          <NumberCard>
+            {/* <img
+              className="image"
+              src={SelectClusterImg(props.count)}
+              alt={props.title}
+            /> */}
+            <div className="number">{props.count}</div>
+          </NumberCard>
+        </Col>
+      </Row>
+    </ContentCard>
+  );
+};
 export default DashbordCard;

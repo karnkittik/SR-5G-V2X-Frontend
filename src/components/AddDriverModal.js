@@ -82,19 +82,29 @@ export const AddDriverModal = () => {
           >
             <Input />
           </Form.Item>
-          <Form.Item name="gender" label="Gender" rules={[{ required: true }]}>
-            <Select
-              placeholder="Select a option and change input text above"
-              // onChange={this.onGenderChange}
-              allowClear
-            >
+          <Form.Item
+            name="gender"
+            label="Gender"
+            rules={[{ required: true, message: "Please input your gender!" }]}
+          >
+            <Select allowClear>
               <Option value="male">male</Option>
               <Option value="female">female</Option>
               <Option value="other">other</Option>
             </Select>
           </Form.Item>
-          <Form.Item label="Date of birth">
-            <DatePicker />
+          <Form.Item
+            name="DOB"
+            label="Date of Birth"
+            rules={[
+              {
+                type: "object",
+                required: true,
+                message: "Please select date!",
+              },
+            ]}
+          >
+            <DatePicker style={{ width: "100%" }} />
           </Form.Item>
           <Form.Item
             label="Username"
@@ -107,6 +117,44 @@ export const AddDriverModal = () => {
             label="Password"
             name="password"
             rules={[{ required: true, message: "Please input your password!" }]}
+          >
+            <Input.Password />
+          </Form.Item>
+          {/* <Form.Item
+            name="password"
+            label="Password"
+            rules={[
+              {
+                required: true,
+                message: "Please input your password!",
+              },
+            ]}
+            hasFeedback
+          >
+            <Input.Password />
+          </Form.Item> */}
+
+          <Form.Item
+            name="confirm"
+            label="Confirm Password"
+            dependencies={["password"]}
+            hasFeedback
+            rules={[
+              {
+                required: true,
+                message: "Please confirm your password!",
+              },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue("password") === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(
+                    "The two passwords that you entered do not match!"
+                  );
+                },
+              }),
+            ]}
           >
             <Input.Password />
           </Form.Item>

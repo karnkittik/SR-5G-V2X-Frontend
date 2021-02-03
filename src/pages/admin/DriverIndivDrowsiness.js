@@ -65,6 +65,10 @@ const DriverIndivDrowsiness = () => {
             columns={columns}
             dataSource={DriverDrowsiness}
             rowKey="time"
+            pagination={{
+              pageSize: 4,
+              showTotal: (total) => `Total ${total} items`,
+            }}
           />
         </Col>
       </Row>

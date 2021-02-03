@@ -35,19 +35,30 @@ const columns = [
       </div>
     ),
   },
-
   {
-    title: "Regis Date",
-    key: "dob",
+    title: "License Plate Number",
+    dataIndex: "vehicle_registration_number",
+    key: "vehicle_registration_number",
+  },
+  {
+    title: "Reg Date",
+    key: "registered_at",
     render: (text, record) => (
-      <div>{dayjs(record.DOB).format("DD/MM/YYYY")}</div>
+      <div>{dayjs(record.registered_at).format("DD/MM/YYYY")}</div>
+    ),
+  },
+  {
+    title: "Mfg Date",
+    key: "created_at",
+    render: (text, record) => (
+      <div>{dayjs(record.created_at).format("DD/MM/YYYY")}</div>
     ),
   },
   {
     title: "Age",
     key: "age",
     render: (text, record) => (
-      <div>{dayjs().from(dayjs(record.DOB)).substr(3)}</div>
+      <div>{dayjs().from(dayjs(record.created_at)).substr(3)}</div>
     ),
   },
 ];

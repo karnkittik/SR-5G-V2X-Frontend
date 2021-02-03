@@ -55,7 +55,15 @@ const DriverIndivAccident = () => {
               title="Accident in Time"
             />
           </DashbordCard>
-          <Table columns={columns} dataSource={DriverAccident} rowKey="time" />
+          <Table
+            columns={columns}
+            dataSource={DriverAccident}
+            rowKey="time"
+            pagination={{
+              pageSize: 4,
+              showTotal: (total) => `Total ${total} items`,
+            }}
+          />
         </Col>
       </Row>
     </>

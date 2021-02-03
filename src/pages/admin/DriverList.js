@@ -32,7 +32,7 @@ const columns = [
     key: "gender",
   },
   {
-    title: "Date of birth",
+    title: "Date of Birth",
     key: "dob",
     render: (text, record) => (
       <div>{dayjs(record.DOB).format("DD/MM/YYYY")}</div>

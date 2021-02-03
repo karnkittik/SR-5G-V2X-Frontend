@@ -49,9 +49,7 @@ export const ProfileDriver = () => {
         <Col xs={24}>
           <Table
             columns={columns}
-            dataSource={[
-              DriverData[DriverData.findIndex((x) => x.driver_id === id)],
-            ]}
+            dataSource={[DriverData.find((x) => x.driver_id === id)]}
             rowKey="driver_id"
             pagination={false}
           />

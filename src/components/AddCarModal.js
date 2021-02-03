@@ -81,20 +81,33 @@ export const AddCarModal = () => {
           onFinishFailed={onFinishFailed}
         >
           <Form.Item
-            name="carType"
-            label="Car Type"
-            rules={[{ required: true }]}
+            name="created_at"
+            label="Manufacturing Date"
+            rules={[
+              {
+                type: "object",
+                required: true,
+                message: "Please select date!",
+              },
+            ]}
           >
-            <Select
-              placeholder="Select a option and change input text above"
-              // onChange={this.onGenderChange}
-              allowClear
-            >
-              {CarOption()}
-            </Select>
+            <DatePicker style={{ width: "100%" }} />
           </Form.Item>
-          <Form.Item label="Regis Date">
-            <DatePicker />
+          <Form.Item
+            name="vehicle_registration_number"
+            label="License Plate Number"
+            rules={[
+              { required: true, message: "Please input license plate number" },
+            ]}
+          >
+            <Input placeholder="Example: ABC1234" />
+          </Form.Item>
+          <Form.Item
+            name="car_detail"
+            label="Car Detail"
+            rules={[{ required: false, message: "Please input car detail!" }]}
+          >
+            <Input.TextArea placeholder="Example: Taiwan EV" />
           </Form.Item>
         </Form>
       </Modal>
