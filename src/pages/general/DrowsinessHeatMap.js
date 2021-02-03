@@ -8,7 +8,7 @@ const { Content, Header } = Layout;
 const DrowsinessHeatMap = () => {
   var d = new Date();
   var n = d.getHours();
-  const [time, setTime] = useState(n);
+  const [time, setTime] = useState(null);
   const [data, setData] = useState([]);
   useEffect(() => {
     setData(DrowsinessData[time]);

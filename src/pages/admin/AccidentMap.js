@@ -18,7 +18,7 @@ const disabledDate = (current) => {
 const AccidentMap = () => {
   var d = new Date();
   var n = d.getHours();
-  const [time, setTime] = useState(n);
+  const [time, setTime] = useState(null);
   const [data, setData] = useState([]);
   const [heatMap, setHeatMap] = useState(false);
   const { location, cancelLocationWatch, error } = useWatchLocation();

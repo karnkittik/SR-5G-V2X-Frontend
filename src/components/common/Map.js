@@ -40,16 +40,16 @@ const createMapOptions = (maps) => {
     zoomControl: false,
     fullscreenControl: false,
     mapTypeId: "roadmap",
-    styles: [
-      {
-        stylers: [
-          { saturation: -100 },
-          { gamma: 0.8 },
-          { lightness: 4 },
-          { visibility: "on" },
-        ],
-      },
-    ],
+    // styles: [
+    //   {
+    //     stylers: [
+    //       { saturation: -100 },
+    //       { gamma: 0.8 },
+    //       { lightness: 4 },
+    //       { visibility: "on" },
+    //     ],
+    //   },
+    // ],
   };
 };
 const MyMapComponent = (props) => {

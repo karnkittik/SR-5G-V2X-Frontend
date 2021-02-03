@@ -6,7 +6,7 @@ const {
   addWebpackPlugin,
 } = require("customize-cra");
 const AntDesignThemePlugin = require("antd-theme-webpack-plugin");
-
+const AntdDayjsWebpackPlugin = require("antd-dayjs-webpack-plugin");
 const options = {
   stylesDir: path.join(__dirname, "./src/styles"),
   antDir: path.join(__dirname, "./node_modules/antd"),
@@ -15,7 +15,12 @@ const options = {
   indexFileName: "index.html",
 };
 
+const addAntdDayjsPlugin = (config) => {
+  config.plugins.push(new AntdDayjsWebpackPlugin());
+  return config;
+};
 module.exports = override(
+  addAntdDayjsPlugin,
   fixBabelImports("antd", {
     libraryName: "antd",
     libraryDirectory: "es",
