@@ -18,7 +18,7 @@ export const ContentCard = styled.div`
     font-size: 18px;
     font-weight: 400;
     color: #666;
-    margin-bottom: 15px;
+    margin-bottom: ${(props) => props.mb || "10px"};
   }
 `;
 export const NumberCard = styled.div`

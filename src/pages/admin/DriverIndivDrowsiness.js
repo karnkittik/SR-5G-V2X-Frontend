@@ -1,6 +1,8 @@
 import dayjs from "dayjs";
 import { Table, Row, Col } from "antd";
-import DashbordCard from "../../components/common/DashbordCard";
+import DashbordCard, {
+  ContentCard,
+} from "../../components/common/DashbordCard";
 import PieChart from "../../components/common/PieChart";
 import {
   DriverDrowsiness,
@@ -47,29 +49,38 @@ const DriverIndivDrowsiness = () => {
           <DashbordCard height="auto">
             <ProfileDriver />
           </DashbordCard>
+          <DashbordCard height="450px">
+            <ContentCard>
+              <div className="title-card">Record</div>
+              <Row>
+                <Col xs={24}>
+                  <Table
+                    columns={columns}
+                    dataSource={DriverDrowsiness}
+                    rowKey="time"
+                    pagination={{
+                      pageSize: 3,
+                      showTotal: (total) => `Total ${total} items`,
+                    }}
+                  />
+                </Col>
+              </Row>
+            </ContentCard>
+          </DashbordCard>
+        </Col>
+        <Col xs={24} lg={12}>
           <DashbordCard>
             <PieChart
               data={DriverDrowsinessTimePie}
               title="Drowsiness Day & Night"
             />
           </DashbordCard>
-        </Col>
-        <Col xs={24} lg={12}>
           <DashbordCard>
             <TimeBarChart
               data={DriverDrowsinessTimeBar}
               title="Drowsiness on Hour"
             />
           </DashbordCard>
-          <Table
-            columns={columns}
-            dataSource={DriverDrowsiness}
-            rowKey="time"
-            pagination={{
-              pageSize: 4,
-              showTotal: (total) => `Total ${total} items`,
-            }}
-          />
         </Col>
       </Row>
     </>
