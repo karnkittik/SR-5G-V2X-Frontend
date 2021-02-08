@@ -13,7 +13,7 @@ const drowsinessApi = axios.create({
   },
 });
 const authApi = axios.create({
-  baseURL: `http://localhost:8080/api/web/auth`,
+  baseURL: `${config.baseURL}/api/web/auth`,
   headers: {
     "Content-Type": "application/json",
   },
@@ -81,6 +81,12 @@ export const AuthService = {
     authApi
       .post(`/login`, payload)
       .then(({ data }) => callback({ data }))
-      .catch(({ response }) => onRejected(response));
+      .catch(({ response }) => onRejected(response.data));
+  },
+  logout: (callback, onRejected) => {
+    authApi
+      .post(`/logout`)
+      .then(({ data }) => callback({ data }))
+      .catch(({ response }) => onRejected(response.data));
   },
 };

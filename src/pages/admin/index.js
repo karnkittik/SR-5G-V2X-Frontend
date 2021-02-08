@@ -8,13 +8,12 @@ import {
   TeamOutlined,
   CarOutlined,
 } from "@ant-design/icons";
-import cookie from "js-cookie";
 import { useHistory } from "react-router-dom";
 import AccidentMap from "./AccidentMap";
 import DrowsinessMap from "./DrowsinessMap";
-import CarList from "./CarList";
 import Driver from "./Driver";
 import Car from "./Car";
+import { AuthService } from "../../utils/api";
 
 const { Content } = Layout;
 const Admin = () => {
@@ -65,9 +64,15 @@ const Admin = () => {
   const SignOutButton = () => {
     let history = useHistory();
     const signOut = () => {
-      console.log("sign out");
-      cookie.remove("5G-V2X");
-      history.push("/");
+      AuthService.logout(
+        ({ data }) => {
+          console.log(data);
+          history.push("/");
+        },
+        (response) => {
+          console.log(response);
+        }
+      );
     };
     return (
       <Button

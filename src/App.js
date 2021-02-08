@@ -14,7 +14,7 @@ import cookie from "js-cookie";
 const App = () => {
   const [islogin, setIsLogin] = useState(false);
   useEffect(() => {
-    if (!cookie.get("5G-V2X")) {
+    if (!cookie.get("accessToken")) {
       setIsLogin(false);
     } else {
       setIsLogin(true);
