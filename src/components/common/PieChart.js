@@ -3,19 +3,21 @@ import Chart from "react-apexcharts";
 const PieChart = (props) => {
   var { title, data } = props;
   var options = {
-    labels: data.labels,
-    colors: [
-      "#fad738ff",
-      "#79afa3ff",
-      "#128ff8ff",
-      "#c6c763ff",
-      "#2c97e3ff",
-      "#adbf78ff",
-      "#469fcdff",
-      "#5fa7b8ff",
-      "#93b78dff",
-      "#e0cf4dff",
-    ],
+    labels: !data.labels ? ["None"] : data.labels,
+    colors: !data.labels
+      ? ["#ddd"]
+      : [
+          "#fad738",
+          "#79afa3",
+          "#128ff8",
+          "#c6c763",
+          "#2c97e3",
+          "#adbf78",
+          "#469fcd",
+          "#5fa7b8",
+          "#93b78d",
+          "#e0cf4d",
+        ],
     chart: {
       fontFamily: "inherit",
       fontSize: "inherit",
@@ -112,7 +114,12 @@ const PieChart = (props) => {
   };
 
   return (
-    <Chart options={options} series={data.series} type="donut" height="100%" />
+    <Chart
+      options={options}
+      series={!data.series ? [0] : data.series}
+      type="donut"
+      height="100%"
+    />
   );
 };
 

@@ -2,7 +2,6 @@ import { React, useState, useEffect } from "react";
 import { Layout } from "antd";
 import MyMapComponent, { useWatchLocation } from "../../components/common/Map";
 import DateTimeTypePicker from "../../components/common/DateTimeTypePicker";
-import { AccidentData } from "../../mock/Coordinate";
 import { AccidentService } from "../../utils/api";
 import GoogleMap from "../../components/common/ClusterMap";
 const { Content, Header } = Layout;
@@ -21,18 +20,17 @@ const AccidentMap = () => {
     };
   }, [location, cancelLocationWatch]);
   useEffect(() => {
-    console.log(time);
-    setData(AccidentData[time]);
-    // fetchHeatmap(time);
+    if (time !== null) fetchHeatmap(time);
   }, [time]);
   const fetchHeatmap = (time) => {
     AccidentService.fetchHeatmap(
       time,
       ({ data }) => {
+        setData(data);
         console.log(data);
       },
       (response) => {
-        console.log(response);
+        console.log(response.message);
       }
     );
   };

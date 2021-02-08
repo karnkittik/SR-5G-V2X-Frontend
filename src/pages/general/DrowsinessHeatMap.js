@@ -2,7 +2,7 @@ import { React, useState, useEffect } from "react";
 import { Layout } from "antd";
 import MyMapComponent from "../../components/common/Map";
 import DateTimeTypePicker from "../../components/common/DateTimeTypePicker";
-import { DrowsinessData } from "../../mock/Drosiness";
+import { DrowsinessService } from "../../utils/api";
 const { Content, Header } = Layout;
 
 const DrowsinessHeatMap = () => {
@@ -11,8 +11,20 @@ const DrowsinessHeatMap = () => {
   const [time, setTime] = useState(null);
   const [data, setData] = useState([]);
   useEffect(() => {
-    setData(DrowsinessData[time]);
+    if (time !== null) fetchHeatmap(time);
   }, [time]);
+  const fetchHeatmap = (time) => {
+    DrowsinessService.fetchHeatmap(
+      time,
+      ({ data }) => {
+        setData(data);
+        console.log(data);
+      },
+      (response) => {
+        console.log(response.message);
+      }
+    );
+  };
   return (
     <Layout style={{ height: "100%" }}>
       <Header className="header">

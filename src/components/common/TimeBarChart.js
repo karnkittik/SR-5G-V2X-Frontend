@@ -98,7 +98,7 @@ const TimeBarChart = (props) => {
     },
     yaxis: {
       min: 0,
-      max: Math.max(...props.data) + 1,
+      max: Math.max(...props.data) === 0 ? 10 : Math.max(...props.data) + 1,
       labels: {
         show: true,
         align: "right",
