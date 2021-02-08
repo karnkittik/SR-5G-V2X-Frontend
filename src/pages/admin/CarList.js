@@ -13,7 +13,7 @@ import { UserAddOutlined } from "@ant-design/icons";
 import { CarData } from "../../mock/Car";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { AddCarModal, CarTypeName } from "../../components/AddCarModal";
+import { AddCarModal } from "../../components/AddCarModal";
 import { useHistory } from "react-router-dom";
 dayjs.extend(relativeTime);
 const { Content, Header } = Layout;
@@ -55,7 +55,7 @@ const columns = [
     ),
   },
   {
-    title: "Age",
+    title: "Car Age",
     key: "age",
     render: (text, record) => (
       <div>{dayjs().from(dayjs(record.created_at)).substr(3)}</div>

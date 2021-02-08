@@ -9,7 +9,6 @@ import dayjs from "dayjs";
 import { CarData } from "../../mock/Car";
 const { Header, Content } = Layout;
 export const ProfileCar = (props) => {
-  const { car_id: id } = useParams();
   const columns = [
     {
       title: "Car ID",
@@ -32,13 +31,28 @@ export const ProfileCar = (props) => {
       key: "vehicle_registration_number",
     },
     {
-      title: "Age",
+      title: "Reg Date",
+      key: "registered_at",
+      render: (text, record) => (
+        <div>{dayjs(record.registered_at).format("DD/MM/YYYY")}</div>
+      ),
+    },
+    {
+      title: "Mfg Date",
+      key: "created_at",
+      render: (text, record) => (
+        <div>{dayjs(record.created_at).format("DD/MM/YYYY")}</div>
+      ),
+    },
+    {
+      title: "Car Age",
       key: "age",
       render: (text, record) => (
         <div>{dayjs().from(dayjs(record.created_at)).substr(3)}</div>
       ),
     },
   ];
+
   return (
     <ContentCard>
       <div className="title-card">Profile</div>

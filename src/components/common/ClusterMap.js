@@ -11,6 +11,12 @@ const MAP = {
   defaultCenter: bangkokCoords,
   options: {
     maxZoom: 19,
+    panControl: false,
+    mapTypeControl: false,
+    scrollwheel: true,
+    zoomControl: false,
+    fullscreenControl: false,
+    mapTypeId: "roadmap",
   },
 };
 export class GoogleMap extends React.PureComponent {
