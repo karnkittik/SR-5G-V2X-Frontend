@@ -1,21 +1,13 @@
 import { useState } from "react";
-import { Button, Modal, Form, Input, DatePicker } from "antd";
+import { Button, Modal, Form, Input, DatePicker, Alert } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import { CarSerivce } from "../utils/api";
 const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 12 },
+  labelCol: { span: 10 },
+  wrapperCol: { span: 14 },
 };
 export const AddCarModal = () => {
   const [visible, setVisible] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const onCreate = (value) => {
-    console.log(value);
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setVisible(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
   return (
     <>
       <Button
@@ -26,29 +18,46 @@ export const AddCarModal = () => {
       >
         Car
       </Button>
-      <CarForm
-        visible={visible}
-        onCancel={() => setVisible(false)}
-        onCreate={onCreate}
-        confirmLoading={confirmLoading}
-      />
+      <CarForm visible={visible} setVisible={setVisible} />
     </>
   );
 };
 
-const CarForm = ({ visible, onCancel, onCreate, confirmLoading }) => {
+const CarForm = ({ visible, setVisible }) => {
   const [form] = Form.useForm();
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [successful, setSuccessful] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const onCreate = (values) => {
+    values.created_at = values.created_at.$d;
+    setConfirmLoading(true);
+    CarSerivce.AddCar(
+      values,
+      ({ data }) => {
+        console.log(data);
+        setConfirmLoading(false);
+        setSuccessful(true);
+      },
+      (response) => {
+        console.log(response.message);
+        setConfirmLoading(false);
+        setFailed({ message: response.message });
+      }
+    );
+  };
   return (
     <Modal
       title="New car"
       className="add-employee-modal"
       okText="Submit"
-      onCancel={onCancel}
+      onCancel={() => {
+        setVisible(false);
+        form.resetFields();
+      }}
       onOk={() => {
         form
           .validateFields()
           .then((values) => {
-            form.resetFields();
             onCreate(values);
           })
           .catch((info) => {
@@ -92,6 +101,30 @@ const CarForm = ({ visible, onCancel, onCreate, confirmLoading }) => {
           <Input.TextArea placeholder="Example: Taiwan EV" />
         </Form.Item>
       </Form>
+      <div style={{ height: "20px" }}>
+        {successful ? (
+          <Alert
+            message="Success"
+            type="success"
+            showIcon
+            closable
+            afterClose={() => {
+              setSuccessful(false);
+            }}
+          />
+        ) : null}
+        {failed ? (
+          <Alert
+            message={failed.message}
+            type="error"
+            showIcon
+            closable
+            afterClose={() => {
+              setFailed(false);
+            }}
+          />
+        ) : null}
+      </div>
     </Modal>
   );
 };

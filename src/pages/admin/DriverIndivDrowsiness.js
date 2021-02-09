@@ -5,12 +5,14 @@ import DashbordCard, {
 } from "../../components/common/DashbordCard";
 import PieChart from "../../components/common/PieChart";
 import {
-  DriverDrowsiness,
   DriverDrowsinessTimeBar,
   DriverDrowsinessTimePie,
 } from "../../mock/Driver";
 import TimeBarChart from "../../components/common/TimeBarChart";
 import { ProfileDriver } from "./DriverIndiv";
+import { useParams } from "react-router";
+import { useEffect, useState } from "react";
+import { DriverService } from "../../utils/api";
 
 const DriverIndivDrowsiness = () => {
   const columns = [
@@ -42,6 +44,25 @@ const DriverIndivDrowsiness = () => {
       key: "working_time",
     },
   ];
+  const { driver_id } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [drowsiness, setDrowsiness] = useState([]);
+  useEffect(() => {
+    fetchDrowsiness();
+  }, []);
+  const fetchDrowsiness = () => {
+    DriverService.fetchDrowsiness(
+      driver_id,
+      ({ data }) => {
+        setDrowsiness(data);
+        setLoading(false);
+        console.log(data);
+      },
+      (response) => {
+        console.log(response.message);
+      }
+    );
+  };
   return (
     <>
       <Row style={{ height: "100%", backgroundColor: "white" }}>
@@ -56,7 +77,8 @@ const DriverIndivDrowsiness = () => {
                 <Col xs={24}>
                   <Table
                     columns={columns}
-                    dataSource={DriverDrowsiness}
+                    dataSource={drowsiness}
+                    loading={loading}
                     rowKey="time"
                     pagination={{
                       pageSize: 3,

@@ -129,6 +129,22 @@ export const DriverService = {
         onRejected(response.response ? response.response.data : response);
       });
   },
+  fetchAccident: (payload, callback, onRejected) => {
+    authApi
+      .get(`/driver/${payload}/accident`)
+      .then(({ data }) => callback(data))
+      .catch((response) => {
+        onRejected(response.response ? response.response.data : response);
+      });
+  },
+  fetchDrowsiness: (payload, callback, onRejected) => {
+    authApi
+      .get(`/driver/${payload}/drowsiness`)
+      .then(({ data }) => callback(data))
+      .catch((response) => {
+        onRejected(response.response ? response.response.data : response);
+      });
+  },
 };
 
 export const CarSerivce = {
@@ -143,6 +159,14 @@ export const CarSerivce = {
   fetchCar: (payload, callback, onRejected) => {
     authApi
       .get(`/car/${payload}`)
+      .then(({ data }) => callback(data))
+      .catch((response) => {
+        onRejected(response.response ? response.response.data : response);
+      });
+  },
+  AddCar: (payload, callback, onRejected) => {
+    authApi
+      .post("/car", payload)
       .then(({ data }) => callback(data))
       .catch((response) => {
         onRejected(response.response ? response.response.data : response);

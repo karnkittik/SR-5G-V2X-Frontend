@@ -99,7 +99,7 @@ const HeatMapCalendar = (props) => (
               {
                 from: 21,
                 to: 40,
-                name: "6-20",
+                name: "21-40",
                 color: "#6AAED6",
               },
               {

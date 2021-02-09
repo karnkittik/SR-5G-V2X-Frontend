@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
 import { Table, Row, Col } from "antd";
 import {
-  DriverAccident,
   DriverAccidentTimeBar,
   DriverAccidentTimePie,
 } from "../../mock/Driver";
@@ -11,6 +10,9 @@ import DashbordCard, {
 import PieChart from "../../components/common/PieChart";
 import TimeBarChart from "../../components/common/TimeBarChart";
 import { ProfileDriver } from "./DriverIndiv";
+import { useParams } from "react-router";
+import { useState, useEffect } from "react";
+import { DriverService } from "../../utils/api";
 const DriverIndivAccident = () => {
   const columns = [
     {
@@ -36,13 +38,32 @@ const DriverIndivAccident = () => {
       key: "roadname",
     },
   ];
+  const { driver_id } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [accident, setAccident] = useState([]);
+  useEffect(() => {
+    fetchAccident();
+  }, []);
+  const fetchAccident = () => {
+    DriverService.fetchAccident(
+      driver_id,
+      ({ data }) => {
+        setAccident(data);
+        setLoading(false);
+        console.log(data);
+      },
+      (response) => {
+        console.log(response.message);
+      }
+    );
+  };
   return (
     <>
       <Row style={{ height: "100%", backgroundColor: "white" }}>
         <Col xs={24} lg={12}>
           <DashbordCard height="auto">
             <ProfileDriver />
-          </DashbordCard>{" "}
+          </DashbordCard>
           <DashbordCard height="420px">
             <ContentCard>
               <div className="title-card">Record</div>
@@ -50,7 +71,8 @@ const DriverIndivAccident = () => {
                 <Col xs={24}>
                   <Table
                     columns={columns}
-                    dataSource={DriverAccident}
+                    dataSource={accident}
+                    loading={loading}
                     rowKey="time"
                     pagination={{
                       pageSize: 3,
