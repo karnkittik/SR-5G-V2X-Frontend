@@ -6,15 +6,11 @@ import DashbordCard, {
   CountCard,
 } from "../../components/common/DashbordCard";
 import dayjs from "dayjs";
-import { CarData } from "../../mock/Car";
+import { CarSerivce } from "../../utils/api";
+import { useEffect, useState } from "react";
 const { Header, Content } = Layout;
 export const ProfileCar = (props) => {
   const columns = [
-    {
-      title: "Car ID",
-      dataIndex: "car_id",
-      key: "car_id",
-    },
     {
       title: "Car Detail",
       dataIndex: "car_detail",
@@ -34,21 +30,33 @@ export const ProfileCar = (props) => {
       title: "Reg Date",
       key: "registered_at",
       render: (text, record) => (
-        <div>{dayjs(record.registered_at).format("DD/MM/YYYY")}</div>
+        <div>
+          {!record.registered_at
+            ? ""
+            : dayjs(record.registered_at).format("DD/MM/YYYY")}
+        </div>
       ),
     },
     {
       title: "Mfg Date",
       key: "created_at",
       render: (text, record) => (
-        <div>{dayjs(record.created_at).format("DD/MM/YYYY")}</div>
+        <div>
+          {!record.created_at
+            ? ""
+            : dayjs(record.created_at).format("DD/MM/YYYY")}
+        </div>
       ),
     },
     {
       title: "Car Age",
       key: "age",
       render: (text, record) => (
-        <div>{dayjs().from(dayjs(record.created_at)).substr(3)}</div>
+        <div>
+          {!record.created_at
+            ? ""
+            : dayjs().from(dayjs(record.created_at)).substr(3)}
+        </div>
       ),
     },
   ];
@@ -63,6 +71,7 @@ export const ProfileCar = (props) => {
             dataSource={props.data}
             rowKey="driver_id"
             pagination={false}
+            loading={props.loading}
           />
         </Col>
       </Row>
@@ -71,8 +80,28 @@ export const ProfileCar = (props) => {
 };
 const CarIndiv = () => {
   let history = useHistory();
-  const { car_id: id } = useParams();
-  const data = CarData.find((x) => x.car_id === id);
+  const { car_id } = useParams();
+  const [carData, setCarData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    fetchCar();
+  }, []);
+  const fetchCar = () => {
+    CarSerivce.fetchCar(
+      car_id,
+      ({ data }) => {
+        data.accident_count = data.accident.length;
+        data.drowsiness_count = data.drowsiness.length;
+        console.log(data);
+        setCarData(data);
+        setLoading(false);
+        console.log(data);
+      },
+      (response) => {
+        console.log(response.message);
+      }
+    );
+  };
   return (
     <Layout>
       <Header className="header">
@@ -90,21 +119,27 @@ const CarIndiv = () => {
         <Row style={{ height: "100%", backgroundColor: "white" }}>
           <Col xs={24}>
             <DashbordCard height="auto">
-              <ProfileCar data={[data]} />
+              <ProfileCar
+                data={[carData.car ? carData.car : {}]}
+                loading={loading}
+              />
             </DashbordCard>
           </Col>
         </Row>
         <Row>
           <Col xs={12}>
             <DashbordCard height="auto">
-              <CountCard title="Accident Count" count={data.accident_count} />
+              <CountCard
+                title="Accident Count"
+                count={carData.accident_count}
+              />
             </DashbordCard>
           </Col>
           <Col xs={12}>
             <DashbordCard height="auto">
               <CountCard
                 title="Drowsiness Count"
-                count={data.drowsiness_count}
+                count={carData.drowsiness_count}
               />
             </DashbordCard>
           </Col>

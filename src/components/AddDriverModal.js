@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Button, Modal, Form, Input, Select, DatePicker } from "antd";
+import { Button, Modal, Form, Input, Select, DatePicker, Alert } from "antd";
 import { UserAddOutlined } from "@ant-design/icons";
+import { DriverService } from "../utils/api";
 const { Option } = Select;
 const layout = {
   labelCol: { span: 8 },
@@ -8,15 +9,6 @@ const layout = {
 };
 export const AddDriverModal = () => {
   const [visible, setVisible] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const onCreate = (value) => {
-    console.log(value);
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setVisible(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
   return (
     <>
       <Button
@@ -27,29 +19,46 @@ export const AddDriverModal = () => {
       >
         Driver
       </Button>
-      <DriverForm
-        visible={visible}
-        onCancel={() => setVisible(false)}
-        onCreate={onCreate}
-        confirmLoading={confirmLoading}
-      />
+      <DriverForm visible={visible} setVisible={setVisible} />
     </>
   );
 };
 
-const DriverForm = ({ visible, onCancel, onCreate, confirmLoading }) => {
+const DriverForm = ({ visible, setVisible }) => {
   const [form] = Form.useForm();
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [successful, setSuccessful] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const onCreate = (values) => {
+    values.date_of_birth = values.DOB.$d;
+    setConfirmLoading(true);
+    DriverService.AddDriver(
+      values,
+      ({ data }) => {
+        console.log(data);
+        setConfirmLoading(false);
+        setSuccessful(true);
+      },
+      (response) => {
+        console.log(response.message);
+        setConfirmLoading(false);
+        setFailed({ message: response.message });
+      }
+    );
+  };
   return (
     <Modal
       title="New employee"
       className="add-employee-modal"
       okText="Submit"
-      onCancel={onCancel}
+      onCancel={() => {
+        setVisible(false);
+        form.resetFields();
+      }}
       onOk={() => {
         form
           .validateFields()
           .then((values) => {
-            form.resetFields();
             onCreate(values);
           })
           .catch((info) => {
@@ -80,9 +89,8 @@ const DriverForm = ({ visible, onCancel, onCreate, confirmLoading }) => {
           rules={[{ required: true, message: "Please input your gender!" }]}
         >
           <Select allowClear>
-            <Option value="male">male</Option>
-            <Option value="female">female</Option>
-            <Option value="other">other</Option>
+            <Option value="0">male</Option>
+            <Option value="1">female</Option>
           </Select>
         </Form.Item>
         <Form.Item
@@ -96,7 +104,10 @@ const DriverForm = ({ visible, onCancel, onCreate, confirmLoading }) => {
             },
           ]}
         >
-          <DatePicker style={{ width: "100%" }} />
+          <DatePicker
+            style={{ width: "100%" }}
+            popupStyle={{ zIndex: "9999" }}
+          />
         </Form.Item>
         <Form.Item
           label="Username"
@@ -137,6 +148,30 @@ const DriverForm = ({ visible, onCancel, onCreate, confirmLoading }) => {
           <Input.Password />
         </Form.Item>
       </Form>
+      <div style={{ height: "20px" }}>
+        {successful ? (
+          <Alert
+            message="Success"
+            type="success"
+            showIcon
+            closable
+            afterClose={() => {
+              setSuccessful(false);
+            }}
+          />
+        ) : null}
+        {failed ? (
+          <Alert
+            message={failed.message}
+            type="error"
+            showIcon
+            closable
+            afterClose={() => {
+              setFailed(false);
+            }}
+          />
+        ) : null}
+      </div>
     </Modal>
   );
 };

@@ -13,11 +13,6 @@ export const ProfileDriver = () => {
   const { driver_id } = useParams();
   const columns = [
     {
-      title: "ID",
-      dataIndex: "driver_id",
-      key: "id",
-    },
-    {
       title: "Name",
       key: "name",
       render: (text, record) => (
@@ -60,7 +55,7 @@ export const ProfileDriver = () => {
     DriverService.fetchDriver(
       driver_id,
       ({ data }) => {
-        setDriverData(data.data);
+        setDriverData(data);
         setLoading(false);
         console.log(data);
       },

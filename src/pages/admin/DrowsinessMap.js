@@ -10,7 +10,7 @@ const DrowsinessMap = () => {
   var d = new Date();
   var n = d.getHours();
   const [time, setTime] = useState(null);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
   const [heatMap, setHeatMap] = useState(false);
   const { location, cancelLocationWatch, error } = useWatchLocation();
   useEffect(() => {
@@ -29,7 +29,7 @@ const DrowsinessMap = () => {
       </Header>
       <Content>
         <DateTimeTypePicker n={n} setTime={setTime} setHeatMap={setHeatMap} />
-        {!!!heatMap && data ? (
+        {!!!heatMap && data !== null ? (
           <GoogleMap
             isShownHere
             markers={

@@ -8,11 +8,6 @@ import { DriverService } from "../../utils/api";
 const { Content, Header } = Layout;
 const columns = [
   {
-    title: "ID",
-    dataIndex: "driver_id",
-    key: "id",
-  },
-  {
     title: "Name",
     key: "name",
     render: (text, record) => (
@@ -62,7 +57,7 @@ const DriverList = () => {
   const fetchAllDriver = () => {
     DriverService.fetchAllDriver(
       ({ data }) => {
-        setDriverData(data.data);
+        setDriverData(data);
         setLoading(false);
         console.log(data);
       },
