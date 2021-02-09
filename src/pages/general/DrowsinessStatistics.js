@@ -1,15 +1,17 @@
 import { React, useState, useEffect } from "react";
 import { Layout, Row, Col } from "antd";
-import DashbordCard from "../../components/common/DashbordCard";
+import DashbordCard, {
+  DashbordCardLoading,
+} from "../../components/common/DashbordCard";
 import HeatMapCalendar from "../../components/common/HeatMapCalendar";
-import PieChart from "../../components/common/PieChart";
-import { AccidentHeatMap, AccidentTimeBar } from "../../mock/Statistics";
 import TimeBarChart from "../../components/common/TimeBarChart";
 import { DrowsinessService } from "../../utils/api";
 const { Content, Header } = Layout;
 const DrowsinessStatistics = () => {
   const [calendarData, setCalendarData] = useState([]);
   const [timeBarData, setTimeBarData] = useState([0]);
+  const [calendarLoading, setCalendarLoading] = useState(true);
+  const [timeBarLoading, setTimeBarLoading] = useState(true);
   useEffect(() => {
     fetchStatCalendar();
     fetchStatTimeBar();
@@ -18,6 +20,7 @@ const DrowsinessStatistics = () => {
     DrowsinessService.fetchStatCalendar(
       ({ data }) => {
         setCalendarData(data);
+        setCalendarLoading(false);
         console.log(data);
       },
       (response) => {
@@ -29,6 +32,7 @@ const DrowsinessStatistics = () => {
     DrowsinessService.fetchStatTimeBar(
       ({ data }) => {
         setTimeBarData(data);
+        setTimeBarLoading(false);
         console.log(data);
       },
       (response) => {
@@ -44,17 +48,17 @@ const DrowsinessStatistics = () => {
       <Content className="real-content">
         <Row>
           <Col xs={24} lg={12}>
-            <DashbordCard className="accident-stat-calendar">
+            <DashbordCardLoading loading={calendarLoading}>
               <HeatMapCalendar
                 title="Drowsiness Heatmap Calendar"
                 data={calendarData}
               />
-            </DashbordCard>
+            </DashbordCardLoading>
           </Col>
           <Col xs={24} lg={12}>
-            <DashbordCard className="accident-stat-timechart">
+            <DashbordCardLoading loading={timeBarLoading}>
               <TimeBarChart title="Drowsiness on Hour" data={timeBarData} />
-            </DashbordCard>
+            </DashbordCardLoading>
           </Col>
         </Row>
       </Content>

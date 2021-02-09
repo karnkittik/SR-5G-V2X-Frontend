@@ -133,6 +133,6 @@ const TimeBarChart = (props) => {
       data: props.data,
     },
   ];
-  return <Chart options={options} series={series} type="bar" height="100%" />;
+  return <Chart options={options} series={series} type="bar" height="280px" />;
 };
 export default TimeBarChart;

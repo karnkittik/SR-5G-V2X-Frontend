@@ -46,7 +46,9 @@ export const AccidentService = {
   fetchStatTimeBar: (callback, onRejected) => {
     accidentApi
       .get(`/stat/timebar`)
-      .then(({ data }) => callback(data))
+      .then(({ data }) => {
+        callback(data);
+      })
       .catch(({ response }) => onRejected(response.data));
   },
 };
@@ -86,6 +88,20 @@ export const AuthService = {
   logout: (callback, onRejected) => {
     authApi
       .post(`/logout`)
+      .then(({ data }) => callback({ data }))
+      .catch(({ response }) => onRejected(response.data));
+  },
+};
+export const DriverService = {
+  fetchAllDriver: (callback, onRejected) => {
+    authApi
+      .get(`/driver`)
+      .then(({ data }) => callback({ data }))
+      .catch(({ response }) => onRejected(response.data));
+  },
+  fetchDriver: (payload, callback, onRejected) => {
+    authApi
+      .get(`/driver/${payload}`)
       .then(({ data }) => callback({ data }))
       .catch(({ response }) => onRejected(response.data));
   },

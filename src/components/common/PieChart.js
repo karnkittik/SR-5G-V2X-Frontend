@@ -61,6 +61,8 @@ const PieChart = (props) => {
     },
     plotOptions: {
       pie: {
+        offsetX: 30,
+        offsetY: 0,
         donut: {
           labels: {
             show: true,
@@ -118,7 +120,7 @@ const PieChart = (props) => {
       options={options}
       series={!data.series ? [0] : data.series}
       type="donut"
-      height="100%"
+      height="280px"
     />
   );
 };

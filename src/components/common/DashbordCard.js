@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { Row, Col } from "antd";
-import { SelectClusterImg } from "./ClusterMarker";
+import { Row, Col, Spin } from "antd";
 const DashbordCard = styled.div`
   margin: auto;
   padding: 20px;
@@ -40,6 +39,15 @@ export const NumberCard = styled.div`
     transform: scale(1.2);
   }
 `;
+
+export const SpinArea = styled.div`
+  width: 100%;
+  height: calc(100% - 10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const CountCard = (props) => {
   return (
     <ContentCard>
@@ -47,11 +55,6 @@ export const CountCard = (props) => {
       <Row>
         <Col xs={24}>
           <NumberCard>
-            {/* <img
-              className="image"
-              src={SelectClusterImg(props.count)}
-              alt={props.title}
-            /> */}
             <div className="number">{props.count}</div>
           </NumberCard>
         </Col>
@@ -59,4 +62,25 @@ export const CountCard = (props) => {
     </ContentCard>
   );
 };
+
+export const EmptyCard = (props) => {
+  return (
+    <ContentCard mb="0">
+      <div className="title-card">{props.title}</div>
+      <SpinArea>
+        <Spin>{props.children}</Spin>
+      </SpinArea>
+    </ContentCard>
+  );
+};
+export const DashbordCardLoading = (props) => {
+  return (
+    <DashbordCard>
+      <Spin spinning={props.loading} tip="Loading...">
+        {props.children}
+      </Spin>
+    </DashbordCard>
+  );
+};
+
 export default DashbordCard;

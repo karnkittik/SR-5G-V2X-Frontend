@@ -20,9 +20,10 @@ const AccidentMap = () => {
     };
   }, [location, cancelLocationWatch]);
   useEffect(() => {
-    if (time !== null) fetchHeatmap(time);
+    fetchHeatmap(time);
   }, [time]);
   const fetchHeatmap = (time) => {
+    if (time === null) return;
     AccidentService.fetchHeatmap(
       time,
       ({ data }) => {

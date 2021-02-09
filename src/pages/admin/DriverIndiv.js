@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { Layout, Table, Menu, Button, Row, Col } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
-import { DriverData } from "../../mock/Driver";
 import { ContentCard } from "../../components/common/DashbordCard";
 import dayjs from "dayjs";
 import DriverIndivAccident from "./DriverIndivAccident";
 import DriverIndivDrowsiness from "./DriverIndivDrowsiness";
+import { DriverService } from "../../utils/api";
 const { Header, Content } = Layout;
 
 export const ProfileDriver = () => {
-  const { driver_id: id } = useParams();
+  const { driver_id } = useParams();
   const columns = [
     {
       title: "ID",
@@ -21,7 +21,11 @@ export const ProfileDriver = () => {
       title: "Name",
       key: "name",
       render: (text, record) => (
-        <div>{`${record.firstname} ${record.lastname}`}</div>
+        <div>
+          {!record.firstname || !record.lastname
+            ? ""
+            : `${record?.firstname} ${record?.lastname}`}
+        </div>
       ),
     },
     {
@@ -38,10 +42,33 @@ export const ProfileDriver = () => {
       title: "Age",
       key: "age",
       render: (text, record) => (
-        <div>{dayjs().from(dayjs(record.DOB)).substr(3)}</div>
+        <div>
+          {!record.date_of_birth
+            ? ""
+            : dayjs().from(dayjs(record.date_of_birth)).substr(3)}
+        </div>
       ),
     },
   ];
+  const [driverData, setDriverData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    fetchDriver();
+  }, []);
+
+  const fetchDriver = () => {
+    DriverService.fetchDriver(
+      driver_id,
+      ({ data }) => {
+        setDriverData(data.data);
+        setLoading(false);
+        console.log(data);
+      },
+      (response) => {
+        console.log(response.message);
+      }
+    );
+  };
   return (
     <ContentCard>
       <div className="title-card">Profile</div>
@@ -49,8 +76,9 @@ export const ProfileDriver = () => {
         <Col xs={24}>
           <Table
             columns={columns}
-            dataSource={[DriverData.find((x) => x.driver_id === id)]}
+            dataSource={[driverData]}
             rowKey="driver_id"
+            loading={loading}
             pagination={false}
           />
         </Col>
@@ -63,7 +91,6 @@ const DriverComp = {
   1: <DriverIndivDrowsiness />,
 };
 const DriverIndiv = () => {
-  const { driver_id: id } = useParams();
   let history = useHistory();
   const [render, updateRender] = useState(0);
   const handleClick = (menu) => {

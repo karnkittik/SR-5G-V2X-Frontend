@@ -185,7 +185,7 @@ const HeatMapCalendar = (props) => (
     }}
     series={props.data}
     type="heatmap"
-    height="100%"
+    height="280px"
   />
 );
 

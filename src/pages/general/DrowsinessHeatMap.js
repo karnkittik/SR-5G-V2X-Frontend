@@ -11,9 +11,10 @@ const DrowsinessHeatMap = () => {
   const [time, setTime] = useState(null);
   const [data, setData] = useState([]);
   useEffect(() => {
-    if (time !== null) fetchHeatmap(time);
+    fetchHeatmap(time);
   }, [time]);
   const fetchHeatmap = (time) => {
+    if (time === null) return;
     DrowsinessService.fetchHeatmap(
       time,
       ({ data }) => {

@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { Layout, Row, Col } from "antd";
-import DashbordCard from "../../components/common/DashbordCard";
+import { DashbordCardLoading } from "../../components/common/DashbordCard";
 import HeatMapCalendar from "../../components/common/HeatMapCalendar";
 import PieChart from "../../components/common/PieChart";
 import TimeBarChart from "../../components/common/TimeBarChart";
@@ -10,6 +10,9 @@ const AccidentStatistics = () => {
   const [calendarData, setCalendarData] = useState([]);
   const [roadPieData, setRoadPieData] = useState({});
   const [timeBarData, setTimeBarData] = useState([0]);
+  const [calendarLoading, setCalendarLoading] = useState(true);
+  const [roadPieLoading, setRoadPieLoading] = useState(true);
+  const [timeBarLoading, setTimeBarLoading] = useState(true);
   useEffect(() => {
     fetchStatCalendar();
     fetchStatRoadPie();
@@ -19,6 +22,7 @@ const AccidentStatistics = () => {
     AccidentService.fetchStatCalendar(
       ({ data }) => {
         setCalendarData(data);
+        setCalendarLoading(false);
         console.log(data);
       },
       (response) => {
@@ -30,6 +34,7 @@ const AccidentStatistics = () => {
     AccidentService.fetchStatRoadPie(
       ({ data }) => {
         setRoadPieData(data);
+        setRoadPieLoading(false);
         console.log(data);
       },
       (response) => {
@@ -41,6 +46,7 @@ const AccidentStatistics = () => {
     AccidentService.fetchStatTimeBar(
       ({ data }) => {
         setTimeBarData(data);
+        setTimeBarLoading(false);
         console.log(data);
       },
       (response) => {
@@ -56,24 +62,25 @@ const AccidentStatistics = () => {
       <Content className="real-content">
         <Row>
           <Col xs={24} lg={12}>
-            <DashbordCard className="accident-stat-calendar">
+            <DashbordCardLoading loading={calendarLoading}>
               <HeatMapCalendar
                 title="Accident Heatmap Calendar"
                 data={calendarData}
+                style={{ height: "100%" }}
               />
-            </DashbordCard>
+            </DashbordCardLoading>
           </Col>
           <Col xs={24} lg={12}>
-            <DashbordCard className="accident-stat-timechart">
+            <DashbordCardLoading loading={timeBarLoading}>
               <TimeBarChart title="Accident on Hour" data={timeBarData} />
-            </DashbordCard>
+            </DashbordCardLoading>
           </Col>
         </Row>
         <Row>
           <Col xs={24} lg={12}>
-            <DashbordCard className="accident-stat-pie">
+            <DashbordCardLoading loading={roadPieLoading}>
               <PieChart data={roadPieData} title="Accident On Road" />
-            </DashbordCard>
+            </DashbordCardLoading>
           </Col>
         </Row>
       </Content>
