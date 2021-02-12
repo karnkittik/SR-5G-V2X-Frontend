@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Layout, Table } from "antd";
 import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
 import { AddCarModal } from "../../components/AddCarModal";
 import { useHistory } from "react-router-dom";
 import { CarSerivce } from "../../utils/api";
-dayjs.extend(relativeTime);
 const { Content, Header } = Layout;
 
 const columns = [

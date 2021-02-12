@@ -2,12 +2,8 @@ import dayjs from "dayjs";
 import { Table, Row, Col } from "antd";
 import DashbordCard, {
   ContentCard,
+  DashbordCardLoading,
 } from "../../components/common/DashbordCard";
-import PieChart from "../../components/common/PieChart";
-import {
-  DriverDrowsinessTimeBar,
-  DriverDrowsinessTimePie,
-} from "../../mock/Driver";
 import TimeBarChart from "../../components/common/TimeBarChart";
 import { ProfileDriver } from "./DriverIndiv";
 import { useParams } from "react-router";
@@ -35,27 +31,43 @@ const DriverIndivDrowsiness = () => {
     },
     {
       title: "Response Time (s)",
-      dataIndex: "response",
-      key: "response",
+      dataIndex: "response_time",
+      key: "response_time",
     },
     {
-      title: "Working Time (min)",
-      dataIndex: "working_time",
-      key: "working_time",
+      title: "Working Time (hour)",
+      dataIndex: "working_hour",
+      key: "working_hour",
     },
   ];
   const { driver_id } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [drowsiness, setDrowsiness] = useState([]);
+  const [drowsinessData, setDrowsinessData] = useState([]);
+  const [timeBarData, setTimeBarData] = useState([0]);
+  const [drowsinessLoading, setDrowsinessLoading] = useState(true);
+  const [timeBarLoading, setTimeBarLoading] = useState(true);
   useEffect(() => {
     fetchDrowsiness();
+    fetchDrowsinessTimeBar();
   }, []);
   const fetchDrowsiness = () => {
     DriverService.fetchDrowsiness(
       driver_id,
       ({ data }) => {
-        setDrowsiness(data);
-        setLoading(false);
+        setDrowsinessData(data);
+        setDrowsinessLoading(false);
+        console.log(data);
+      },
+      (response) => {
+        console.log(response.message);
+      }
+    );
+  };
+  const fetchDrowsinessTimeBar = () => {
+    DriverService.fetchDrowsinessTimeBar(
+      driver_id,
+      ({ data }) => {
+        setTimeBarData(data);
+        setTimeBarLoading(false);
         console.log(data);
       },
       (response) => {
@@ -70,6 +82,11 @@ const DriverIndivDrowsiness = () => {
           <DashbordCard height="auto">
             <ProfileDriver />
           </DashbordCard>
+          <DashbordCardLoading loading={timeBarLoading}>
+            <TimeBarChart data={timeBarData} title="Drowsiness on Hour" />
+          </DashbordCardLoading>
+        </Col>
+        <Col xs={24} lg={12}>
           <DashbordCard height="450px">
             <ContentCard>
               <div className="title-card">Record</div>
@@ -77,31 +94,17 @@ const DriverIndivDrowsiness = () => {
                 <Col xs={24}>
                   <Table
                     columns={columns}
-                    dataSource={drowsiness}
-                    loading={loading}
+                    dataSource={drowsinessData}
+                    loading={drowsinessLoading}
                     rowKey="time"
                     pagination={{
-                      pageSize: 3,
+                      pageSize: 10,
                       showTotal: (total) => `Total ${total} items`,
                     }}
                   />
                 </Col>
               </Row>
             </ContentCard>
-          </DashbordCard>
-        </Col>
-        <Col xs={24} lg={12}>
-          <DashbordCard>
-            <PieChart
-              data={DriverDrowsinessTimePie}
-              title="Drowsiness Day & Night"
-            />
-          </DashbordCard>
-          <DashbordCard>
-            <TimeBarChart
-              data={DriverDrowsinessTimeBar}
-              title="Drowsiness on Hour"
-            />
           </DashbordCard>
         </Col>
       </Row>

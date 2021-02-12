@@ -2,11 +2,21 @@ import { useState } from "react";
 import { Button, Modal, Form, Input, Select, DatePicker, Alert } from "antd";
 import { UserAddOutlined } from "@ant-design/icons";
 import { DriverService } from "../utils/api";
+import dayjs from "dayjs";
 const { Option } = Select;
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 12 },
 };
+
+const disabledDate = (current) => {
+  // Can not select days before today and today
+  return (
+    current &&
+    (current > dayjs().endOf("day") || current < dayjs().startOf("year"))
+  );
+};
+
 export const AddDriverModal = () => {
   const [visible, setVisible] = useState(false);
   return (
@@ -107,6 +117,7 @@ const DriverForm = ({ visible, setVisible }) => {
           <DatePicker
             style={{ width: "100%" }}
             popupStyle={{ zIndex: "9999" }}
+            disabledDate={disabledDate}
           />
         </Form.Item>
         <Form.Item

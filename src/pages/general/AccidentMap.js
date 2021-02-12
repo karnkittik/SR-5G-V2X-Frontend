@@ -4,7 +4,6 @@ import MyMapComponent, { useWatchLocation } from "../../components/common/Map";
 import DateTimeTypePicker from "../../components/common/DateTimeTypePicker";
 import { AccidentService } from "../../utils/api";
 import GoogleMap from "../../components/common/ClusterMap";
-import { AccidentData } from "../../mock/Coordinate";
 const { Content, Header } = Layout;
 
 const AccidentMap = () => {

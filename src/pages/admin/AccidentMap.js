@@ -1,19 +1,10 @@
 import { React, useState, useEffect } from "react";
 import { Layout } from "antd";
 import MyMapComponent, { useWatchLocation } from "../../components/common/Map";
-import { AccidentData } from "../../mock/Coordinate";
-import * as dayjs from "dayjs";
 import DateTimeTypePicker from "../../components/common/DateTimeTypePicker";
 import GoogleMap from "../../components/common/ClusterMap";
+import { AccidentService } from "../../utils/api";
 const { Content, Header } = Layout;
-
-const disabledDate = (current) => {
-  // Can not select days before today and today
-  return (
-    current &&
-    (current > dayjs().endOf("day") || current < dayjs().startOf("year"))
-  );
-};
 
 const AccidentMap = () => {
   var d = new Date();
@@ -29,8 +20,21 @@ const AccidentMap = () => {
     };
   }, [location, cancelLocationWatch]);
   useEffect(() => {
-    setData(AccidentData[time]);
+    fetchMap([time]);
   }, [time]);
+  const fetchMap = (time) => {
+    if (time === null) return;
+    AccidentService.fetchMap(
+      time,
+      ({ data }) => {
+        setData(data);
+        console.log(data);
+      },
+      (response) => {
+        console.log(response.message);
+      }
+    );
+  };
   return (
     <Layout style={{ height: "100%" }}>
       <Header className="header">

@@ -2,8 +2,8 @@ import { React, useState, useEffect } from "react";
 import { Layout } from "antd";
 import MyMapComponent, { useWatchLocation } from "../../components/common/Map";
 import DateTimeTypePicker from "../../components/common/DateTimeTypePicker";
-import { DrowsinessData } from "../../mock/Drosiness";
 import GoogleMap from "../../components/common/ClusterMap";
+import { DrowsinessService } from "../../utils/api";
 const { Content, Header } = Layout;
 
 const DrowsinessMap = () => {
@@ -20,8 +20,21 @@ const DrowsinessMap = () => {
     };
   }, [location, cancelLocationWatch]);
   useEffect(() => {
-    setData(DrowsinessData[time]);
+    fetchMap([time]);
   }, [time]);
+  const fetchMap = (time) => {
+    if (time === null) return;
+    DrowsinessService.fetchMap(
+      time,
+      ({ data }) => {
+        setData(data);
+        console.log(data);
+      },
+      (response) => {
+        console.log(response.message);
+      }
+    );
+  };
   return (
     <Layout style={{ height: "100%" }}>
       <Header className="header">

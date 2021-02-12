@@ -1,13 +1,9 @@
 import dayjs from "dayjs";
 import { Table, Row, Col } from "antd";
-import {
-  DriverAccidentTimeBar,
-  DriverAccidentTimePie,
-} from "../../mock/Driver";
 import DashbordCard, {
   ContentCard,
+  DashbordCardLoading,
 } from "../../components/common/DashbordCard";
-import PieChart from "../../components/common/PieChart";
 import TimeBarChart from "../../components/common/TimeBarChart";
 import { ProfileDriver } from "./DriverIndiv";
 import { useParams } from "react-router";
@@ -34,13 +30,15 @@ const DriverIndivAccident = () => {
     },
     {
       title: "Road Name",
-      dataIndex: "roadname",
-      key: "roadname",
+      dataIndex: "road",
+      key: "road",
     },
   ];
   const { driver_id } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [accident, setAccident] = useState([]);
+  const [accidentData, setAccidentData] = useState([]);
+  const [timeBarData, setTimeBarData] = useState([0]);
+  const [accidentLoading, setAccidentLoading] = useState(true);
+  const [timeBarLoading, setTimeBarLoading] = useState(true);
   useEffect(() => {
     fetchAccident();
   }, []);
@@ -48,8 +46,21 @@ const DriverIndivAccident = () => {
     DriverService.fetchAccident(
       driver_id,
       ({ data }) => {
-        setAccident(data);
-        setLoading(false);
+        setAccidentData(data);
+        setAccidentLoading(false);
+        console.log(data);
+      },
+      (response) => {
+        console.log(response.message);
+      }
+    );
+  };
+  const fetchAccidentTimeBar = () => {
+    DriverService.fetchAccidentTimeBar(
+      driver_id,
+      ({ data }) => {
+        setTimeBarData(data);
+        setTimeBarLoading(false);
         console.log(data);
       },
       (response) => {
@@ -64,6 +75,11 @@ const DriverIndivAccident = () => {
           <DashbordCard height="auto">
             <ProfileDriver />
           </DashbordCard>
+          <DashbordCardLoading loading={timeBarLoading}>
+            <TimeBarChart data={timeBarData} title="Accident in Time" />
+          </DashbordCardLoading>
+        </Col>
+        <Col xs={24} lg={12}>
           <DashbordCard height="420px">
             <ContentCard>
               <div className="title-card">Record</div>
@@ -71,31 +87,17 @@ const DriverIndivAccident = () => {
                 <Col xs={24}>
                   <Table
                     columns={columns}
-                    dataSource={accident}
-                    loading={loading}
+                    dataSource={accidentData}
+                    loading={accidentLoading}
                     rowKey="time"
                     pagination={{
-                      pageSize: 3,
+                      pageSize: 10,
                       showTotal: (total) => `Total ${total} items`,
                     }}
                   />
                 </Col>
               </Row>
             </ContentCard>
-          </DashbordCard>
-        </Col>
-        <Col xs={24} lg={12}>
-          <DashbordCard>
-            <PieChart
-              data={DriverAccidentTimePie}
-              title="Accident Day & Night"
-            />
-          </DashbordCard>
-          <DashbordCard>
-            <TimeBarChart
-              data={DriverAccidentTimeBar}
-              title="Accident in Time"
-            />
           </DashbordCard>
         </Col>
       </Row>

@@ -3,12 +3,12 @@ import Chart from "react-apexcharts";
 const PieChart = (props) => {
   var { title, data } = props;
   var options = {
-    labels: !data.labels ? ["None"] : data.labels,
-    colors: !data.labels
-      ? ["#ddd"]
+    labels: data.labels || ["None"],
+    colors: !data.series?.length
+      ? ["#dddddd"]
       : [
-          "#fad738",
           "#79afa3",
+          "#fad738",
           "#128ff8",
           "#c6c763",
           "#2c97e3",

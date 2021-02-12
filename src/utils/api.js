@@ -1,6 +1,5 @@
 import axios from "axios";
 import { config } from "../config/config";
-import { AccidentData } from "../mock/Coordinate";
 const accidentApi = axios.create({
   baseURL: `${config.baseURL}/api/web/accident`,
   headers: {
@@ -54,6 +53,14 @@ export const AccidentService = {
         onRejected(response.response ? response.response.data : response);
       });
   },
+  fetchMap: (payload, callback, onRejected) => {
+    authApi
+      .get(`/accident/map/${payload}`)
+      .then(({ data }) => callback(data))
+      .catch((response) => {
+        onRejected(response.response ? response.response.data : response);
+      });
+  },
 };
 
 export const DrowsinessService = {
@@ -83,6 +90,14 @@ export const DrowsinessService = {
         onRejected(response.response ? response.response.data : response);
       });
   },
+  fetchMap: (payload, callback, onRejected) => {
+    authApi
+      .get(`/drowsiness/map/${payload}`)
+      .then(({ data }) => callback(data))
+      .catch((response) => {
+        onRejected(response.response ? response.response.data : response);
+      });
+  },
 };
 
 export const AuthService = {
@@ -97,6 +112,14 @@ export const AuthService = {
   logout: (callback, onRejected) => {
     authApi
       .post(`/logout`)
+      .then(({ data }) => callback(data))
+      .catch((response) => {
+        onRejected(response.response ? response.response.data : response);
+      });
+  },
+  getProfile: (callback, onRejected) => {
+    authApi
+      .get(`/profile`)
       .then(({ data }) => callback(data))
       .catch((response) => {
         onRejected(response.response ? response.response.data : response);
@@ -140,6 +163,22 @@ export const DriverService = {
   fetchDrowsiness: (payload, callback, onRejected) => {
     authApi
       .get(`/driver/${payload}/drowsiness`)
+      .then(({ data }) => callback(data))
+      .catch((response) => {
+        onRejected(response.response ? response.response.data : response);
+      });
+  },
+  fetchAccidentTimeBar: (payload, callback, onRejected) => {
+    authApi
+      .get(`/driver/${payload}/accident/stat/timebar`)
+      .then(({ data }) => callback(data))
+      .catch((response) => {
+        onRejected(response.response ? response.response.data : response);
+      });
+  },
+  fetchDrowsinessTimeBar: (payload, callback, onRejected) => {
+    authApi
+      .get(`/driver/${payload}/drowsiness/stat/timebar`)
       .then(({ data }) => callback(data))
       .catch((response) => {
         onRejected(response.response ? response.response.data : response);

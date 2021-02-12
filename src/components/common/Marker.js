@@ -3,6 +3,7 @@ import marker from "./../../assets/marker.png";
 import dayjs from "dayjs";
 import styled from "styled-components";
 import pin from "./../../assets/pin.png";
+
 const HoverMessage = styled.div`
   padding: 5px 5px;
   text-align: center;
@@ -25,6 +26,11 @@ const Marker = (props) => {
             {props.detail != null
               ? dayjs(props.detail.time).format("hh:mm")
               : ""}
+          </div>
+          <div>
+            {props.detail != null &&
+              props.detail.driver != null &&
+              `Username: ${props.detail.driver.username}`}
           </div>
           {props.detail.driver && <div>{`Info: ${props.detail.driver}`}</div>}
         </HoverMessage>

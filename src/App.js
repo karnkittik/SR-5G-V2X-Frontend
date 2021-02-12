@@ -10,15 +10,34 @@ import General from "./pages/general/index";
 import Admin from "./pages/admin/index";
 import LogInPage from "./pages/admin/LogIn";
 import styled from "styled-components";
-import cookie from "js-cookie";
+import { AuthService } from "./utils/api";
+import Loading from "./pages/admin/Loading";
+import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.extend(relativeTime);
+dayjs.tz.setDefault("Asia/Bangkok");
+
 const App = () => {
   const [islogin, setIsLogin] = useState(false);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    if (!cookie.get("accessToken")) {
-      setIsLogin(false);
-    } else {
-      setIsLogin(true);
-    }
+    setLoading(true);
+    AuthService.getProfile(
+      ({ data }) => {
+        setIsLogin(true);
+        setLoading(false);
+        console.log(data);
+      },
+      (response) => {
+        setIsLogin(false);
+        setLoading(false);
+        console.log(response.message);
+      }
+    );
   }, [islogin]);
   return (
     <Router>
@@ -29,14 +48,22 @@ const App = () => {
         <Route
           path="/admin"
           exact
-          render={(props) => (!islogin ? <Redirect to="/login" /> : <Admin />)}
+          render={(props) =>
+            loading ? (
+              <Loading />
+            ) : !islogin ? (
+              <Redirect to="/login" />
+            ) : (
+              <Admin />
+            )
+          }
         />
         <Route
           path="/login"
           exact
-          render={(props) =>
-            islogin ? <Redirect to="/admin" /> : <LogInPage />
-          }
+          render={(props) => {
+            return islogin ? <Redirect to="/admin" /> : <LogInPage />;
+          }}
         />
         <Route path="/admin" render={(props) => <Redirect to="/admin" />} />
         <Route exact path="/admin">

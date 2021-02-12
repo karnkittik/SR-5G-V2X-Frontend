@@ -2,9 +2,18 @@ import { useState } from "react";
 import { Button, Modal, Form, Input, DatePicker, Alert } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { CarSerivce } from "../utils/api";
+import dayjs from "dayjs";
 const layout = {
   labelCol: { span: 10 },
   wrapperCol: { span: 14 },
+};
+
+const disabledDate = (current) => {
+  // Can not select days before today and today
+  return (
+    current &&
+    (current > dayjs().endOf("day") || current < dayjs().startOf("year"))
+  );
 };
 export const AddCarModal = () => {
   const [visible, setVisible] = useState(false);
@@ -79,7 +88,11 @@ const CarForm = ({ visible, setVisible }) => {
             },
           ]}
         >
-          <DatePicker style={{ width: "100%" }} />
+          <DatePicker
+            style={{ width: "100%" }}
+            popupStyle={{ zIndex: "9999" }}
+            disabledDate={disabledDate}
+          />
         </Form.Item>
         <Form.Item
           label="License Plate Number"
