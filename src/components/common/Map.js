@@ -56,11 +56,11 @@ const MyMapComponent = (props) => {
   const { location, cancelLocationWatch, error } = useWatchLocation();
   useEffect(() => {
     if (!location) return;
-    // setTimeout(() => {
-    return function cleanUp() {
+    setTimeout(() => {
+      // return function cleanUp() {
       cancelLocationWatch();
-    };
-    // }, 3000);
+      // };
+    }, 3000);
   }, [location, cancelLocationWatch]);
   if (error) {
     console.log(error);
