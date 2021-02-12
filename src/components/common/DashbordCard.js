@@ -75,7 +75,7 @@ export const EmptyCard = (props) => {
 };
 export const DashbordCardLoading = (props) => {
   return (
-    <DashbordCard>
+    <DashbordCard height={props.height}>
       <Spin spinning={props.loading} tip="Loading...">
         {props.children}
       </Spin>

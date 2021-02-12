@@ -3,9 +3,9 @@ import Chart from "react-apexcharts";
 const PieChart = (props) => {
   var { title, data } = props;
   var options = {
-    labels: data.labels || ["None"],
-    colors: !data.series?.length
-      ? ["#dddddd"]
+    labels: data?.labels || ["None"],
+    colors: !data?.series?.length
+      ? ["#eeeeee"]
       : [
           "#79afa3",
           "#fad738",
@@ -69,12 +69,14 @@ const PieChart = (props) => {
             total: {
               showAlways: true,
               show: true,
+              formatter: (val) => (!data?.series?.length ? "0" : val),
             },
           },
         },
       },
     },
     dataLabels: {
+      enabled: data?.series?.length,
       dropShadow: {
         blur: 3,
         opacity: 0.8,
@@ -100,7 +102,7 @@ const PieChart = (props) => {
       },
     },
     tooltip: {
-      enabled: true,
+      enabled: data?.series?.length,
       enabledOnSeries: undefined,
       shared: true,
       followCursor: false,
@@ -118,7 +120,7 @@ const PieChart = (props) => {
   return (
     <Chart
       options={options}
-      series={!data.series ? [0] : data.series}
+      series={!data?.series ? [100] : data.series}
       type="donut"
       height="280px"
     />

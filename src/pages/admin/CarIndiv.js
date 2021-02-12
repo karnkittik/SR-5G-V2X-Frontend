@@ -4,6 +4,7 @@ import { ArrowLeftOutlined } from "@ant-design/icons";
 import DashbordCard, {
   ContentCard,
   CountCard,
+  DashbordCardLoading,
 } from "../../components/common/DashbordCard";
 import dayjs from "dayjs";
 import { CarSerivce } from "../../utils/api";
@@ -128,20 +129,20 @@ const CarIndiv = () => {
         </Row>
         <Row>
           <Col xs={12}>
-            <DashbordCard height="auto">
+            <DashbordCardLoading height="auto" loading={loading}>
               <CountCard
                 title="Accident Count"
                 count={carData.accident_count}
               />
-            </DashbordCard>
+            </DashbordCardLoading>
           </Col>
           <Col xs={12}>
-            <DashbordCard height="auto">
+            <DashbordCardLoading height="auto" loading={loading}>
               <CountCard
                 title="Drowsiness Count"
                 count={carData.drowsiness_count}
               />
-            </DashbordCard>
+            </DashbordCardLoading>
           </Col>
         </Row>
       </Content>

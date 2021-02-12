@@ -85,10 +85,7 @@ const TimeBarChart = (props) => {
         rotate: 0,
         rotateAlways: false,
         formatter: function (value) {
-          // return `${parseInt(value.substr(0, 2))} - ${
-          //   parseInt(value.substr(value.indexOf(".") + 1)) + 1
-          // }`;
-          return `${value} - ${
+          return `${value}-${
             value === "23:00"
               ? "00"
               : parseInt(value.substr(value.indexOf(".") + 1)) + 1

@@ -29,7 +29,7 @@ const DriverIndivAccident = () => {
       key: "car_id",
     },
     {
-      title: "Road Name",
+      title: "Road",
       dataIndex: "road",
       key: "road",
     },
@@ -76,11 +76,11 @@ const DriverIndivAccident = () => {
             <ProfileDriver />
           </DashbordCard>
           <DashbordCardLoading loading={timeBarLoading}>
-            <TimeBarChart data={timeBarData} title="Accident in Time" />
+            <TimeBarChart data={timeBarData} title="Accident on Hour" />
           </DashbordCardLoading>
         </Col>
         <Col xs={24} lg={12}>
-          <DashbordCard height="420px">
+          <DashbordCard height="auto">
             <ContentCard>
               <div className="title-card">Record</div>
               <Row>
