@@ -24,15 +24,17 @@ const Marker = (props) => {
         <HoverMessage style={{ backgroundColor: "white" }}>
           <div>
             {props.detail != null
-              ? dayjs(props.detail.time).format("hh:mm")
+              ? dayjs(props.detail.time).format("HH:mm")
               : ""}
           </div>
-          <div>
-            {props.detail != null &&
-              props.detail.driver != null &&
-              `Username: ${props.detail.driver.username}`}
-          </div>
-          {props.detail.driver && <div>{`Info: ${props.detail.driver}`}</div>}
+          <div>{props.lat && `Lat:${props.lat}`}</div>
+          <div>{props.lng && `Lng:${props.lng}`}</div>
+          {props.detail.driver !== null && (
+            <>
+              <div>Username:</div>
+              <div>{`"${props.detail.driver.username}"`}</div>
+            </>
+          )}
         </HoverMessage>
       )}
       <img

@@ -1,5 +1,5 @@
-import { Layout, Form, Input, Button, Badge } from "antd";
-import { useEffect } from "react";
+import { Layout, Form, Input, Button, Badge, Alert } from "antd";
+import { useEffect, useState } from "react";
 import { AuthService } from "../../utils/api";
 
 const layout = {
@@ -46,6 +46,7 @@ const LogInPage = () => {
       },
       (response) => {
         console.log(response);
+        setFailed({ message: response.message });
       }
     );
   };
@@ -69,6 +70,7 @@ const LogInPage = () => {
         console.error(error);
       });
   };
+  const [failed, setFailed] = useState(false);
   useEffect(() => {
     setTheme();
   }, []);
@@ -114,6 +116,19 @@ const LogInPage = () => {
             >
               <Input.Password size="large" />
             </Form.Item>
+            <div style={{ height: "20px", margin: "5px 0" }}>
+              {failed ? (
+                <Alert
+                  message={failed.message}
+                  type="error"
+                  showIcon
+                  closable
+                  afterClose={() => {
+                    setFailed(false);
+                  }}
+                />
+              ) : null}
+            </div>
             <Form.Item {...tailLayout}>
               <Button
                 type="primary"

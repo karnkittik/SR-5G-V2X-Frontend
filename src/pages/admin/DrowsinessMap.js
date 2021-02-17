@@ -12,7 +12,7 @@ const DrowsinessMap = () => {
   const [time, setTime] = useState(null);
   const [data, setData] = useState(null);
   const [heatMap, setHeatMap] = useState(false);
-  const { location, cancelLocationWatch, error } = useWatchLocation();
+  const { location, cancelLocationWatch } = useWatchLocation();
   useEffect(() => {
     if (!location) return;
     return function cleanUp() {

@@ -16,7 +16,7 @@ const DriverIndivDrowsiness = () => {
       title: "Time",
       key: "time",
       render: (text, record) => (
-        <div>{dayjs(record.time).format("DD/MM/YYYY h:mm ")}</div>
+        <div>{dayjs(record.time).format("DD/MM/YYYY HH:mm ")}</div>
       ),
     },
     {
@@ -96,7 +96,7 @@ const DriverIndivDrowsiness = () => {
                     columns={columns}
                     dataSource={drowsinessData}
                     loading={drowsinessLoading}
-                    rowKey="time"
+                    rowKey="Id"
                     pagination={{
                       pageSize: 10,
                       showTotal: (total) => `Total ${total} items`,

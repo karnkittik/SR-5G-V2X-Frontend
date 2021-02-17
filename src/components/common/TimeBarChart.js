@@ -101,6 +101,9 @@ const TimeBarChart = (props) => {
         align: "right",
         offsetX: -5,
         offsetY: 0,
+        formatter: function (val) {
+          return val.toFixed(0);
+        },
       },
     },
     tooltip: {

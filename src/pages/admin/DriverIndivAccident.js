@@ -15,7 +15,7 @@ const DriverIndivAccident = () => {
       title: "Time",
       key: "time",
       render: (text, record) => (
-        <div>{dayjs(record.time).format("DD/MM/YYYY h:mm ")}</div>
+        <div>{dayjs(record.time).format("DD/MM/YYYY HH:mm ")}</div>
       ),
     },
     {
@@ -41,6 +41,7 @@ const DriverIndivAccident = () => {
   const [timeBarLoading, setTimeBarLoading] = useState(true);
   useEffect(() => {
     fetchAccident();
+    fetchAccidentTimeBar();
   }, []);
   const fetchAccident = () => {
     DriverService.fetchAccident(
@@ -89,7 +90,7 @@ const DriverIndivAccident = () => {
                     columns={columns}
                     dataSource={accidentData}
                     loading={accidentLoading}
-                    rowKey="time"
+                    rowKey="Id"
                     pagination={{
                       pageSize: 10,
                       showTotal: (total) => `Total ${total} items`,

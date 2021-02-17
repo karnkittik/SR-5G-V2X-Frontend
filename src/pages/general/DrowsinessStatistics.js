@@ -1,8 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { Layout, Row, Col } from "antd";
-import DashbordCard, {
-  DashbordCardLoading,
-} from "../../components/common/DashbordCard";
+import { DashbordCardLoading } from "../../components/common/DashbordCard";
 import HeatMapCalendar from "../../components/common/HeatMapCalendar";
 import TimeBarChart from "../../components/common/TimeBarChart";
 import { DrowsinessService } from "../../utils/api";

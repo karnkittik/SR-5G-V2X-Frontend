@@ -72,7 +72,7 @@ export const ProfileDriver = () => {
           <Table
             columns={columns}
             dataSource={[driverData]}
-            rowKey="driver_id"
+            rowKey="Id"
             loading={loading}
             pagination={false}
           />

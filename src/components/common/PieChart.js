@@ -2,9 +2,13 @@ import Chart from "react-apexcharts";
 
 const PieChart = (props) => {
   var { title, data } = props;
+  var noData = true;
+  if (data && data.labels && data.labels.length !== 0) {
+    noData = false;
+  }
   var options = {
-    labels: data?.labels || ["None"],
-    colors: !data?.series?.length
+    labels: noData ? ["None"] : data.labels,
+    colors: noData
       ? ["#eeeeee"]
       : [
           "#79afa3",
@@ -69,14 +73,16 @@ const PieChart = (props) => {
             total: {
               showAlways: true,
               show: true,
-              formatter: (val) => (!data?.series?.length ? "0" : val),
+              formatter: function (w) {
+                return noData ? "0" : w.globals.seriesTotals;
+              },
             },
           },
         },
       },
     },
     dataLabels: {
-      enabled: data?.series?.length,
+      enabled: !noData,
       dropShadow: {
         blur: 3,
         opacity: 0.8,
@@ -102,7 +108,7 @@ const PieChart = (props) => {
       },
     },
     tooltip: {
-      enabled: data?.series?.length,
+      enabled: !noData,
       enabledOnSeries: undefined,
       shared: true,
       followCursor: false,

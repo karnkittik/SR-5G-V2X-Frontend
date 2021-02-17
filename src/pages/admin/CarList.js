@@ -8,6 +8,11 @@ const { Content, Header } = Layout;
 
 const columns = [
   {
+    title: "License Plate Number",
+    dataIndex: "vehicle_registration_number",
+    key: "vehicle_registration_number",
+  },
+  {
     title: "Car Detail",
     dataIndex: "car_detail",
     key: "car_detail",
@@ -17,11 +22,7 @@ const columns = [
       </div>
     ),
   },
-  {
-    title: "License Plate Number",
-    dataIndex: "vehicle_registration_number",
-    key: "vehicle_registration_number",
-  },
+
   {
     title: "Reg Date",
     key: "registered_at",
@@ -79,7 +80,7 @@ const CarList = () => {
             showTotal: (total) => `Total ${total} items`,
           }}
           loading={loading}
-          rowKey="car_id"
+          rowKey="Id"
           onRow={(record, rowIndex) => {
             return {
               onDoubleClick: (event) => {

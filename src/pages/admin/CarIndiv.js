@@ -70,7 +70,7 @@ export const ProfileCar = (props) => {
           <Table
             columns={columns}
             dataSource={props.data}
-            rowKey="driver_id"
+            rowKey="Id"
             pagination={false}
             loading={props.loading}
           />
@@ -85,24 +85,24 @@ const CarIndiv = () => {
   const [carData, setCarData] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
+    const fetchCar = () => {
+      CarSerivce.fetchCar(
+        car_id,
+        ({ data }) => {
+          data.accident_count = data.accident.length;
+          data.drowsiness_count = data.drowsiness.length;
+          console.log(data);
+          setCarData(data);
+          setLoading(false);
+          console.log(data);
+        },
+        (response) => {
+          console.log(response.message);
+        }
+      );
+    };
     fetchCar();
-  }, []);
-  const fetchCar = () => {
-    CarSerivce.fetchCar(
-      car_id,
-      ({ data }) => {
-        data.accident_count = data.accident.length;
-        data.drowsiness_count = data.drowsiness.length;
-        console.log(data);
-        setCarData(data);
-        setLoading(false);
-        console.log(data);
-      },
-      (response) => {
-        console.log(response.message);
-      }
-    );
-  };
+  }, [car_id]);
   return (
     <Layout>
       <Header className="header">

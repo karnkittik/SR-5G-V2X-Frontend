@@ -7,7 +7,11 @@ const DateTimeTypePicker = (props) => {
   var times = [];
   var d = dayjs(new Date()).format("DD/MM/YYYY");
   for (var i = 0; i <= n; i++) {
-    times.push(<Option value={i} key={i}>{`${i}.00 - ${i + 1}.00`}</Option>);
+    times.push(
+      <Option value={i} key={i}>{`${i}.00 - ${
+        i === 23 ? "0" : i + 1
+      }.00`}</Option>
+    );
   }
   const handleChange = (value) => {
     props.setTime(value);

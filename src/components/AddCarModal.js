@@ -46,6 +46,7 @@ const CarForm = ({ visible, setVisible }) => {
         console.log(data);
         setConfirmLoading(false);
         setSuccessful(true);
+        form.resetFields();
       },
       (response) => {
         console.log(response.message);
