@@ -36,7 +36,9 @@ const DrowsinessHeatMap = () => {
         <MyMapComponent
           zoom={8}
           isShownHere
-          heatMapData={data?.map((point) => point.coordinate)}
+          heatMapData={
+            data.length !== 0 ? data.map((point) => point.coordinate) : []
+          }
         />
       </Content>
     </Layout>

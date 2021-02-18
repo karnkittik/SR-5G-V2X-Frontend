@@ -11,6 +11,8 @@ const columns = [
     title: "License Plate Number",
     dataIndex: "vehicle_registration_number",
     key: "vehicle_registration_number",
+    width: "25%",
+    align: "center",
   },
   {
     title: "Car Detail",
@@ -21,6 +23,7 @@ const columns = [
         {text}
       </div>
     ),
+    align: "center",
   },
 
   {
@@ -29,6 +32,7 @@ const columns = [
     render: (text, record) => (
       <div>{dayjs(record.registered_at).format("DD/MM/YYYY")}</div>
     ),
+    align: "center",
   },
   {
     title: "Mfg Date",
@@ -36,6 +40,7 @@ const columns = [
     render: (text, record) => (
       <div>{dayjs(record.created_at).format("DD/MM/YYYY")}</div>
     ),
+    align: "center",
   },
   {
     title: "Car Age",
@@ -43,6 +48,7 @@ const columns = [
     render: (text, record) => (
       <div>{dayjs().from(dayjs(record.created_at)).substr(3)}</div>
     ),
+    align: "center",
   },
 ];
 
@@ -71,7 +77,7 @@ const CarList = () => {
         <AddCarModal />
         <div className="header-title">Car List</div>
       </Header>
-      <Content>
+      <Content className="children-page-content">
         <Table
           columns={columns}
           dataSource={carData}

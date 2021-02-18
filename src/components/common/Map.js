@@ -2,6 +2,7 @@ import { config } from "../../config/config";
 import React, { useEffect, useState, useRef } from "react";
 import GoogleMapReact from "google-map-react";
 import { Here } from "./Marker";
+import { bangkokCoords } from "../../mock/Coordinate";
 export const useWatchLocation = (options = {}) => {
   const [location, setLocation] = useState();
   const [error, setError] = useState();
@@ -77,6 +78,7 @@ const MyMapComponent = (props) => {
           lat: location?.latitude,
           lng: location?.longitude,
         }}
+        defaultCenter={bangkokCoords}
         defaultZoom={props.zoom || 8}
         options={createMapOptions}
         heatmap={{

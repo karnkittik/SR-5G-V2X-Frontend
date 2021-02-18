@@ -65,7 +65,12 @@ const App = () => {
             return islogin ? <Redirect to="/admin" /> : <LogInPage />;
           }}
         />
-        <Route path="/admin" render={(props) => <Redirect to="/admin" />} />
+        <Route
+          path="/admin"
+          render={(props) => {
+            return !islogin ? <LogInPage /> : <Redirect to="/admin" />;
+          }}
+        />
         <Route exact path="/admin">
           <Admin />
         </Route>

@@ -74,7 +74,9 @@ const PieChart = (props) => {
               showAlways: true,
               show: true,
               formatter: function (w) {
-                return noData ? "0" : w.globals.seriesTotals;
+                return noData
+                  ? "0"
+                  : w.globals.seriesTotals.reduce((a, b) => a + b);
               },
             },
           },

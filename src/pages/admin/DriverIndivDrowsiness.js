@@ -18,26 +18,36 @@ const DriverIndivDrowsiness = () => {
       render: (text, record) => (
         <div>{dayjs(record.time).format("DD/MM/YYYY HH:mm ")}</div>
       ),
+      align: "center",
     },
     {
       title: "Coordinate",
       key: "coordinate",
-      render: (text, record) => <div>{`${record.lat} ${record.lng}`}</div>,
+      render: (text, record) => (
+        <div>{`${record.lat.toFixed(6)}, ${record.lng.toFixed(6)}`}</div>
+      ),
+      align: "center",
     },
-    {
-      title: "CarID",
-      dataIndex: "car_id",
-      key: "car_id",
-    },
+    // {
+    //   title: "CarID",
+    //   dataIndex: "car_id",
+    //   key: "car_id",
+    // },
     {
       title: "Response Time (s)",
-      dataIndex: "response_time",
       key: "response_time",
+      render: (text, record) => (
+        <div>{`${record.response_time.toFixed(2)}`}</div>
+      ),
+      align: "center",
     },
     {
       title: "Working Time (hour)",
-      dataIndex: "working_hour",
       key: "working_hour",
+      render: (text, record) => (
+        <div>{`${record.working_hour.toFixed(2)}`}</div>
+      ),
+      align: "center",
     },
   ];
   const { driver_id } = useParams();
@@ -78,7 +88,7 @@ const DriverIndivDrowsiness = () => {
   return (
     <>
       <Row style={{ height: "100%", backgroundColor: "white" }}>
-        <Col xs={24} lg={12}>
+        <Col xs={24} lg={11}>
           <DashbordCard height="auto">
             <ProfileDriver />
           </DashbordCard>
@@ -86,7 +96,7 @@ const DriverIndivDrowsiness = () => {
             <TimeBarChart data={timeBarData} title="Drowsiness on Hour" />
           </DashbordCardLoading>
         </Col>
-        <Col xs={24} lg={12}>
+        <Col xs={24} lg={13}>
           <DashbordCard height="auto">
             <ContentCard>
               <div className="title-card">Record</div>
@@ -98,7 +108,7 @@ const DriverIndivDrowsiness = () => {
                     loading={drowsinessLoading}
                     rowKey="Id"
                     pagination={{
-                      pageSize: 10,
+                      pageSize: 6,
                       showTotal: (total) => `Total ${total} items`,
                     }}
                   />

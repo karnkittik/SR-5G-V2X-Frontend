@@ -47,6 +47,7 @@
   justify-content: center;
   margin: 0;
   display: flex;
+  font-weight: 500;
 }
 .real-layout {
   padding-left: 0;
@@ -61,6 +62,11 @@
   .real-content {
     padding: 10px;
   }
+}
+.children-page-content {
+  height: calc(var(--vh, 1vh) * 100);
+  overflow: hidden;
+  overflow-y: auto;
 }
 .full {
   height: calc(var(--vh, 1vh) * 100);
@@ -181,6 +187,13 @@
 .login-button {
   width: 100%;
   margin-top: 20px;
+}
+.go-home {
+  display: flex;
+  justify-content: center;
+  /* height: 100px; */
+  align-items: center;
+  width: 100%;
 }
 @media only screen and (max-width: 768px) {
   .login-logo-text {

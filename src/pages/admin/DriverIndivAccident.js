@@ -17,21 +17,26 @@ const DriverIndivAccident = () => {
       render: (text, record) => (
         <div>{dayjs(record.time).format("DD/MM/YYYY HH:mm ")}</div>
       ),
+      align: "center",
     },
     {
       title: "Coordinate",
       key: "coordinate",
-      render: (text, record) => <div>{`${record.lat} ${record.lng}`}</div>,
+      render: (text, record) => (
+        <div>{`${record.lat.toFixed(6)}, ${record.lng.toFixed(6)}`}</div>
+      ),
+      align: "center",
     },
-    {
-      title: "CarID",
-      dataIndex: "car_id",
-      key: "car_id",
-    },
+    // {
+    //   title: "CarID",
+    //   dataIndex: "car_id",
+    //   key: "car_id",
+    // },
     {
       title: "Road",
       dataIndex: "road",
       key: "road",
+      align: "center",
     },
   ];
   const { driver_id } = useParams();
@@ -72,7 +77,7 @@ const DriverIndivAccident = () => {
   return (
     <>
       <Row style={{ height: "100%", backgroundColor: "white" }}>
-        <Col xs={24} lg={12}>
+        <Col xs={24} lg={11}>
           <DashbordCard height="auto">
             <ProfileDriver />
           </DashbordCard>
@@ -80,7 +85,7 @@ const DriverIndivAccident = () => {
             <TimeBarChart data={timeBarData} title="Accident on Hour" />
           </DashbordCardLoading>
         </Col>
-        <Col xs={24} lg={12}>
+        <Col xs={24} lg={13}>
           <DashbordCard height="auto">
             <ContentCard>
               <div className="title-card">Record</div>
@@ -92,7 +97,7 @@ const DriverIndivAccident = () => {
                     loading={accidentLoading}
                     rowKey="Id"
                     pagination={{
-                      pageSize: 10,
+                      pageSize: 8,
                       showTotal: (total) => `Total ${total} items`,
                     }}
                   />

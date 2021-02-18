@@ -10,10 +10,7 @@ const layout = {
 
 const disabledDate = (current) => {
   // Can not select days before today and today
-  return (
-    current &&
-    (current > dayjs().endOf("day") || current < dayjs().startOf("year"))
-  );
+  return current && current > dayjs().endOf("day");
 };
 export const AddCarModal = () => {
   const [visible, setVisible] = useState(false);

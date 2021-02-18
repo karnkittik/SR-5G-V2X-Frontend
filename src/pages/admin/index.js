@@ -3,12 +3,11 @@ import { Layout, Badge, Button } from "antd";
 import Sider from "../../components/common/Sider";
 import {
   LogoutOutlined,
-  BellOutlined,
+  EyeOutlined,
   ExclamationCircleOutlined,
   TeamOutlined,
   CarOutlined,
 } from "@ant-design/icons";
-import { useHistory } from "react-router-dom";
 import AccidentMap from "./AccidentMap";
 import DrowsinessMap from "./DrowsinessMap";
 import Driver from "./Driver";
@@ -29,7 +28,7 @@ const Admin = () => {
         {
           title: "Drowsiness Map",
           component: <DrowsinessMap />,
-          icon: <BellOutlined />,
+          icon: <EyeOutlined />,
         },
       ],
     },
@@ -57,20 +56,19 @@ const Admin = () => {
   const pageIndex = pageListGroup.map((group) => group.pageList.length);
   const Logo = () => (
     <>
-      <Badge.Ribbon text="admin" placement="end"></Badge.Ribbon>
+      <Badge.Ribbon text="admin" placement="end" color="gold"></Badge.Ribbon>
       <div className="sider-weblogo admin">5G-V2X</div>
     </>
   );
   const SignOutButton = () => {
-    let history = useHistory();
     const signOut = () => {
       AuthService.logout(
         ({ data }) => {
           console.log(data);
-          history.push("/");
+          window.location.reload();
         },
         (response) => {
-          console.log(response);
+          console.log(response.message);
         }
       );
     };

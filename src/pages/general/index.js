@@ -9,7 +9,7 @@ import {
   LoginOutlined,
   ExclamationCircleOutlined,
   BarChartOutlined,
-  BellOutlined,
+  EyeOutlined,
 } from "@ant-design/icons";
 
 const { Content } = Layout;
@@ -36,7 +36,7 @@ const General = () => {
         {
           title: "Drowsiness HeatMap",
           component: <DrowsinessHeatMap />,
-          icon: <BellOutlined />,
+          icon: <EyeOutlined />,
         },
         {
           title: "Drowsiness Statistics",

@@ -1,7 +1,8 @@
 import { Layout, Form, Input, Button, Badge, Alert } from "antd";
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import { AuthService } from "../../utils/api";
-
+import { HomeOutlined } from "@ant-design/icons";
 const layout = {
   labelCol: {
     span: 8,
@@ -27,8 +28,9 @@ const tailLayout = {
       span: 24,
     },
     sm: {
-      offset: 16,
+      offset: 8,
       span: 8,
+      // span: 24,
     },
   },
 };
@@ -45,7 +47,7 @@ const LogInPage = () => {
         window.location.reload();
       },
       (response) => {
-        console.log(response);
+        console.log(response.message);
         setFailed({ message: response.message });
       }
     );
@@ -74,15 +76,18 @@ const LogInPage = () => {
   useEffect(() => {
     setTheme();
   }, []);
+  let history = useHistory();
+  const GoHome = () => {
+    history.push("/");
+  };
   return (
     <Layout className="full">
       <div className="login container">
         <div className="login-logo">
-          <Badge.Ribbon text="admin" placement="end">
+          <Badge.Ribbon text="admin" placement="end" color="gold">
             <div className="login-logo-text">5G-V2X</div>
           </Badge.Ribbon>
         </div>
-
         <div className="login-form">
           <Form
             {...layout}
@@ -140,6 +145,17 @@ const LogInPage = () => {
               </Button>
             </Form.Item>
           </Form>
+        </div>
+        <div className="go-home">
+          <Button
+            type="link"
+            size="large"
+            icon={<HomeOutlined />}
+            className="sider-bottom-button"
+            onClick={GoHome}
+          >
+            Go Home
+          </Button>
         </div>
       </div>
     </Layout>

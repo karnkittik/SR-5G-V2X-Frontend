@@ -35,6 +35,12 @@ const Marker = (props) => {
               <div>{`"${props.detail.driver.username}"`}</div>
             </>
           )}
+          {/* {props.detail.road !== null && (
+            <>
+              <div>Road:</div>
+              <div>{`"${props.detail.road}"`}</div>
+            </>
+          )} */}
         </HoverMessage>
       )}
       <img

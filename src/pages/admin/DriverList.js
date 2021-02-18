@@ -17,16 +17,22 @@ const columns = [
           : `${record?.firstname} ${record?.lastname}`}
       </div>
     ),
+    align: "center",
+    // width: "25%",
   },
   {
     title: "Username",
     dataIndex: "username",
     key: "username",
+    align: "center",
+    // width: "25%",
   },
   {
     title: "Gender",
     dataIndex: "gender",
     key: "gender",
+    align: "center",
+    // width: "15%",
   },
   {
     title: "Date of Birth",
@@ -38,6 +44,8 @@ const columns = [
           : dayjs(record.date_of_birth).format("DD/MM/YYYY")}
       </div>
     ),
+    align: "center",
+    // width: "15%",
   },
   {
     title: "Age",
@@ -45,6 +53,8 @@ const columns = [
     render: (text, record) => (
       <div>{dayjs().from(dayjs(record.date_of_birth)).substr(3)}</div>
     ),
+    align: "center",
+    // width: "10%",
   },
 ];
 const DriverList = () => {
@@ -72,7 +82,7 @@ const DriverList = () => {
         <AddDriverModal />
         <div className="header-title">Driver</div>
       </Header>
-      <Content>
+      <Content className="children-page-content">
         <Table
           columns={columns}
           dataSource={driverData}

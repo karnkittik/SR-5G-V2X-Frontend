@@ -21,11 +21,13 @@ export const ProfileCar = (props) => {
           {text}
         </div>
       ),
+      align: "center",
     },
     {
       title: "License Plate Number",
       dataIndex: "vehicle_registration_number",
       key: "vehicle_registration_number",
+      align: "center",
     },
     {
       title: "Reg Date",
@@ -37,6 +39,7 @@ export const ProfileCar = (props) => {
             : dayjs(record.registered_at).format("DD/MM/YYYY")}
         </div>
       ),
+      align: "center",
     },
     {
       title: "Mfg Date",
@@ -48,6 +51,7 @@ export const ProfileCar = (props) => {
             : dayjs(record.created_at).format("DD/MM/YYYY")}
         </div>
       ),
+      align: "center",
     },
     {
       title: "Car Age",
@@ -59,6 +63,7 @@ export const ProfileCar = (props) => {
             : dayjs().from(dayjs(record.created_at)).substr(3)}
         </div>
       ),
+      align: "center",
     },
   ];
 

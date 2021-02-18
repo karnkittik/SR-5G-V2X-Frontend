@@ -22,16 +22,19 @@ export const ProfileDriver = () => {
             : `${record?.firstname} ${record?.lastname}`}
         </div>
       ),
+      align: "center",
     },
     {
       title: "Username",
       dataIndex: "username",
       key: "username",
+      align: "center",
     },
     {
       title: "Gender",
       dataIndex: "gender",
       key: "gender",
+      align: "center",
     },
     {
       title: "Age",
@@ -43,6 +46,7 @@ export const ProfileDriver = () => {
             : dayjs().from(dayjs(record.date_of_birth)).substr(3)}
         </div>
       ),
+      align: "center",
     },
   ];
   const [driverData, setDriverData] = useState([]);
