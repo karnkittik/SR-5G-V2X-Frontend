@@ -49,8 +49,8 @@ const DrowsinessMap = () => {
               data
                 ? data.map((point, index) => ({
                     id: index,
-                    lat: point.coordinate.lat.toFixed(6),
-                    lng: point.coordinate.lng.toFixed(6),
+                    lat: point.coordinate.lat,
+                    lng: point.coordinate.lng,
                     detail: point.detail,
                   }))
                 : []
