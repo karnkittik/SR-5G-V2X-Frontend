@@ -95,11 +95,25 @@ const CarForm = ({ visible, setVisible }) => {
         <Form.Item
           label="License Plate Number"
           name="vehicle_registration_number"
+          hasFeedback
           rules={[
             {
               required: true,
               message: "Please input license plate number!",
             },
+            () => ({
+              validator(_, value) {
+                if (
+                  !value ||
+                  value.match("^(?=.*[A-Z])(?=.*[0-9])[A-Z0-9]{4,}$")
+                ) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(
+                  "License Plate Number must have minimum 4 characters including only uppercase letter and number!"
+                );
+              },
+            }),
           ]}
         >
           <Input placeholder="Example: ABC1234" />

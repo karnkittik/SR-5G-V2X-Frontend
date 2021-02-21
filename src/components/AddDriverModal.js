@@ -80,25 +80,51 @@ const DriverForm = ({ visible, setVisible }) => {
         <Form.Item
           label="Firstname"
           name="firstname"
-          rules={[{ required: true, message: "Please input your firstname!" }]}
+          hasFeedback
+          rules={[
+            { required: true, message: "Please input your firstname!" },
+            () => ({
+              validator(_, value) {
+                if (!value || value.match("^[A-Za-z]([A-Za-z'-.]){0,19}$")) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(
+                  "Firstname must be English and not exceed 20 characters!"
+                );
+              },
+            }),
+          ]}
         >
           <Input />
         </Form.Item>
         <Form.Item
           label="Lastname"
           name="lastname"
-          rules={[{ required: true, message: "Please input your lastname!" }]}
+          hasFeedback
+          rules={[
+            { required: true, message: "Please input your lastname!" },
+            () => ({
+              validator(_, value) {
+                if (!value || value.match("^[A-Za-z]([A-Za-z'-.]){0,20}$")) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(
+                  "Lastname must be English and not exceed 20 characters!"
+                );
+              },
+            }),
+          ]}
         >
           <Input />
         </Form.Item>
         <Form.Item
           name="gender"
-          label="Gender"
+          label="Sex"
           rules={[{ required: true, message: "Please input your gender!" }]}
         >
           <Select allowClear>
-            <Option value="0">male</Option>
-            <Option value="1">female</Option>
+            <Option value="0">Male</Option>
+            <Option value="1">Female</Option>
           </Select>
         </Form.Item>
         <Form.Item
@@ -121,14 +147,48 @@ const DriverForm = ({ visible, setVisible }) => {
         <Form.Item
           label="Username"
           name="username"
-          rules={[{ required: true, message: "Please input your username!" }]}
+          hasFeedback
+          rules={[
+            { required: true, message: "Please input your username!" },
+            () => ({
+              validator(_, value) {
+                if (
+                  !value ||
+                  value.match("^[A-Za-z]([A-Za-z'-@.0-9]){0,11}$")
+                ) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(
+                  "Username must be started with an alphabet and not exceed 12 characters!"
+                );
+              },
+            }),
+          ]}
         >
           <Input />
         </Form.Item>
         <Form.Item
           label="Password"
           name="password"
-          rules={[{ required: true, message: "Please input your password!" }]}
+          hasFeedback
+          rules={[
+            { required: true, message: "Please input your password!" },
+            () => ({
+              validator(_, value) {
+                if (
+                  !value ||
+                  value.match(
+                    "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9@$!%*?.&']{8,12}$"
+                  )
+                ) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(
+                  "Password must have minimum 8 and maximum 12 characters, at least one uppercase letter, one lowercase letter and one number!"
+                );
+              },
+            }),
+          ]}
         >
           <Input.Password />
         </Form.Item>
