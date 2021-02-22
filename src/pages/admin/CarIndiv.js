@@ -43,12 +43,10 @@ export const ProfileCar = (props) => {
     },
     {
       title: "Mfg Date",
-      key: "created_at",
+      key: "mfg_at",
       render: (text, record) => (
         <div>
-          {!record.created_at
-            ? ""
-            : dayjs(record.created_at).format("DD/MM/YYYY")}
+          {!record.mfg_at ? "" : dayjs(record.mfg_at).format("DD/MM/YYYY")}
         </div>
       ),
       align: "center",
@@ -58,9 +56,7 @@ export const ProfileCar = (props) => {
       key: "age",
       render: (text, record) => (
         <div>
-          {!record.created_at
-            ? ""
-            : dayjs().from(dayjs(record.created_at)).substr(3)}
+          {!record.mfg_at ? "" : dayjs().from(dayjs(record.mfg_at)).substr(3)}
         </div>
       ),
       align: "center",

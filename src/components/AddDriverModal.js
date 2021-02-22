@@ -119,7 +119,7 @@ const DriverForm = ({ visible, setVisible }) => {
         </Form.Item>
         <Form.Item
           name="gender"
-          label="Sex"
+          label="Gender"
           rules={[{ required: true, message: "Please input your gender!" }]}
         >
           <Select allowClear>

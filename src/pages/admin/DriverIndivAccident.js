@@ -15,7 +15,7 @@ const DriverIndivAccident = () => {
       title: "Time",
       key: "time",
       render: (text, record) => (
-        <div>{dayjs(record.time).format("DD/MM/YYYY HH:mm ")}</div>
+        <div>{dayjs(record.accident.time).format("DD/MM/YYYY HH:mm ")}</div>
       ),
       align: "center",
     },
@@ -23,19 +23,24 @@ const DriverIndivAccident = () => {
       title: "Coordinate",
       key: "coordinate",
       render: (text, record) => (
-        <div>{`${record.lat.toFixed(6)}, ${record.lng.toFixed(6)}`}</div>
+        <div>{`${record.accident.lat.toFixed(6)}, ${record.accident.lng.toFixed(
+          6
+        )}`}</div>
       ),
       align: "center",
     },
-    // {
-    //   title: "CarID",
-    //   dataIndex: "car_id",
-    //   key: "car_id",
-    // },
     {
       title: "Road",
-      dataIndex: "road",
       key: "road",
+      render: (text, record) => <div>{record.accident.road}</div>,
+      align: "center",
+    },
+    {
+      title: "License Plate Number",
+      key: "vehicle_registration_number",
+      render: (text, record) => (
+        <div>{record.car.vehicle_registration_number}</div>
+      ),
       align: "center",
     },
   ];

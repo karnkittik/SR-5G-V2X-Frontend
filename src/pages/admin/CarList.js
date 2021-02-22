@@ -36,9 +36,9 @@ const columns = [
   },
   {
     title: "Mfg Date",
-    key: "created_at",
+    key: "mfg_at",
     render: (text, record) => (
-      <div>{dayjs(record.created_at).format("DD/MM/YYYY")}</div>
+      <div>{dayjs(record.mfg_at).format("DD/MM/YYYY")}</div>
     ),
     align: "center",
   },
@@ -46,7 +46,7 @@ const columns = [
     title: "Car Age",
     key: "age",
     render: (text, record) => (
-      <div>{dayjs().from(dayjs(record.created_at)).substr(3)}</div>
+      <div>{dayjs().from(dayjs(record.mfg_at)).substr(3)}</div>
     ),
     align: "center",
   },

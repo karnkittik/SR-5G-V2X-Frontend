@@ -35,7 +35,7 @@ const CarForm = ({ visible, setVisible }) => {
   const [successful, setSuccessful] = useState(false);
   const [failed, setFailed] = useState(false);
   const onCreate = (values) => {
-    values.created_at = values.created_at.$d;
+    values.mfg_at = values.mfg_at.$d;
     setConfirmLoading(true);
     CarSerivce.AddCar(
       values,
@@ -76,7 +76,7 @@ const CarForm = ({ visible, setVisible }) => {
     >
       <Form {...layout} form={form}>
         <Form.Item
-          name="created_at"
+          name="mfg_at"
           label="Manufacturing Date"
           rules={[
             {
