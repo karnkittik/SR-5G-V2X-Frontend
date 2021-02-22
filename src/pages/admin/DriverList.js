@@ -90,7 +90,7 @@ const DriverList = () => {
             pageSize: 10,
             showTotal: (total) => `Total ${total} items`,
           }}
-          rowKey="Id"
+          rowKey="driver_id"
           loading={loading}
           onRow={(record, rowIndex) => {
             return {

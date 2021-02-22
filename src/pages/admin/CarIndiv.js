@@ -15,7 +15,6 @@ export const ProfileCar = (props) => {
     {
       title: "Car Detail",
       dataIndex: "car_detail",
-      key: "car_detail",
       render: (text, record) => (
         <div style={{ wordWrap: "break-word", wordBreak: "break-word" }}>
           {text}
@@ -26,12 +25,10 @@ export const ProfileCar = (props) => {
     {
       title: "License Plate Number",
       dataIndex: "vehicle_registration_number",
-      key: "vehicle_registration_number",
       align: "center",
     },
     {
       title: "Reg Date",
-      key: "registered_at",
       render: (text, record) => (
         <div>
           {!record.registered_at
@@ -43,7 +40,6 @@ export const ProfileCar = (props) => {
     },
     {
       title: "Mfg Date",
-      key: "mfg_at",
       render: (text, record) => (
         <div>
           {!record.mfg_at ? "" : dayjs(record.mfg_at).format("DD/MM/YYYY")}
@@ -53,7 +49,6 @@ export const ProfileCar = (props) => {
     },
     {
       title: "Car Age",
-      key: "age",
       render: (text, record) => (
         <div>
           {!record.mfg_at ? "" : dayjs().from(dayjs(record.mfg_at)).substr(3)}
@@ -71,7 +66,7 @@ export const ProfileCar = (props) => {
           <Table
             columns={columns}
             dataSource={props.data}
-            rowKey="Id"
+            rowKey={(record) => record.car_id + "indiv"}
             pagination={false}
             loading={props.loading}
           />

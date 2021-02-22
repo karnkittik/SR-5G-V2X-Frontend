@@ -86,7 +86,7 @@ const CarList = () => {
             showTotal: (total) => `Total ${total} items`,
           }}
           loading={loading}
-          rowKey="Id"
+          rowKey="car_id"
           onRow={(record, rowIndex) => {
             return {
               onDoubleClick: (event) => {

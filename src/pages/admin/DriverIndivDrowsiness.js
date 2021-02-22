@@ -28,11 +28,6 @@ const DriverIndivDrowsiness = () => {
       ),
       align: "center",
     },
-    // {
-    //   title: "CarID",
-    //   dataIndex: "car_id",
-    //   key: "car_id",
-    // },
     {
       title: "Response Time (s)",
       key: "response_time",
@@ -56,10 +51,10 @@ const DriverIndivDrowsiness = () => {
   const [drowsinessLoading, setDrowsinessLoading] = useState(true);
   const [timeBarLoading, setTimeBarLoading] = useState(true);
   useEffect(() => {
-    fetchDrowsiness();
-    fetchDrowsinessTimeBar();
-  }, []);
-  const fetchDrowsiness = () => {
+    fetchDrowsiness(driver_id);
+    fetchDrowsinessTimeBar(driver_id);
+  }, [driver_id]);
+  const fetchDrowsiness = (driver_id) => {
     DriverService.fetchDrowsiness(
       driver_id,
       ({ data }) => {
@@ -72,7 +67,7 @@ const DriverIndivDrowsiness = () => {
       }
     );
   };
-  const fetchDrowsinessTimeBar = () => {
+  const fetchDrowsinessTimeBar = (driver_id) => {
     DriverService.fetchDrowsinessTimeBar(
       driver_id,
       ({ data }) => {
@@ -90,7 +85,7 @@ const DriverIndivDrowsiness = () => {
       <Row style={{ height: "100%", backgroundColor: "white" }}>
         <Col xs={24} lg={11}>
           <DashbordCard height="auto">
-            <ProfileDriver />
+            <ProfileDriver indiv="drowsiness" />
           </DashbordCard>
           <DashbordCardLoading loading={timeBarLoading}>
             <TimeBarChart data={timeBarData} title="Drowsiness on Hour" />
@@ -106,7 +101,9 @@ const DriverIndivDrowsiness = () => {
                     columns={columns}
                     dataSource={drowsinessData}
                     loading={drowsinessLoading}
-                    rowKey="Id"
+                    rowKey={(record) =>
+                      "drowsiness" + record.time + record.username
+                    }
                     pagination={{
                       pageSize: 6,
                       showTotal: (total) => `Total ${total} items`,

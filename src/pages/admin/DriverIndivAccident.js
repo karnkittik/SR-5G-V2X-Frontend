@@ -13,7 +13,7 @@ const DriverIndivAccident = () => {
   const columns = [
     {
       title: "Time",
-      key: "time",
+      key: "time_accident",
       render: (text, record) => (
         <div>{dayjs(record.accident.time).format("DD/MM/YYYY HH:mm ")}</div>
       ),
@@ -21,7 +21,7 @@ const DriverIndivAccident = () => {
     },
     {
       title: "Coordinate",
-      key: "coordinate",
+      key: "coordinate_accident",
       render: (text, record) => (
         <div>{`${record.accident.lat.toFixed(6)}, ${record.accident.lng.toFixed(
           6
@@ -31,13 +31,13 @@ const DriverIndivAccident = () => {
     },
     {
       title: "Road",
-      key: "road",
+      key: "road_accident",
       render: (text, record) => <div>{record.accident.road}</div>,
       align: "center",
     },
     {
       title: "License Plate Number",
-      key: "vehicle_registration_number",
+      key: "vehicle_registration_number_accident",
       render: (text, record) => (
         <div>{record.car.vehicle_registration_number}</div>
       ),
@@ -50,10 +50,10 @@ const DriverIndivAccident = () => {
   const [accidentLoading, setAccidentLoading] = useState(true);
   const [timeBarLoading, setTimeBarLoading] = useState(true);
   useEffect(() => {
-    fetchAccident();
-    fetchAccidentTimeBar();
-  }, []);
-  const fetchAccident = () => {
+    fetchAccident(driver_id);
+    fetchAccidentTimeBar(driver_id);
+  }, [driver_id]);
+  const fetchAccident = (driver_id) => {
     DriverService.fetchAccident(
       driver_id,
       ({ data }) => {
@@ -66,7 +66,7 @@ const DriverIndivAccident = () => {
       }
     );
   };
-  const fetchAccidentTimeBar = () => {
+  const fetchAccidentTimeBar = (driver_id) => {
     DriverService.fetchAccidentTimeBar(
       driver_id,
       ({ data }) => {
@@ -84,7 +84,7 @@ const DriverIndivAccident = () => {
       <Row style={{ height: "100%", backgroundColor: "white" }}>
         <Col xs={24} lg={11}>
           <DashbordCard height="auto">
-            <ProfileDriver />
+            <ProfileDriver indiv="accident" />
           </DashbordCard>
           <DashbordCardLoading loading={timeBarLoading}>
             <TimeBarChart data={timeBarData} title="Accident on Hour" />
@@ -100,7 +100,11 @@ const DriverIndivAccident = () => {
                     columns={columns}
                     dataSource={accidentData}
                     loading={accidentLoading}
-                    rowKey="Id"
+                    rowKey={(record) =>
+                      "accident" +
+                      record.accident.time +
+                      record.accident.username
+                    }
                     pagination={{
                       pageSize: 8,
                       showTotal: (total) => `Total ${total} items`,
