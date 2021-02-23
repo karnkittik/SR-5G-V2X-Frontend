@@ -20,7 +20,7 @@ const AccidentMap = () => {
     };
   }, [location, cancelLocationWatch]);
   useEffect(() => {
-    fetchMap([time]);
+    fetchMap(time);
   }, [time]);
   const fetchMap = (time) => {
     if (time === null) return;

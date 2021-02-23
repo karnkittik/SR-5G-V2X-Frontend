@@ -61,7 +61,7 @@ const General = () => {
       className="sider-bottom-button"
       href="/admin"
     >
-      Sign In
+      Go to Admin
     </Button>
   );
   const [render, updateRender] = useState(0);

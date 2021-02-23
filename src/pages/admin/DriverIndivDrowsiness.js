@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import { Table, Row, Col } from "antd";
 import DashbordCard, {
   ContentCard,
+  CountCard,
   DashbordCardLoading,
 } from "../../components/common/DashbordCard";
 import TimeBarChart from "../../components/common/TimeBarChart";
@@ -37,7 +38,7 @@ const DriverIndivDrowsiness = () => {
       align: "center",
     },
     {
-      title: "Working Time (hour)",
+      title: "Driving Time (hour)",
       key: "working_hour",
       render: (text, record) => (
         <div>{`${record.working_hour.toFixed(2)}`}</div>
@@ -87,6 +88,22 @@ const DriverIndivDrowsiness = () => {
           <DashbordCard height="auto">
             <ProfileDriver indiv="drowsiness" />
           </DashbordCard>
+          <DashbordCardLoading height="auto" loading={drowsinessLoading}>
+            <CountCard
+              title="Average Response Time"
+              // count={drowsinessData[0].response_time}
+              count={
+                drowsinessData.length !== 0
+                  ? `${(
+                      drowsinessData.reduce(
+                        (a, b) => a + b["response_time"],
+                        0
+                      ) / drowsinessData.length
+                    ).toFixed(2)} s`
+                  : "- s"
+              }
+            />
+          </DashbordCardLoading>
           <DashbordCardLoading loading={timeBarLoading}>
             <TimeBarChart data={timeBarData} title="Drowsiness on Hour" />
           </DashbordCardLoading>

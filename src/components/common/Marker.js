@@ -25,20 +25,20 @@ const Marker = (props) => {
           <div>
             {props.detail ? dayjs(props.detail.time).format("HH:mm") : ""}
           </div>
-          <div>{props.lat && `Lat:${props.lat}`}</div>
-          <div>{props.lng && `Lng:${props.lng}`}</div>
+          {/* <div>{props.lat && `Lat:${props.lat}`}</div>
+          <div>{props.lng && `Lng:${props.lng}`}</div> */}
           {props.detail.driver && (
             <>
               <div>Username:</div>
               <div>{`"${props.detail.driver.username}"`}</div>
             </>
           )}
-          {/* {props.detail.road !== null && (
+          {props.detail.road && (
             <>
               <div>Road:</div>
               <div>{`"${props.detail.road}"`}</div>
             </>
-          )} */}
+          )}
         </HoverMessage>
       )}
       <img

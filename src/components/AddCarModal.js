@@ -103,20 +103,17 @@ const CarForm = ({ visible, setVisible }) => {
             },
             () => ({
               validator(_, value) {
-                if (
-                  !value ||
-                  value.match("^(?=.*[A-Z])(?=.*[0-9])[A-Z0-9]{4,}$")
-                ) {
+                if (!value || value.match("^[0-9ก-ฮ][ก-ฮ][ก-ฮ]? [0-9]{1,4}$")) {
                   return Promise.resolve();
                 }
                 return Promise.reject(
-                  "License Plate Number must have minimum 4 characters including only uppercase letter and number!"
+                  `License Plate Number must match Thai "Private cars" vehicle registration plates format!`
                 );
               },
             }),
           ]}
         >
-          <Input placeholder="Example: ABC1234" />
+          <Input placeholder="Example: ทล 1989" />
         </Form.Item>
         <Form.Item
           label="Car Detail"

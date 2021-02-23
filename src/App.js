@@ -71,9 +71,6 @@ const App = () => {
             return !islogin ? <LogInPage /> : <Redirect to="/admin" />;
           }}
         />
-        <Route exact path="/admin">
-          <Admin />
-        </Route>
         <Route path="*">
           <NotFound />
         </Route>
