@@ -13,6 +13,11 @@ const { Header, Content } = Layout;
 export const ProfileCar = (props) => {
   const columns = [
     {
+      title: "License Plate Number",
+      dataIndex: "vehicle_registration_number",
+      align: "center",
+    },
+    {
       title: "Car Detail",
       dataIndex: "car_detail",
       render: (text, record) => (
@@ -20,11 +25,6 @@ export const ProfileCar = (props) => {
           {text}
         </div>
       ),
-      align: "center",
-    },
-    {
-      title: "License Plate Number",
-      dataIndex: "vehicle_registration_number",
       align: "center",
     },
     {
