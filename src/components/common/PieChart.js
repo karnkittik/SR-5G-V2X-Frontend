@@ -1,4 +1,37 @@
 import Chart from "react-apexcharts";
+const colorful = [
+  "#79afa3",
+  "#fad738",
+  "#128ff8",
+  "#c6c763",
+  "#2c97e3",
+  "#adbf78",
+  "#469fcd",
+  "#5fa7b8",
+  "#93b78d",
+  "#e0cf4d",
+];
+const blues = [
+  "#d4edf6",
+  "#c6e2f0",
+  "#bcdaec",
+  "#aecfe6",
+  "#a6c8e2",
+  "#97bbdb",
+  "#8bb1d6",
+  "#7ba4cf",
+  "#719cca",
+  "#6391c4",
+  "#5787bf",
+  "#497cb9",
+  "#3d72b3",
+  "#3169ae",
+  "#255fa8",
+  "#1955a3",
+  "#0d4b9d",
+]
+  .reverse()
+  .filter((blue, index) => index % 2 === 0);
 
 const PieChart = (props) => {
   var { title, data } = props;
@@ -8,20 +41,7 @@ const PieChart = (props) => {
   }
   var options = {
     labels: noData ? ["None"] : data.labels,
-    colors: noData
-      ? ["#eeeeee"]
-      : [
-          "#79afa3",
-          "#fad738",
-          "#128ff8",
-          "#c6c763",
-          "#2c97e3",
-          "#adbf78",
-          "#469fcd",
-          "#5fa7b8",
-          "#93b78d",
-          "#e0cf4d",
-        ],
+    colors: noData ? ["#eeeeee"] : blues,
     chart: {
       fontFamily: "inherit",
       fontSize: "inherit",
