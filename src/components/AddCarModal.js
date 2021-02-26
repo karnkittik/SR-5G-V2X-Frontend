@@ -12,7 +12,7 @@ const disabledDate = (current) => {
   // Can not select days before today and today
   return current && current > dayjs().endOf("day");
 };
-export const AddCarModal = () => {
+export const AddCarModal = (props) => {
   const [visible, setVisible] = useState(false);
   return (
     <>
@@ -24,12 +24,16 @@ export const AddCarModal = () => {
       >
         Car
       </Button>
-      <CarForm visible={visible} setVisible={setVisible} />
+      <CarForm
+        visible={visible}
+        setVisible={setVisible}
+        refresh={props.refresh}
+      />
     </>
   );
 };
 
-const CarForm = ({ visible, setVisible }) => {
+const CarForm = ({ visible, setVisible, refresh }) => {
   const [form] = Form.useForm();
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [successful, setSuccessful] = useState(false);
@@ -44,6 +48,10 @@ const CarForm = ({ visible, setVisible }) => {
         setConfirmLoading(false);
         setSuccessful(true);
         form.resetFields();
+        setTimeout(() => {
+          setVisible(false);
+          refresh();
+        }, 500);
       },
       (response) => {
         console.log(response.message);

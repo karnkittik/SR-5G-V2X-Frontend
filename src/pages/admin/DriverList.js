@@ -67,7 +67,7 @@ const DriverList = () => {
   const fetchAllDriver = () => {
     DriverService.fetchAllDriver(
       ({ data }) => {
-        setDriverData(data);
+        setDriverData(data.reverse());
         setLoading(false);
         console.log(data);
       },
@@ -79,7 +79,7 @@ const DriverList = () => {
   return (
     <Layout style={{ height: "100%" }}>
       <Header className="header">
-        <AddDriverModal />
+        <AddDriverModal refresh={fetchAllDriver} />
         <div className="header-title">Driver</div>
       </Header>
       <Content className="children-page-content">

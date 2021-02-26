@@ -14,7 +14,7 @@ const disabledDate = (current) => {
   return current && current > dayjs().endOf("day");
 };
 
-export const AddDriverModal = () => {
+export const AddDriverModal = (props) => {
   const [visible, setVisible] = useState(false);
   return (
     <>
@@ -26,12 +26,16 @@ export const AddDriverModal = () => {
       >
         Driver
       </Button>
-      <DriverForm visible={visible} setVisible={setVisible} />
+      <DriverForm
+        visible={visible}
+        setVisible={setVisible}
+        refresh={props.refresh}
+      />
     </>
   );
 };
 
-const DriverForm = ({ visible, setVisible }) => {
+const DriverForm = ({ visible, setVisible, refresh }) => {
   const [form] = Form.useForm();
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [successful, setSuccessful] = useState(false);
@@ -46,6 +50,10 @@ const DriverForm = ({ visible, setVisible }) => {
         setConfirmLoading(false);
         setSuccessful(true);
         form.resetFields();
+        setTimeout(() => {
+          setVisible(false);
+          refresh();
+        }, 500);
       },
       (response) => {
         console.log(response.message);

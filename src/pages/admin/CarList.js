@@ -62,7 +62,7 @@ const CarList = () => {
   const fetchAllCar = () => {
     CarSerivce.fetchAllCar(
       ({ data }) => {
-        setCarData(data);
+        setCarData(data.reverse());
         setLoading(false);
         console.log(data);
       },
@@ -74,7 +74,7 @@ const CarList = () => {
   return (
     <Layout style={{ height: "100%" }}>
       <Header className="header">
-        <AddCarModal />
+        <AddCarModal refresh={fetchAllCar} />
         <div className="header-title">Car List</div>
       </Header>
       <Content className="children-page-content">

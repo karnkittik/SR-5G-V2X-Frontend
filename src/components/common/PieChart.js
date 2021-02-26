@@ -1,16 +1,4 @@
 import Chart from "react-apexcharts";
-const colorful = [
-  "#79afa3",
-  "#fad738",
-  "#128ff8",
-  "#c6c763",
-  "#2c97e3",
-  "#adbf78",
-  "#469fcd",
-  "#5fa7b8",
-  "#93b78d",
-  "#e0cf4d",
-];
 const blues = [
   "#d4edf6",
   "#c6e2f0",
