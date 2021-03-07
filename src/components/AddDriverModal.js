@@ -10,8 +10,8 @@ const layout = {
 };
 
 const disabledDate = (current) => {
-  // Can not select days before today and today
-  return current && current > dayjs().endOf("day");
+  // Can not select the day not far from today at least 18 years
+  return current && current > dayjs().subtract(18, "year");
 };
 
 export const AddDriverModal = (props) => {
