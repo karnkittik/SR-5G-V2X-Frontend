@@ -12,6 +12,7 @@ const HoverMessage = styled.div`
   max-width: 120px;
   transform: translateX(-50%) translateY(calc(-100% - 50px));
   /* transform: translateX(-50%) translateY(-100%); */
+  min-width: 100px;
   z-index: 9995;
   position: absolute;
   height: auto;
