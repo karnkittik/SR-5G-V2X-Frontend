@@ -78,7 +78,7 @@ const TimeBarChart = (props) => {
       position: "bottom",
       tickAmount: 4,
       tooltip: {
-        enabled: true,
+        enabled: false,
       },
       labels: {
         trim: false,
