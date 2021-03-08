@@ -108,6 +108,7 @@ const DriverIndivAccident = () => {
                     pagination={{
                       pageSize: 8,
                       showTotal: (total) => `Total ${total} items`,
+                      showSizeChanger: false,
                     }}
                   />
                 </Col>

@@ -84,6 +84,7 @@ const CarList = () => {
           pagination={{
             pageSize: 10,
             showTotal: (total) => `Total ${total} items`,
+            showSizeChanger: false,
           }}
           loading={loading}
           rowKey="car_id"

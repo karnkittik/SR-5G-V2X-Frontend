@@ -89,6 +89,7 @@ const DriverList = () => {
           pagination={{
             pageSize: 10,
             showTotal: (total) => `Total ${total} items`,
+            showSizeChanger: false,
           }}
           rowKey="driver_id"
           loading={loading}

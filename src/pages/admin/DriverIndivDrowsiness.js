@@ -124,6 +124,7 @@ const DriverIndivDrowsiness = () => {
                     pagination={{
                       pageSize: 6,
                       showTotal: (total) => `Total ${total} items`,
+                      showSizeChanger: false,
                     }}
                   />
                 </Col>
