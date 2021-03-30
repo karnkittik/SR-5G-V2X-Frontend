@@ -636,3 +636,15 @@ export const AccidentRoadPie = {
   series: [1, 20, 3, 40],
   labels: ["Rd. Rama 1", "Rd. Rama 4", "Rd. Phayathai", "Rd. Henri Dunant"],
 };
+export const AccidentTopTen = [
+  { road_name: "abcd road", accident_count: 1002 },
+  { road_name: "bce road", accident_count: 11 },
+  { road_name: "c", accident_count: 10 },
+  { road_name: "d", accident_count: 2 },
+  { road_name: "e", accident_count: 1 },
+  { road_name: "abcd road", accident_count: 12 },
+  { road_name: "bce road", accident_count: 11 },
+  { road_name: "c", accident_count: 10 },
+  { road_name: "d", accident_count: 2 },
+  { road_name: "e", accident_count: 1 },
+];

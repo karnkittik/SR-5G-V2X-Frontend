@@ -268,7 +268,7 @@
 }
 /*-----*/
 .card-title {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   color: #666;
 }
@@ -277,5 +277,14 @@
   font-size: 16px;
   font-weight: 300;
   color: #888;
-  margin: 0 5px;
+}
+/*---Ranking----*/
+.numberCircle {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background: #fff;
+  border: 1px solid #666;
+  /* color: #666; */
+  text-align: center;
 }

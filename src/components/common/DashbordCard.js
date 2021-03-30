@@ -3,6 +3,7 @@ import { Row, Col, Spin } from "antd";
 const DashbordCard = styled.div`
   margin: 10px;
   padding: 15px;
+  padding-bottom: ${(props) => props.disablePaddingBottom && "0px"};
   background-color: white;
   /* width: calc(100%-20px); */
   justify-content: center;
@@ -10,6 +11,7 @@ const DashbordCard = styled.div`
   box-sizing: border-box;
   /* height: ${(props) => props.height || "312px"}; */
   height: ${(props) => props.height || "auto"};
+  width: ${(props) => props.width || "auto"};
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 10px;
@@ -88,7 +90,11 @@ export const EmptyCard = (props) => {
 };
 export const DashbordCardLoading = (props) => {
   return (
-    <DashbordCard height={props.height}>
+    <DashbordCard
+      height={props.height}
+      width={props.width}
+      disablePaddingBottom={props.disablePaddingBottom}
+    >
       <TitleCard>
         <div className="card-title">{props.title}</div>
         {props.header}

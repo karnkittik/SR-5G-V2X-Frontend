@@ -40,6 +40,21 @@ const TimeBarChart = (props) => {
       zoom: {
         enabled: false,
       },
+      toolbar: {
+        show: false,
+        offsetX: 0,
+        offsetY: 0,
+        tools: {
+          download: false,
+          selection: true,
+          zoom: false,
+          zoomin: false,
+          zoomout: false,
+          pan: false,
+          reset: false | '<img src="/static/icons/reset.png" width="20">',
+          customIcons: [],
+        },
+      },
     },
     plotOptions: {
       bar: {
@@ -63,7 +78,7 @@ const TimeBarChart = (props) => {
       ],
     },
     dataLabels: {
-      enabled: true,
+      enabled: false,
       formatter: function (val) {
         return val;
       },

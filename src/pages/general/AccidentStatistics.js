@@ -2,29 +2,34 @@ import { React, useEffect, useState } from "react";
 import { Layout, Row, Col, DatePicker } from "antd";
 import { DashbordCardLoading } from "../../components/common/DashbordCard";
 import HeatMapCalendar from "../../components/common/HeatMapCalendar";
-import PieChart from "../../components/common/PieChart";
+import Ranking from "../../components/common/Ranking";
 import TimeBarChart from "../../components/common/TimeBarChart";
 import { AccidentService } from "../../utils/api";
 import dayjs from "dayjs";
 import objectSupport from "dayjs/plugin/objectSupport";
 dayjs.extend(objectSupport);
-const { Content, Header } = Layout;
+const { Content } = Layout;
 const { RangePicker } = DatePicker;
 
 const AccidentStatistics = () => {
   const [calendarData, setCalendarData] = useState([]);
   const [calendar, setCalendar] = useState(dayjs().year());
-  const [roadPieData, setRoadPieData] = useState({});
+  const [topTen, setTopTen] = useState(dayjs().year());
+  const [topTenData, setTopTenData] = useState([]);
   const [timeBarData, setTimeBarData] = useState([0]);
   const [timeBar, setTimeBar] = useState([dayjs().unix(), dayjs().unix()]);
   const [calendarLoading, setCalendarLoading] = useState(true);
-  const [roadPieLoading, setRoadPieLoading] = useState(true);
+  const [topTenLoading, setTopTenLoading] = useState(true);
   const [timeBarLoading, setTimeBarLoading] = useState(true);
   useEffect(() => {
     fetchStatCalendar(calendar);
-    fetchStatRoadPie();
+  }, [calendar]);
+  useEffect(() => {
+    fetchStatTopTen(topTen);
+  }, [topTen]);
+  useEffect(() => {
     fetchStatTimeBar(timeBar);
-  }, [calendar, timeBar]);
+  }, [timeBar]);
   const fetchStatCalendar = (year) => {
     AccidentService.fetchStatCalendar(
       year,
@@ -38,11 +43,12 @@ const AccidentStatistics = () => {
       }
     );
   };
-  const fetchStatRoadPie = () => {
-    AccidentService.fetchStatRoadPie(
+  const fetchStatTopTen = (year) => {
+    AccidentService.fetchStatTopTen(
+      year,
       ({ data }) => {
-        setRoadPieData(data);
-        setRoadPieLoading(false);
+        setTopTenData(data);
+        setTopTenLoading(false);
         console.log(data);
       },
       (response) => {
@@ -52,7 +58,6 @@ const AccidentStatistics = () => {
   };
   const fetchStatTimeBar = (timeBar) => {
     let payload = { start: timeBar[0], end: timeBar[1] };
-    console.log(payload);
     AccidentService.fetchStatTimeBar(
       payload,
       ({ data }) => {
@@ -65,44 +70,16 @@ const AccidentStatistics = () => {
       }
     );
   };
-  function PickerWithType({ type, onChange, defaultValue }) {
-    if (type === "date")
-      return <DatePicker onChange={onChange} defaultValue={defaultValue} />;
-    return (
-      <DatePicker
-        picker={type}
-        onChange={onChange}
-        defaultValue={defaultValue}
-      />
-    );
-  }
   return (
     <Layout>
-      {/* <Header className="header">
-        <div className="header-title">Accident Statistics</div>
-      </Header> */}
       <Content className="real-content">
-        {["date", "week", "month", "quarter", "year"].map((type) => (
-          <PickerWithType
-            type={type}
-            onChange={(value) => {
-              console.log(dayjs(value.$d).unix());
-            }}
-          />
-        ))}
-        <RangePicker
-          picker="month"
-          defaultValue={[dayjs(), dayjs()]}
-          onChange={(value) => {
-            console.log(dayjs(value?.[0]?.$d).unix());
-            console.log(dayjs(value?.[1]?.$d).unix());
-          }}
-        />
         <Row>
-          <Col xs={24} lg={12}>
+          <Col xs={24} lg={10}>
             <DashbordCardLoading
               loading={calendarLoading}
-              title="Accident Heatmap Calendar"
+              title="Heatmap Calendar"
+              width="420px"
+              disablePaddingBottom={true}
               header={
                 <div>
                   <span className="date-label">Year: </span>
@@ -125,13 +102,15 @@ const AccidentStatistics = () => {
             >
               <HeatMapCalendar
                 data={calendarData}
-                height="160px"
+                height="220px"
                 style={{ width: "100%" }}
               />
             </DashbordCardLoading>
             <DashbordCardLoading
               loading={timeBarLoading}
-              title="Hour in day"
+              title="Hour on day"
+              width="420px"
+              disablePaddingBottom={true}
               header={
                 <div>
                   <span className="date-label">Date: </span>
@@ -156,11 +135,31 @@ const AccidentStatistics = () => {
               <TimeBarChart data={timeBarData} height="200px" />
             </DashbordCardLoading>
           </Col>
-        </Row>
-        <Row>
-          <Col xs={24} lg={12}>
-            <DashbordCardLoading loading={roadPieLoading}>
-              <PieChart data={roadPieData} title="Accident On Road (Today)" />
+          <Col xs={24} lg={8}>
+            <DashbordCardLoading
+              loading={topTenLoading}
+              title="Top 10 Road"
+              header={
+                <div>
+                  <span className="date-label">Year: </span>
+                  <DatePicker
+                    picker="year"
+                    placeholder="Year"
+                    onChange={(value) => {
+                      setTopTen(value?.$y);
+                    }}
+                    size="small"
+                    defaultValue={dayjs()}
+                    style={{ width: "75px" }}
+                    disabledDate={(current) => {
+                      return current && current > dayjs().endOf("year");
+                    }}
+                    bordered={false}
+                  />
+                </div>
+              }
+            >
+              <Ranking data={topTenData} loading={false} />
             </DashbordCardLoading>
           </Col>
         </Row>

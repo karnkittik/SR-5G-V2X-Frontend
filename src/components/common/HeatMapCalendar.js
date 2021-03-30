@@ -18,11 +18,11 @@ const HeatMapCalendar = (props) => (
           },
         },
         toolbar: {
-          show: true,
+          show: false,
           offsetX: 0,
           offsetY: 0,
           tools: {
-            download: true,
+            download: false,
             selection: true,
             zoom: false,
             zoomin: false,
@@ -165,6 +165,8 @@ const HeatMapCalendar = (props) => (
         labels: {
           rotate: 0,
           rotateAlways: false,
+          offsetX: 0,
+          offsetY: 0,
         },
       },
       yaxis: {
