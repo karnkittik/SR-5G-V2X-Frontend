@@ -7,14 +7,17 @@ import {
   ExclamationCircleOutlined,
   TeamOutlined,
   CarOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
 } from "@ant-design/icons";
 import AccidentMap from "./AccidentMap";
 import DrowsinessMap from "./DrowsinessMap";
 import Driver from "./Driver";
 import Car from "./Car";
 import { AuthService } from "../../utils/api";
+import Drawer from "../../components/common/Drawer";
 
-const { Content } = Layout;
+const { Content, Header } = Layout;
 const Admin = () => {
   const pageListGroup = [
     {
@@ -22,11 +25,13 @@ const Admin = () => {
       pageList: [
         {
           title: "Accident Map",
+          short: "Accident Map",
           component: <AccidentMap />,
           icon: <ExclamationCircleOutlined />,
         },
         {
           title: "Drowsiness Map",
+          short: "Drowsiness Map",
           component: <DrowsinessMap />,
           icon: <EyeOutlined />,
         },
@@ -35,8 +40,14 @@ const Admin = () => {
     {
       name: "Driver",
       pageList: [
+        // {
+        //   title: "Driver Statistics",
+        //   component: <DriverStatistics />,
+        //   icon: <BarChartOutlined />,
+        // },
         {
-          title: "Driver",
+          title: "Drivers",
+          short: "Drivers",
           component: <Driver />,
           icon: <TeamOutlined />,
         },
@@ -46,7 +57,8 @@ const Admin = () => {
       name: "Car",
       pageList: [
         {
-          title: "Car List",
+          title: "Cars",
+          short: "Cars",
           component: <Car />,
           icon: <CarOutlined />,
         },
@@ -56,7 +68,7 @@ const Admin = () => {
   const pageIndex = pageListGroup.map((group) => group.pageList.length);
   const Logo = () => (
     <>
-      <Badge.Ribbon text="admin" placement="end" color="gold"></Badge.Ribbon>
+      {/* <Badge.Ribbon text="admin" placement="end" color="gold"></Badge.Ribbon> */}
       <div className="sider-weblogo admin">5G-V2X</div>
     </>
   );
@@ -87,6 +99,18 @@ const Admin = () => {
   const [render, updateRender] = useState(0);
   const [firstIndex, setFirstIndex] = useState(0);
   const [secondIndex, setSecondIndex] = useState(0);
+  const [collapsed, setCollapsed] = useState(true);
+  const [visible, setVisible] = useState(false);
+  const toggle = () => {
+    setCollapsed(!collapsed);
+    showDrawer();
+  };
+  const showDrawer = () => {
+    setVisible(true);
+  };
+  const onClose = () => {
+    setVisible(false);
+  };
   useEffect(() => {
     var a = 0;
     var b = parseInt(render) + 1;
@@ -107,7 +131,7 @@ const Admin = () => {
   const setTheme = () => {
     window.less
       .modifyVars({
-        "@primary-color": "#5272c2",
+        "@primary-color": "#5272cc",
       })
       .then(() => {
         //do other stuff here
@@ -123,13 +147,61 @@ const Admin = () => {
   return (
     <div className="App">
       <Layout className="full">
-        <Sider
-          handleClick={handleMenuClick}
-          pageListGroup={pageListGroup}
-          logo={<Logo />}
-          bottom={<SignOutButton />}
-        />
-        <Layout className="full real-layout">
+        <Header
+          style={{
+            padding: 0,
+            backgroundColor: "white",
+            paddingRight: "5px",
+            height: "48px",
+            alignItems: "center",
+            display: "flex",
+            justifyContent: "space-between",
+            position: "relative",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              alignItems: "center",
+            }}
+          >
+            {React.createElement(
+              collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
+              {
+                className: "trigger",
+                onClick: toggle,
+                style: { width: "60px", fontSize: "18px" },
+              }
+            )}
+            <div className="header-title">
+              {pageListGroup[firstIndex].pageList[secondIndex].title}
+            </div>
+          </div>
+          <Logo />
+        </Header>
+        <Layout className="full ">
+          <Drawer
+            pageIndex={render}
+            placement="left"
+            closable={false}
+            onClose={onClose}
+            visible={visible}
+            handleClick={handleMenuClick}
+            logo={<Logo />}
+            pageListGroup={pageListGroup}
+            className="hideOnDesktop sider"
+          />
+          <Sider
+            pageIndex={render}
+            collapsed={collapsed}
+            setCollapsed={setCollapsed}
+            onClose={onClose}
+            handleClick={handleMenuClick}
+            pageListGroup={pageListGroup}
+            logo={<Logo />}
+            bottom={<SignOutButton />}
+          />
           <Content className="content">
             {pageListGroup[firstIndex].pageList[secondIndex].component}
           </Content>

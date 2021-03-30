@@ -61,7 +61,8 @@ var options = {
     },
   },
   title: {
-    text: "Accident Count In Time",
+    // text: "Accident Count In Time",
+    text: undefined,
     offsetX: 0,
     offsetY: 0,
     style: {

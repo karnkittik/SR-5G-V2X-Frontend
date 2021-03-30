@@ -79,6 +79,7 @@ const CarList = () => {
       </Header>
       <Content className="children-page-content">
         <Table
+          size="middle"
           columns={columns}
           dataSource={carData}
           pagination={{

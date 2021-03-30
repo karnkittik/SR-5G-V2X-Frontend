@@ -10,9 +10,12 @@ import {
   ExclamationCircleOutlined,
   BarChartOutlined,
   EyeOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
 } from "@ant-design/icons";
+import Drawer from "../../components/common/Drawer";
 
-const { Content } = Layout;
+const { Content, Header } = Layout;
 const General = () => {
   const pageListGroup = [
     {
@@ -20,11 +23,13 @@ const General = () => {
       pageList: [
         {
           title: "Accident Map",
+          short: "Map",
           component: <AccidentMap />,
           icon: <ExclamationCircleOutlined />,
         },
         {
           title: "Accident Statistics",
+          short: "Statistics",
           component: <AccidentStatistics />,
           icon: <BarChartOutlined />,
         },
@@ -35,11 +40,13 @@ const General = () => {
       pageList: [
         {
           title: "Drowsiness HeatMap",
+          short: "HeatMap",
           component: <DrowsinessHeatMap />,
           icon: <EyeOutlined />,
         },
         {
           title: "Drowsiness Statistics",
+          short: "Statistics",
           component: <DrowsinessStatistics />,
           icon: <BarChartOutlined />,
         },
@@ -49,7 +56,7 @@ const General = () => {
   const pageIndex = pageListGroup.map((group) => group.pageList.length);
   const Logo = () => (
     <>
-      <Badge.Ribbon text="public" placement="end"></Badge.Ribbon>
+      {/* <Badge.Ribbon text="public" placement="end"></Badge.Ribbon> */}
       <div className="sider-weblogo">5G-V2X</div>
     </>
   );
@@ -67,6 +74,18 @@ const General = () => {
   const [render, updateRender] = useState(0);
   const [firstIndex, setFirstIndex] = useState(0);
   const [secondIndex, setSecondIndex] = useState(0);
+  const [collapsed, setCollapsed] = useState(true);
+  const [visible, setVisible] = useState(false);
+  const toggle = () => {
+    setCollapsed(!collapsed);
+    showDrawer();
+  };
+  const showDrawer = () => {
+    setVisible(true);
+  };
+  const onClose = () => {
+    setVisible(false);
+  };
   useEffect(() => {
     var a = 0;
     var b = parseInt(render) + 1;
@@ -103,13 +122,62 @@ const General = () => {
   return (
     <div className="App">
       <Layout className="full">
-        <Sider
-          handleClick={handleMenuClick}
-          pageListGroup={pageListGroup}
-          logo={<Logo />}
-          bottom={<SignIn />}
-        />
-        <Layout className="full real-layout">
+        <Header
+          style={{
+            padding: 0,
+            paddingRight: "5px",
+            backgroundColor: "white",
+            height: "48px",
+            alignItems: "center",
+            display: "flex",
+            justifyContent: "space-between",
+            position: "relative",
+          }}
+        >
+          {" "}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-start",
+              alignItems: "center",
+            }}
+          >
+            {React.createElement(
+              collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
+              {
+                className: "trigger",
+                onClick: toggle,
+                style: { width: "60px", fontSize: "18px" },
+              }
+            )}
+            <div className="header-title">
+              {pageListGroup[firstIndex].pageList[secondIndex].title}
+            </div>
+          </div>
+          <Logo />
+        </Header>
+        <Layout className="full ">
+          <Drawer
+            pageIndex={render}
+            placement="left"
+            closable={false}
+            onClose={onClose}
+            visible={visible}
+            handleClick={handleMenuClick}
+            logo={<Logo />}
+            pageListGroup={pageListGroup}
+            className="hideOnDesktop sider"
+          />
+          <Sider
+            pageIndex={render}
+            collapsed={collapsed}
+            setCollapsed={setCollapsed}
+            onClose={onClose}
+            handleClick={handleMenuClick}
+            pageListGroup={pageListGroup}
+            logo={<Logo />}
+            bottom={<SignIn />}
+          />
           <Content className="content">
             {pageListGroup[firstIndex].pageList[secondIndex].component}
           </Content>

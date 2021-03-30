@@ -143,7 +143,8 @@ const HeatMapCalendar = (props) => (
         },
       },
       title: {
-        text: props.title,
+        // text: props.title,
+        text: undefined,
         style: {
           align: "center",
           fontSize: "18px",
@@ -152,13 +153,18 @@ const HeatMapCalendar = (props) => (
         },
       },
       xaxis: {
-        tickAmount: 31,
+        // tickAmount: 16,
+        tickPlacement: "on",
         tooltip: {
           enabled: true,
           formatter: function (val, opts) {
             return ordinalSuffix(val);
           },
           offsetY: 0,
+        },
+        labels: {
+          rotate: 0,
+          rotateAlways: false,
         },
       },
       yaxis: {
@@ -185,7 +191,7 @@ const HeatMapCalendar = (props) => (
     }}
     series={props.data}
     type="heatmap"
-    height="280px"
+    height={props.height}
   />
 );
 

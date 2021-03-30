@@ -139,3 +139,27 @@ export const DriverDrowsinessTimeBar = [
   5,
   16,
 ];
+export const DriverDataDetail = [
+  {
+    driver_id: "1",
+    username: "ts1989",
+    firstname: "John",
+    lastname: "Swift",
+    gender: "Male",
+    date_of_birth: 810242200000,
+    accident: 10,
+    drowsiness: 12,
+    avg_response: 5,
+  },
+  {
+    driver_id: "3",
+    username: "trr",
+    firstname: "Jonsds",
+    lastname: "Cvsd",
+    gender: "Female",
+    date_of_birth: 912242200000,
+    accident: 19,
+    drowsiness: 2,
+    avg_response: 10,
+  },
+];

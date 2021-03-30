@@ -40,9 +40,9 @@ const DrowsinessStatistics = () => {
   };
   return (
     <Layout>
-      <Header className="header">
+      {/* <Header className="header">
         <div className="header-title">Drowsiness Statistics</div>
-      </Header>
+      </Header> */}
       <Content className="real-content">
         <Row>
           <Col xs={24} lg={12}>

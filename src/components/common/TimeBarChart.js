@@ -118,7 +118,8 @@ const TimeBarChart = (props) => {
       },
     },
     title: {
-      text: props.title,
+      // text: props.title,
+      text: undefined,
       style: {
         align: "center",
         fontSize: "18px",
@@ -133,6 +134,13 @@ const TimeBarChart = (props) => {
       data: props.data,
     },
   ];
-  return <Chart options={options} series={series} type="bar" height="280px" />;
+  return (
+    <Chart
+      options={options}
+      series={series}
+      type="bar"
+      height={props.height || "280px"}
+    />
+  );
 };
 export default TimeBarChart;

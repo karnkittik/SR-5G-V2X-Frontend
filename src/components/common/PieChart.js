@@ -19,7 +19,7 @@ const blues = [
   "#0d4b9d",
 ]
   .reverse()
-  .filter((blue, index) => index % 2 === 0);
+  .filter((blue, index) => index % 4 === 0);
 
 const PieChart = (props) => {
   var { title, data } = props;
@@ -107,7 +107,8 @@ const PieChart = (props) => {
       palette: "palette2",
     },
     title: {
-      text: title,
+      // text: title,
+      text: undefined,
       offsetX: 0,
       offsetY: 0,
       style: {

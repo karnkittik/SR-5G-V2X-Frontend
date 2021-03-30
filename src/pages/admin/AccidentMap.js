@@ -37,9 +37,6 @@ const AccidentMap = () => {
   };
   return (
     <Layout style={{ height: "100%" }}>
-      <Header className="header">
-        <div className="header-title">Accident Map</div>
-      </Header>
       <Content>
         <DateTimeTypePicker n={n} setTime={setTime} setHeatMap={setHeatMap} />
         {!!!heatMap && data !== null ? (

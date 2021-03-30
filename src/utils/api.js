@@ -29,9 +29,9 @@ export const AccidentService = {
         onRejected(response.response ? response.response.data : response);
       });
   },
-  fetchStatCalendar: (callback, onRejected) => {
+  fetchStatCalendar: (payload, callback, onRejected) => {
     accidentApi
-      .get(`/stat/calendar`)
+      .get(`/stat/calendar?year=${payload}`)
       .then(({ data }) => callback(data))
       .catch((response) => {
         onRejected(response.response ? response.response.data : response);
@@ -45,9 +45,9 @@ export const AccidentService = {
         onRejected(response.response ? response.response.data : response);
       });
   },
-  fetchStatTimeBar: (callback, onRejected) => {
+  fetchStatTimeBar: ({ start, end }, callback, onRejected) => {
     accidentApi
-      .get(`/stat/timebar`)
+      .get(`/stat/timebar?start=${start}&end=${end}`)
       .then(({ data }) => callback(data))
       .catch((response) => {
         onRejected(response.response ? response.response.data : response);

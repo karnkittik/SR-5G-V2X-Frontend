@@ -28,9 +28,9 @@ const DrowsinessHeatMap = () => {
   };
   return (
     <Layout style={{ height: "100%" }}>
-      <Header className="header">
+      {/* <Header className="header">
         <div className="header-title">Drowsiness HeatMap</div>
-      </Header>
+      </Header> */}
       <Content>
         <DateTimeTypePicker n={n} setTime={setTime} disabledHeat />
         <MyMapComponent

@@ -1,6 +1,6 @@
 @import "./reset.css";
 @import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;700&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 /*---- My theme ----*/
 /* @primary-color: #529bc2; // primary color for all components
 @link-color: #1890ff; // link color
@@ -33,7 +33,7 @@
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 9997;
+  /* z-index: 9997; */
 }
 @media only screen and (min-width: 768px) {
   .header {
@@ -42,25 +42,21 @@
 }
 .header-title {
   font-size: 18px;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  display: flex;
   font-weight: 500;
+  padding: 0 10px;
 }
 .real-layout {
   padding-left: 0;
   padding-right: 0;
 }
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
   .real-layout {
     padding-left: 200px !important;
   }
-}
+} */
 @media only screen and (max-width: 768px) {
   .real-content {
-    padding: 10px;
+    /* padding: 10px; */
   }
 }
 .children-page-content {
@@ -82,7 +78,8 @@
 /*---- Sider ----*/
 .sider-weblogo {
   padding: 10px 0;
-  width: 100%;
+  margin: 0 5px;
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -98,7 +95,9 @@
 .sider-menu {
   overflow-y: auto;
   overflow-x: hidden;
-  height: calc(var(--vh, 1vh) * 60);
+  /* height: calc(var(--vh, 1vh) * 60); */
+  margin-top: 20px !important;
+  width: 100% !important;
 }
 @media only screen and (max-height: 480px) {
   .sider-menu {
@@ -106,10 +105,10 @@
   }
 }
 .sider {
-  height: calc(var(--vh, 1vh) * 100);
-  position: fixed !important;
+  height: calc(var(--vh, 1vh) * 100 - 48px);
+  /* position: fixed !important;
   left: 0;
-  z-index: 9998;
+  z-index: 9998; */
 }
 /* .sider-menu-group-name {
   margin-top: 25px;
@@ -211,11 +210,11 @@
   width: 70% !important;
   max-width: 800px !important;
 }
-@media only screen and (min-width: 768px) {
+/* @media only screen and (min-width: 768px) {
   .add-employee-modal {
     padding-left: 200px !important;
   }
-}
+} */
 .add-employee-btn {
   position: absolute !important;
   right: 10px;
@@ -249,8 +248,34 @@
   transform: scale(1.15);
   transition: 0.6s;
 }
-/*---------- Car ------------*/
-.car-back-btn {
-  position: absolute !important;
-  top: 16px !important;
+
+.hideOnMobile {
+  display: none;
+}
+@media only screen and (min-width: 768px) {
+  .hideOnMobile {
+    display: block;
+  }
+}
+
+.hideOnDesktop {
+  display: block;
+}
+@media only screen and (min-width: 768px) {
+  .hideOnDesktop {
+    display: none;
+  }
+}
+/*-----*/
+.card-title {
+  font-size: 18px;
+  font-weight: 400;
+  color: #666;
+}
+/*--Date-Picker--*/
+.date-label {
+  font-size: 16px;
+  font-weight: 300;
+  color: #888;
+  margin: 0 5px;
 }
