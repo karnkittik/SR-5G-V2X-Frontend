@@ -99,7 +99,7 @@ export const DashbordCardLoading = (props) => {
         <div className="card-title">{props.title}</div>
         {props.header}
       </TitleCard>
-      <Spin spinning={props.loading} tip="Loading...">
+      <Spin spinning={props.loading || false} tip="Loading...">
         {props.children}
       </Spin>
     </DashbordCard>

@@ -1,14 +1,13 @@
-import { Select, Switch } from "antd";
-import { HeatMapOutlined, EnvironmentOutlined } from "@ant-design/icons";
+import { Select } from "antd";
 import dayjs from "dayjs";
 const { Option } = Select;
 const DateTimeTypePicker = (props) => {
   var n = props.n;
   var times = [];
-  var d = dayjs(new Date()).format("DD/MM/YYYY");
+  // var d = dayjs(new Date()).format("DD/MM/YYYY");
   for (var i = 0; i <= n; i++) {
     times.push(
-      <Option value={i} key={i}>{`${i}.00 - ${
+      <Option value={i} key={i + "time"}>{`${i}.00 - ${
         i === 23 ? "0" : i + 1
       }.00`}</Option>
     );
@@ -16,20 +15,20 @@ const DateTimeTypePicker = (props) => {
   const handleChange = (value) => {
     props.setTime(value);
   };
-  const onChange = (checked) => {
-    props.setHeatMap(checked);
-  };
   return (
     <div className="time-range">
-      <div className="time-range-label">{d}</div>
+      {/* <div className="time-range-label">{d}</div> */}
       <Select
+        defaultValue={props.defaultValue}
+        size="small"
+        bordered={false}
         className="time-range-picker"
-        placeholder={"Select time"}
+        placeholder={"Hour"}
         onChange={handleChange}
       >
         {times}
       </Select>
-      {!props.disabledHeat && (
+      {/* {!props.disabledHeat && (
         <div className="toggle-map">
           <Switch
             unCheckedChildren={<EnvironmentOutlined />}
@@ -38,7 +37,7 @@ const DateTimeTypePicker = (props) => {
           />
           <div>Heatmap</div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };

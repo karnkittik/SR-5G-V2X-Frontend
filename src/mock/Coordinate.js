@@ -513,3 +513,702 @@ export const bangkokCoords = {
   lat: 13.736717,
   lng: 100.523186,
 };
+
+export const newData = [
+  {
+    detail: {
+      time: "2021-02-12T11:43:31Z",
+      road: "Phahonyothin Road",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 14.945663384,
+      lng: 100.619495795,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-12T20:28:49Z",
+      road: "Thanon Borommaratchachonnani",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 13.785994738,
+      lng: 100.462396131,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-13T10:02:58Z",
+      road: "Phaya Phon Road",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 18.127164,
+      lng: 100.138282,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-14T07:17:05Z",
+      road: "333",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 14.779768646,
+      lng: 99.749059961,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-14T09:06:35Z",
+      road: "ท่ามะเขือกำแพงเพชร",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 16.302958929,
+      lng: 99.69137101,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-14T14:22:06Z",
+      road: "2077",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 14.760677317,
+      lng: 103.63194643,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-14T17:11:28Z",
+      road: "Yantarakit Koson Road",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 18.699487191,
+      lng: 100.74822037,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-15T07:21:00Z",
+      road: "87",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 13.386292708,
+      lng: 101.278863237,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-17T11:47:13Z",
+      road: "ถนน เลี่ยงเมืองแกลง",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 12.791925864,
+      lng: 101.67411624,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-17T14:49:11Z",
+      road: "Thanon Mittraphap",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 14.658871885,
+      lng: 101.335168169,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-17T21:27:32Z",
+      road: "226",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 14.94342434,
+      lng: 103.826731131,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-18T00:42:56Z",
+      road: "Phahonyothin Road",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 17.544472889,
+      lng: 99.19654368,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-19T01:59:26Z",
+      road: "105",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 16.784938473,
+      lng: 98.589130626,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-19T07:14:40Z",
+      road: "Chaloem Burapha Chonlathit Road",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 12.485004,
+      lng: 102.054846,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-19T08:57:19Z",
+      road: "Bangkok-Chon Buri New Line",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 13.732678533,
+      lng: 100.704950974,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-19T15:53:31Z",
+      road: "11",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 16.739950639,
+      lng: 100.431859181,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-20T04:09:05Z",
+      road: "ถนน ซุปเปอร์ไฮเวย์ เชียงใหม่-ลำปาง",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 18.465851063,
+      lng: 99.149980531,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-20T08:09:41Z",
+      road: "12",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 16.770706446,
+      lng: 98.650875078,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-20T10:45:56Z",
+      road: "Chonburi-Pattaya Highway",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 13.151832119,
+      lng: 100.986030386,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-20T16:28:29Z",
+      road: "ถนนเหมืองเจ้าฟ้า",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 7.87732,
+      lng: 98.355006,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-20T16:38:37Z",
+      road: "ถนน โชคชัย-เดชอุดม",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 14.71534783,
+      lng: 102.446436868,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-20T22:35:19Z",
+      road: "Kanchanaphisek Road",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 14.078959218,
+      lng: 100.695587383,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-21T04:36:25Z",
+      road: "Bangkok-Chon Buri New Line",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 13.703096029,
+      lng: 100.823560939,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-21T10:34:51Z",
+      road: "344",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 13.229950712,
+      lng: 101.228952692,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-21T23:36:08Z",
+      road: "44",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 8.940307218,
+      lng: 99.272418008,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-22T05:35:10Z",
+      road: "Asian Highway 16",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 16.744589369,
+      lng: 101.562960134,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-22T19:51:02Z",
+      road: "Chonburi-Pattaya Highway",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 13.143662097,
+      lng: 100.985909686,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-23T01:43:42Z",
+      road: "Thanon Kabin Buri - Pak Thong Chai",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 14.488388219,
+      lng: 101.934888647,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-23T19:20:07Z",
+      road: "Asian Highway 18",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 6.869562883,
+      lng: 101.321330652,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-24T08:39:12Z",
+      road: "Bangkok-Chon Buri New Line",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 13.739515357,
+      lng: 100.651701079,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-25T16:05:14Z",
+      road: "2242",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 16.051360612,
+      lng: 105.144674763,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-26T02:16:24Z",
+      road: "ถนนสุรินทร์-สังขะ",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 14.679803961,
+      lng: 103.787053213,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-26T06:15:08Z",
+      road: "Thanon Phet Kasem",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 12.394219477,
+      lng: 99.918065951,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-26T10:58:03Z",
+      road: "4009",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 8.585360163,
+      lng: 99.28355454,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-26T18:04:36Z",
+      road: "Thanon Phaholyothin Frontage",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 14.276410716,
+      lng: 100.80604075,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-27T04:17:18Z",
+      road: "211",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 17.750635755,
+      lng: 102.650845335,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-27T20:59:44Z",
+      road: "201",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 17.337130461,
+      lng: 101.7561972,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-28T03:15:20Z",
+      road: "Bangkok-Chon Buri New Line",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 13.739515357,
+      lng: 100.651701079,
+    },
+  },
+  {
+    detail: {
+      time: "2021-02-28T20:57:19Z",
+      road: "41",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 9.634993662,
+      lng: 99.124824093,
+    },
+  },
+  {
+    detail: {
+      time: "2021-03-02T02:48:36Z",
+      road: "ถนน สงขลา-นาทวี",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 6.911915269,
+      lng: 100.728996978,
+    },
+  },
+  {
+    detail: {
+      time: "2021-03-02T14:48:33Z",
+      road: "ถนน โชคชัย-เดชอุดม",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 14.631439458,
+      lng: 103.969690189,
+    },
+  },
+  {
+    detail: {
+      time: "2021-03-03T03:08:45Z",
+      road: "1090",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 16.665435527,
+      lng: 98.597445474,
+    },
+  },
+  {
+    detail: {
+      time: "2021-03-03T03:18:20Z",
+      road: "Rama 2 Road",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 13.587299494,
+      lng: 100.32325922,
+    },
+  },
+  {
+    detail: {
+      time: "2021-03-04T12:40:43Z",
+      road: "2287",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 16.807491303,
+      lng: 104.532664404,
+    },
+  },
+  {
+    detail: {
+      time: "2021-03-04T13:43:20Z",
+      road: "ท่าตอน - ฝาง ถนน",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 20.038452134,
+      lng: 99.318415211,
+    },
+  },
+  {
+    detail: {
+      time: "2021-03-04T15:37:57Z",
+      road: "Unnamed Road",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 18.409686,
+      lng: 100.148932,
+    },
+  },
+  {
+    detail: {
+      time: "2021-03-04T15:59:47Z",
+      road: "Bangkok-Chon Buri New Line",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 13.409485986,
+      lng: 101.047155247,
+    },
+  },
+  {
+    detail: {
+      time: "2021-03-04T23:55:42Z",
+      road: "ทางหลวงชนบท พย.4033",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 19.525502,
+      lng: 100.203753,
+    },
+  },
+  {
+    detail: {
+      time: "2021-03-06T00:40:24Z",
+      road: "3335",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 13.63827928,
+      lng: 100.077123628,
+    },
+  },
+  {
+    detail: {
+      time: "2021-03-06T16:15:13Z",
+      road: "344",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 12.881022271,
+      lng: 101.563206897,
+    },
+  },
+  {
+    detail: {
+      time: "2021-03-08T03:59:51Z",
+      road: "Thanon Mittraphap",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 15.063669815,
+      lng: 102.18426703,
+    },
+  },
+  {
+    detail: {
+      time: "2021-03-08T15:56:08.979Z",
+      road: "17-61",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 13.7883,
+      lng: 100.5162,
+    },
+  },
+  {
+    detail: {
+      time: "2021-03-08T21:35:24Z",
+      road: "Yantarakit Koson Road",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 18.699487191,
+      lng: 100.74822037,
+    },
+  },
+  {
+    detail: {
+      time: "2021-03-09T06:57:32.135Z",
+      road: "9-27",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 13.7583,
+      lng: 100.4862,
+    },
+  },
+  {
+    detail: {
+      time: "2021-03-09T08:00:46.381Z",
+      road: "Unnamed Road",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 13.7683,
+      lng: 100.47619999999999,
+    },
+  },
+  {
+    detail: {
+      time: "2021-03-09T08:02:47.597Z",
+      road: "90-6",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 13.7083,
+      lng: 100.4562,
+    },
+  },
+  {
+    detail: {
+      time: "2021-03-09T08:29:44.082Z",
+      road: "Unnamed Road",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 13.7583,
+      lng: 100.47619999999999,
+    },
+  },
+  {
+    detail: {
+      time: "2021-03-09T10:05:54.261Z",
+      road: "Unnamed Road",
+      driver: null,
+      car: null,
+    },
+    coordinate: {
+      lat: 13.7983,
+      lng: 100.4662,
+    },
+  },
+];

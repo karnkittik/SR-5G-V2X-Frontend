@@ -111,7 +111,7 @@ const DriverIndivDrowsiness = () => {
         <Col xs={24} lg={13}>
           <DashbordCard height="auto">
             <ContentCard>
-              <div className="title-card">Record</div>
+              <div className="title-card">Records</div>
               <Row>
                 <Col xs={24}>
                   <Table

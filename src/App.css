@@ -131,14 +131,15 @@
   height: 100%;
 }
 .time-range {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  z-index: 9995;
-  margin: 10px 10px;
+  display: inline-block;
+  /* display: flex; */
+  /* align-items: center; */
+  /* position: absolute; */
+  /* z-index: 9990; */
+  /* margin: 10px 10px; */
   background-color: #ffffff;
   border-radius: 10px;
-  padding: 3px 3px;
+  /* padding: 3px 3px; */
 }
 .time-range-label {
   width: 90px;
@@ -148,10 +149,10 @@
   width: 130px;
 }
 .toggle-map {
-  width: 130px;
-  display: flex;
+  /* width: 110px; */
+  display: inline-flex;
   justify-content: space-between;
-  padding: 0 10px;
+  margin-left: 5px;
 }
 /*---- AccidentStatistics ----*/
 /*---------- LogIn------------*/
