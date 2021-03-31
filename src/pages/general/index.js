@@ -131,7 +131,10 @@ const General = () => {
             alignItems: "center",
             display: "flex",
             justifyContent: "space-between",
-            position: "relative",
+            position: "sticky",
+            top: 0,
+            zIndex: 1,
+            width: "100%",
           }}
         >
           {" "}

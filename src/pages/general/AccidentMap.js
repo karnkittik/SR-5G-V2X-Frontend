@@ -16,7 +16,7 @@ const AccidentMap = () => {
   const [time, setTime] = useState(n);
   const [locationData, setLocationData] = useState([]);
   const [heatMap, setHeatMap] = useState(false);
-  const [date, setDate] = useState([dayjs().unix(), dayjs().unix()]);
+  const [date, setDate] = useState([dayjs(), dayjs()]);
   const [heatData, setHeatData] = useState([]);
   const { location, cancelLocationWatch } = useWatchLocation();
   const [loading, setLoading] = useState(false);
@@ -33,8 +33,8 @@ const AccidentMap = () => {
     fetchHeatMap(date);
   }, [date, heatMap]);
   const fetchLocationMap = (time) => {
-    let start = dayjs().hour(time).minute(0).second(0).unix();
-    let end = dayjs().hour(time).minute(0).second(0).add(1, "hour").unix();
+    let start = dayjs().startOf("hour").unix();
+    let end = dayjs().endOf("hour").unix();
     let payload = { start, end };
     AccidentService.fetchLocationMap(
       payload,
@@ -49,8 +49,8 @@ const AccidentMap = () => {
   };
   const fetchHeatMap = (date) => {
     let payload = {
-      start: date[0],
-      end: date[1],
+      start: dayjs(date[0]).startOf("day").unix(),
+      end: dayjs(date[1]).endOf("day").unix(),
     };
     AccidentService.fetchLocationMap(
       payload,
@@ -80,10 +80,7 @@ const AccidentMap = () => {
                   <RangePicker
                     defaultValue={[dayjs(), dayjs()]}
                     onChange={(value) => {
-                      setDate([
-                        dayjs(value?.[0]?.$d).unix(),
-                        dayjs(value?.[1]?.$d).unix(),
-                      ]);
+                      setDate([dayjs(value?.[0]?.$d), dayjs(value?.[1]?.$d)]);
                     }}
                     bordered={false}
                     size="small"

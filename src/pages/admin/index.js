@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Badge, Button } from "antd";
+import { Layout, Badge, Tooltip, Button } from "antd";
 import Sider from "../../components/common/Sider";
 import {
   LogoutOutlined,
@@ -68,7 +68,7 @@ const Admin = () => {
   const pageIndex = pageListGroup.map((group) => group.pageList.length);
   const Logo = () => (
     <>
-      {/* <Badge.Ribbon text="admin" placement="end" color="gold"></Badge.Ribbon> */}
+      {/* <Badge.Ribbon text="admin" placement="end" color="gold"></Badge.Ribbon>  */}
       <div className="sider-weblogo admin">5G-V2X</div>
     </>
   );
@@ -85,15 +85,14 @@ const Admin = () => {
       );
     };
     return (
-      <Button
-        type="link"
-        size="large"
-        icon={<LogoutOutlined />}
-        className="sider-bottom-button"
-        onClick={signOut}
-      >
-        Sign Out
-      </Button>
+      <Tooltip placement="bottomLeft" title="Sign Out">
+        <Button
+          type="link"
+          size="large"
+          icon={<LogoutOutlined />}
+          onClick={signOut}
+        />
+      </Tooltip>
     );
   };
   const [render, updateRender] = useState(0);
@@ -156,7 +155,10 @@ const Admin = () => {
             alignItems: "center",
             display: "flex",
             justifyContent: "space-between",
-            position: "relative",
+            position: "sticky",
+            top: 0,
+            zIndex: 1,
+            width: "100%",
           }}
         >
           <div
@@ -178,7 +180,17 @@ const Admin = () => {
               {pageListGroup[firstIndex].pageList[secondIndex].title}
             </div>
           </div>
-          <Logo />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              width: "auto",
+            }}
+          >
+            <Logo />
+            <SignOutButton />
+          </div>
         </Header>
         <Layout className="full ">
           <Drawer

@@ -21,7 +21,7 @@ const Drawer = (props) => {
       className="hideOnDesktop sider"
       bodyStyle={{ padding: "10vh 0" }}
     >
-      {logo}
+      <div style={{ width: "100%", textAlign: "center" }}>{logo}</div>
       <div style={{ height: "80px" }}></div>
       <Menu
         theme="light"

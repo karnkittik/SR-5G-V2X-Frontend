@@ -30,12 +30,13 @@ export const AddDriverModal = (props) => {
         visible={visible}
         setVisible={setVisible}
         refresh={props.refresh}
+        setLoading={props.setLoading}
       />
     </>
   );
 };
 
-const DriverForm = ({ visible, setVisible, refresh }) => {
+const DriverForm = ({ visible, setVisible, refresh, setLoading }) => {
   const [form] = Form.useForm();
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [successful, setSuccessful] = useState(false);
@@ -43,6 +44,7 @@ const DriverForm = ({ visible, setVisible, refresh }) => {
   const onCreate = (values) => {
     values.date_of_birth = values.DOB.$d;
     setConfirmLoading(true);
+    setLoading(true);
     DriverService.AddDriver(
       values,
       ({ data }) => {
@@ -59,6 +61,7 @@ const DriverForm = ({ visible, setVisible, refresh }) => {
         console.log(response.message);
         setConfirmLoading(false);
         setFailed({ message: response.message });
+        setLoading(false);
       }
     );
   };

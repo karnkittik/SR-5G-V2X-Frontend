@@ -12,7 +12,7 @@ const DrowsinessStatistics = () => {
   const [calendarData, setCalendarData] = useState([]);
   const [calendar, setCalendar] = useState(dayjs().year());
   const [timeBarData, setTimeBarData] = useState([0]);
-  const [timeBar, setTimeBar] = useState([dayjs().unix(), dayjs().unix()]);
+  const [timeBar, setTimeBar] = useState([dayjs(), dayjs()]);
   const [calendarLoading, setCalendarLoading] = useState(true);
   const [timeBarLoading, setTimeBarLoading] = useState(true);
   useEffect(() => {
@@ -35,7 +35,10 @@ const DrowsinessStatistics = () => {
     );
   };
   const fetchStatTimeBar = (timeBar) => {
-    let payload = { start: timeBar[0], end: timeBar[1] };
+    let payload = {
+      start: dayjs(timeBar[0]).startOf("day").unix(),
+      end: dayjs(timeBar[1]).endOf("day").unix(),
+    };
     DrowsinessService.fetchStatTimeBar(
       payload,
       ({ data }) => {
@@ -98,8 +101,8 @@ const DrowsinessStatistics = () => {
                     defaultValue={[dayjs(), dayjs()]}
                     onChange={(value) => {
                       setTimeBar([
-                        dayjs(value?.[0]?.$d).unix(),
-                        dayjs(value?.[1]?.$d).unix(),
+                        dayjs(value?.[0]?.$d),
+                        dayjs(value?.[1]?.$d),
                       ]);
                     }}
                     bordered={false}

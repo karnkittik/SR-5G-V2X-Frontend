@@ -17,7 +17,7 @@ const AccidentStatistics = () => {
   const [topTen, setTopTen] = useState(dayjs().year());
   const [topTenData, setTopTenData] = useState([]);
   const [timeBarData, setTimeBarData] = useState([0]);
-  const [timeBar, setTimeBar] = useState([dayjs().unix(), dayjs().unix()]);
+  const [timeBar, setTimeBar] = useState([dayjs(), dayjs()]);
   const [calendarLoading, setCalendarLoading] = useState(true);
   const [topTenLoading, setTopTenLoading] = useState(true);
   const [timeBarLoading, setTimeBarLoading] = useState(true);
@@ -57,7 +57,10 @@ const AccidentStatistics = () => {
     );
   };
   const fetchStatTimeBar = (timeBar) => {
-    let payload = { start: timeBar[0], end: timeBar[1] };
+    let payload = {
+      start: dayjs(timeBar[0]).startOf("day").unix(),
+      end: dayjs(timeBar[1]).endOf("day").unix(),
+    };
     AccidentService.fetchStatTimeBar(
       payload,
       ({ data }) => {
@@ -118,8 +121,8 @@ const AccidentStatistics = () => {
                     defaultValue={[dayjs(), dayjs()]}
                     onChange={(value) => {
                       setTimeBar([
-                        dayjs(value?.[0]?.$d).unix(),
-                        dayjs(value?.[1]?.$d).unix(),
+                        dayjs(value?.[0]?.$d),
+                        dayjs(value?.[1]?.$d),
                       ]);
                     }}
                     bordered={false}

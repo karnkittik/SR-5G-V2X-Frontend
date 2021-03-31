@@ -74,9 +74,9 @@ export const AccidentService = {
 };
 
 export const DrowsinessService = {
-  fetchHeatmap: (payload, callback, onRejected) => {
+  fetchHeatmap: ({ start, end }, callback, onRejected) => {
     drowsinessApi
-      .get(`/heatmap/${payload}`)
+      .get(`/map?start=${start}&end=${end}`)
       .then(({ data }) => {
         callback(data);
       })
