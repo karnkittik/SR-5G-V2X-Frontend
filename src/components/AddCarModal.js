@@ -28,12 +28,13 @@ export const AddCarModal = (props) => {
         visible={visible}
         setVisible={setVisible}
         refresh={props.refresh}
+        setLoading={props.setLoading}
       />
     </>
   );
 };
 
-const CarForm = ({ visible, setVisible, refresh }) => {
+const CarForm = ({ visible, setVisible, refresh, setLoading }) => {
   const [form] = Form.useForm();
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [successful, setSuccessful] = useState(false);
@@ -41,6 +42,7 @@ const CarForm = ({ visible, setVisible, refresh }) => {
   const onCreate = (values) => {
     values.mfg_at = values.mfg_at.$d;
     setConfirmLoading(true);
+    setLoading(true);
     CarSerivce.AddCar(
       values,
       ({ data }) => {
@@ -56,6 +58,7 @@ const CarForm = ({ visible, setVisible, refresh }) => {
       (response) => {
         console.log(response.message);
         setConfirmLoading(false);
+        setLoading(false);
         setFailed({ message: response.message });
       }
     );
