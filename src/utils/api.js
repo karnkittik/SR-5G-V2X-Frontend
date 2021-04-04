@@ -265,4 +265,12 @@ export const CarSerivce = {
         onRejected(response.response ? response.response.data : response);
       });
   },
+  editCar: (car_id, payload, callback, onRejected) => {
+    authApi
+      .patch(`/car/${car_id}`, payload)
+      .then(({ data }) => callback(data))
+      .catch((response) => {
+        onRejected(response.response ? response.response.data : response);
+      });
+  },
 };

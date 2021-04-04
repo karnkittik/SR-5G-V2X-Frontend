@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Layout, Table, Button, Popconfirm } from "antd";
 import dayjs from "dayjs";
 import { AddCarModal } from "../../components/AddCarModal";
+import { EditCarModal } from "../../components/EditCarModal";
 import { useHistory } from "react-router-dom";
 import { CarSerivce } from "../../utils/api";
 import { DashbordCardLoading } from "../../components/common/DashbordCard";
@@ -65,11 +66,11 @@ const CarList = () => {
       render: (_, record) =>
         carData.length >= 1 ? (
           <span>
-            <Button
-              type="link"
-              size="small"
-              disabled={true}
+            <EditCarModal
               icon={<EditOutlined />}
+              initialValues={record}
+              setLoading={setLoading}
+              refresh={refreshEdit}
             />
             <Popconfirm
               title="Sure to delete?"
@@ -113,7 +114,15 @@ const CarList = () => {
     );
     console.log(car_id);
   };
-
+  const refreshEdit = (car_id, values) => {
+    let carIndex = carData.findIndex((item) => item.car_id === car_id);
+    if (carIndex >= 0) {
+      carData[carIndex].vehicle_registration_number =
+        values.vehicle_registration_number;
+      carData[carIndex].car_detail = values.car_detail;
+    }
+    setLoading(false);
+  };
   return (
     <Layout style={{ height: "100%" }}>
       <Content className="children-page-content">
