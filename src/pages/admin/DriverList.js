@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Layout, Table, Popconfirm, Checkbox, Button, Tooltip } from "antd";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { DeleteTwoTone, EditOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { useHistory } from "react-router-dom";
 import { AddDriverModal } from "../../components/AddDriverModal";
@@ -15,20 +15,11 @@ const DriverList = () => {
   const [loading, setLoading] = useState(true);
   const [checkedFilter, setCheckedFilter] = useState([]);
 
-  const handleDelete = (driver_id) => {
-    console.log(driver_id);
-    setDriverData(driverData.filter((item) => item.driver_id !== driver_id));
-  };
-
   const options = [
     { label: "Accident Count", value: "accidentCount" },
     { label: "Drowsiness Count", value: "drowsinessCount" },
     { label: "Avg Response Time", value: "avgResponse" },
   ];
-  const onCheck = (checkedValues) => {
-    console.log("checked = ", checkedValues);
-    setCheckedFilter(checkedValues);
-  };
 
   const columns = [
     {
@@ -168,14 +159,35 @@ const DriverList = () => {
               title="Sure to delete?"
               onConfirm={() => handleDelete(record.driver_id)}
             >
-              {/* <Tooltip placement="bottomLeft" title="Delete"> */}
-              <Button type="link" size="small" icon={<DeleteOutlined />} />
-              {/* </Tooltip> */}
+              <Button
+                type="link"
+                size="small"
+                icon={<DeleteTwoTone twoToneColor="#cc0000" />}
+              />
             </Popconfirm>
           </span>
         ) : null,
     },
   ];
+  const onCheck = (checkedValues) => {
+    console.log("checked = ", checkedValues);
+    setCheckedFilter(checkedValues);
+  };
+  const handleDelete = (driver_id) => {
+    DriverService.deleteDriver(
+      driver_id,
+      ({ data }) => {
+        console.log(data);
+        setDriverData(
+          driverData.filter((item) => item.driver_id !== driver_id)
+        );
+      },
+      (response) => {
+        console.log(response.message);
+      }
+    );
+    console.log(driver_id);
+  };
   useEffect(() => {
     fetchAllDriver();
     // setLoading(false);
@@ -183,6 +195,7 @@ const DriverList = () => {
   }, []);
 
   const fetchAllDriver = () => {
+    setLoading(true);
     DriverService.fetchAllDriver(
       ({ data }) => {
         setDriverData(data.reverse());

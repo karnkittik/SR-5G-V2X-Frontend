@@ -2,7 +2,6 @@ import { Layout, Form, Input, Button, Badge, Alert } from "antd";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { AuthService } from "../../utils/api";
-import { HomeOutlined } from "@ant-design/icons";
 const layout = {
   labelCol: {
     span: 8,
@@ -145,17 +144,6 @@ const LogInPage = () => {
               </Button>
             </Form.Item>
           </Form>
-        </div>
-        <div className="go-home">
-          <Button
-            type="link"
-            size="large"
-            icon={<HomeOutlined />}
-            className="sider-bottom-button"
-            onClick={GoHome}
-          >
-            Go Home
-          </Button>
         </div>
       </div>
     </Layout>

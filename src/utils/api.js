@@ -214,6 +214,14 @@ export const DriverService = {
         onRejected(response.response ? response.response.data : response);
       });
   },
+  deleteDriver: (payload, callback, onRejected) => {
+    authApi
+      .delete(`/driver/${payload}`)
+      .then(({ data }) => callback(data))
+      .catch((response) => {
+        onRejected(response.response ? response.response.data : response);
+      });
+  },
 };
 
 export const CarSerivce = {
