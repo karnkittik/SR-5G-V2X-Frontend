@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { Layout, Row, Col, DatePicker } from "antd";
+import { Layout, Row, Col, DatePicker, Select } from "antd";
 import { DashbordCardLoading } from "../../components/common/DashbordCard";
 import HeatMapCalendar from "../../components/common/HeatMapCalendar";
 import TimeBarChart from "../../components/common/TimeBarChart";
@@ -7,6 +7,7 @@ import { DrowsinessService } from "../../utils/api";
 import dayjs from "dayjs";
 const { Content } = Layout;
 const { RangePicker } = DatePicker;
+const { Option } = Select;
 
 const DrowsinessStatistics = () => {
   const [calendarData, setCalendarData] = useState([]);
@@ -15,12 +16,33 @@ const DrowsinessStatistics = () => {
   const [timeBar, setTimeBar] = useState([dayjs(), dayjs()]);
   const [calendarLoading, setCalendarLoading] = useState(true);
   const [timeBarLoading, setTimeBarLoading] = useState(true);
+  const [type, setType] = useState("date");
+  const [count, setCount] = useState(dayjs());
+  const [countData, setCountData] = useState("-");
+  const [countLoading, setCountLoading] = useState(true);
   useEffect(() => {
     fetchStatCalendar(calendar);
   }, [calendar]);
   useEffect(() => {
     fetchStatTimeBar(timeBar);
   }, [timeBar]);
+  useEffect(() => {
+    fetchStatCount(type, count);
+  }, [type, count]);
+  const fetchStatCount = (mode, date) => {
+    setCountLoading(true);
+    DrowsinessService.fetchStatCount(
+      { mode, date: dayjs(date).startOf(mode).unix() },
+      ({ data }) => {
+        setCountData(data);
+        setCountLoading(false);
+        console.log(data);
+      },
+      (response) => {
+        console.log(response.message);
+      }
+    );
+  };
   const fetchStatCalendar = (year) => {
     setCalendarLoading(true);
     DrowsinessService.fetchStatCalendar(
@@ -91,6 +113,63 @@ const DrowsinessStatistics = () => {
             </DashbordCardLoading>
           </Col>
           <Col xs={24} lg={10}>
+            <DashbordCardLoading
+              loading={countLoading}
+              title="Total Accident"
+              header={
+                <span>
+                  <Select
+                    value={type}
+                    onChange={setType}
+                    bordered={false}
+                    style={{ width: "90px" }}
+                  >
+                    <Option value="date">Date</Option>
+                    <Option value="week">Week</Option>
+                    <Option value="month">Month</Option>
+                    <Option value="quarter">Quarter</Option>
+                    <Option value="year">Year</Option>
+                  </Select>
+                  {type === "date" ? (
+                    <DatePicker
+                      size="small"
+                      onChange={(value) => setCount(value.$d)}
+                      defaultValue={dayjs()}
+                      bordered={false}
+                      disabledDate={(current) => {
+                        return current && current > dayjs().endOf("day");
+                      }}
+                      allowClear={false}
+                      style={{ width: "120px" }}
+                    />
+                  ) : (
+                    <DatePicker
+                      style={{
+                        width:
+                          type === "week"
+                            ? "110px"
+                            : type === "year"
+                            ? "75px"
+                            : "100px",
+                      }}
+                      picker={type}
+                      size="small"
+                      defaultValue={dayjs()}
+                      onChange={(value) => setCount(value.$d)}
+                      bordered={false}
+                      disabledDate={(current) => {
+                        return current && current > dayjs().endOf(type);
+                      }}
+                      allowClear={false}
+                    />
+                  )}
+                </span>
+              }
+            >
+              <div className="count">
+                <div>{countData}</div>
+              </div>
+            </DashbordCardLoading>
             <DashbordCardLoading
               width="420px"
               loading={timeBarLoading}

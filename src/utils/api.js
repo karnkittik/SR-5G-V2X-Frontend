@@ -63,6 +63,16 @@ export const AccidentService = {
         onRejected(response.response ? response.response.data : response);
       });
   },
+  fetchStatCount: ({ mode, date }, callback, onRejected) => {
+    accidentApi
+      .get(`/stat/count?mode=${mode}&date=${date}`)
+      .then(({ data }) => {
+        callback(data);
+      })
+      .catch((response) => {
+        onRejected(response.response ? response.response.data : response);
+      });
+  },
   fetchMap: (payload, callback, onRejected) => {
     authApi
       .get(`/accident/map/${payload}`)
@@ -96,6 +106,16 @@ export const DrowsinessService = {
     drowsinessApi
       .get(`/stat/timebar?start=${start}&end=${end}`)
       .then(({ data }) => callback(data))
+      .catch((response) => {
+        onRejected(response.response ? response.response.data : response);
+      });
+  },
+  fetchStatCount: ({ mode, date }, callback, onRejected) => {
+    drowsinessApi
+      .get(`/stat/count?mode=${mode}&date=${date}`)
+      .then(({ data }) => {
+        callback(data);
+      })
       .catch((response) => {
         onRejected(response.response ? response.response.data : response);
       });

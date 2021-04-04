@@ -12,6 +12,7 @@ const DashbordCard = styled.div`
   /* height: ${(props) => props.height || "312px"}; */
   height: ${(props) => props.height || "auto"};
   width: ${(props) => props.width || "auto"};
+  min-width: ${(props) => props.minWidth};
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 10px;
@@ -93,6 +94,7 @@ export const DashbordCardLoading = (props) => {
     <DashbordCard
       height={props.height}
       width={props.width}
+      minWidth={props.minWidth}
       disablePaddingBottom={props.disablePaddingBottom}
     >
       <TitleCard>
