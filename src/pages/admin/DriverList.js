@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Table, Popconfirm, Checkbox } from "antd";
+import { Layout, Table, Popconfirm, Checkbox, Button, Tooltip } from "antd";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { useHistory } from "react-router-dom";
 import { AddDriverModal } from "../../components/AddDriverModal";
@@ -156,12 +157,22 @@ const DriverList = () => {
       width: "100px",
       render: (_, record) =>
         driverData.length >= 1 ? (
-          <Popconfirm
-            title="Sure to delete?"
-            onConfirm={() => handleDelete(record.driver_id)}
-          >
-            <a>Delete</a>
-          </Popconfirm>
+          <span>
+            <Button
+              type="link"
+              size="small"
+              disabled={true}
+              icon={<EditOutlined />}
+            />
+            <Popconfirm
+              title="Sure to delete?"
+              onConfirm={() => handleDelete(record.driver_id)}
+            >
+              {/* <Tooltip placement="bottomLeft" title="Delete"> */}
+              <Button type="link" size="small" icon={<DeleteOutlined />} />
+              {/* </Tooltip> */}
+            </Popconfirm>
+          </span>
         ) : null,
     },
   ];
@@ -190,7 +201,7 @@ const DriverList = () => {
           loading={loading}
           title="Driver List"
           width="calc(100% - 20px)"
-          height="calc(100vh - 75px)"
+          height="calc(100vh - 70px)"
           disablePaddingBottom={true}
           header={
             <span>

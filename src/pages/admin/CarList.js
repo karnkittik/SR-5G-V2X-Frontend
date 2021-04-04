@@ -4,7 +4,9 @@ import dayjs from "dayjs";
 import { AddCarModal } from "../../components/AddCarModal";
 import { useHistory } from "react-router-dom";
 import { CarSerivce } from "../../utils/api";
-const { Content, Header } = Layout;
+import { DashbordCardLoading } from "../../components/common/DashbordCard";
+
+const { Content } = Layout;
 
 const columns = [
   {
@@ -73,30 +75,35 @@ const CarList = () => {
   };
   return (
     <Layout style={{ height: "100%" }}>
-      <Header className="header">
-        <AddCarModal refresh={fetchAllCar} />
-        <div className="header-title">Car List</div>
-      </Header>
       <Content className="children-page-content">
-        <Table
-          size="middle"
-          columns={columns}
-          dataSource={carData}
-          pagination={{
-            pageSize: 10,
-            showTotal: (total) => `Total ${total} items`,
-            showSizeChanger: false,
-          }}
+        <DashbordCardLoading
           loading={loading}
-          rowKey="car_id"
-          onRow={(record, rowIndex) => {
-            return {
-              onDoubleClick: (event) => {
-                history.push(`/admin/car/${record.car_id}`);
-              },
-            };
-          }}
-        />
+          title="Car List"
+          width="calc(100% - 20px)"
+          height="calc(100vh - 70px)"
+          disablePaddingBottom={true}
+          header={<AddCarModal refresh={fetchAllCar} setLoading={setLoading} />}
+        >
+          <Table
+            size="small"
+            columns={columns}
+            dataSource={carData}
+            pagination={{
+              pageSize: 10,
+              showTotal: (total) => `Total ${total} items`,
+              showSizeChanger: false,
+            }}
+            loading={loading}
+            rowKey="car_id"
+            onRow={(record, rowIndex) => {
+              return {
+                onDoubleClick: (event) => {
+                  history.push(`/admin/car/${record.car_id}`);
+                },
+              };
+            }}
+          />
+        </DashbordCardLoading>
       </Content>
     </Layout>
   );

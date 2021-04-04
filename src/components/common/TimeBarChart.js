@@ -99,13 +99,13 @@ const TimeBarChart = (props) => {
         trim: false,
         rotate: 0,
         rotateAlways: false,
-        formatter: function (value) {
-          return `${value}-${
-            value === "23:00"
-              ? "00"
-              : parseInt(value.substr(value.indexOf(".") + 1)) + 1
-          }:00`;
-        },
+        // formatter: function (value) {
+        //   return `${value}-${
+        //     value === "23:00"
+        //       ? "00"
+        //       : parseInt(value.substr(value.indexOf(".") + 1)) + 1
+        //   }:00`;
+        // },
       },
     },
     yaxis: {

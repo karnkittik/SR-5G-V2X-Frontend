@@ -22,6 +22,7 @@ const DrowsinessStatistics = () => {
     fetchStatTimeBar(timeBar);
   }, [timeBar]);
   const fetchStatCalendar = (year) => {
+    setCalendarLoading(true);
     DrowsinessService.fetchStatCalendar(
       year,
       ({ data }) => {
@@ -39,6 +40,7 @@ const DrowsinessStatistics = () => {
       start: dayjs(timeBar[0]).startOf("day").unix(),
       end: dayjs(timeBar[1]).endOf("day").unix(),
     };
+    setTimeBarLoading(true);
     DrowsinessService.fetchStatTimeBar(
       payload,
       ({ data }) => {

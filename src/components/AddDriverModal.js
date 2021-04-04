@@ -68,6 +68,7 @@ const DriverForm = ({ visible, setVisible, refresh, setLoading }) => {
   return (
     <Modal
       title="New employee"
+      style={{ top: "60px" }}
       className="add-employee-modal"
       okText="Submit"
       onCancel={() => {
