@@ -2,7 +2,7 @@ import { React, useState, useEffect } from "react";
 import { DatePicker, Layout, Switch } from "antd";
 import MyMapComponent, { useWatchLocation } from "../../components/common/Map";
 import DateTimeTypePicker from "../../components/common/DateTimeTypePicker";
-import { AccidentService } from "../../utils/api";
+import { DrowsinessService } from "../../utils/api";
 import GoogleMap from "../../components/common/ClusterMap";
 import { DashbordCardLoading } from "../../components/common/DashbordCard";
 import { HeatMapOutlined, EnvironmentOutlined } from "@ant-design/icons";
@@ -36,7 +36,7 @@ const DrowsinessMap = () => {
     let start = dayjs().startOf("hour").unix();
     let end = dayjs().endOf("hour").unix();
     let payload = { start, end };
-    AccidentService.fetchLocationMap(
+    DrowsinessService.fetchMap(
       payload,
       ({ data }) => {
         setLocationData(data);
@@ -52,7 +52,7 @@ const DrowsinessMap = () => {
       start: dayjs(date[0]).startOf("day").unix(),
       end: dayjs(date[1]).endOf("day").unix(),
     };
-    AccidentService.fetchLocationMap(
+    DrowsinessService.fetchMap(
       payload,
       ({ data }) => {
         setHeatData(data);

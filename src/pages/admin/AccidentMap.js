@@ -36,7 +36,7 @@ const AccidentMap = () => {
     let start = dayjs().startOf("hour").unix();
     let end = dayjs().endOf("hour").unix();
     let payload = { start, end };
-    AccidentService.fetchLocationMap(
+    AccidentService.fetchMap(
       payload,
       ({ data }) => {
         setLocationData(data);
@@ -52,7 +52,7 @@ const AccidentMap = () => {
       start: dayjs(date[0]).startOf("day").unix(),
       end: dayjs(date[1]).endOf("day").unix(),
     };
-    AccidentService.fetchLocationMap(
+    AccidentService.fetchMap(
       payload,
       ({ data }) => {
         setHeatData(data);
