@@ -45,7 +45,7 @@ const DriverForm = ({ visible, setVisible, refresh, setLoading }) => {
     values.date_of_birth = values.DOB.$d;
     setConfirmLoading(true);
     setLoading(true);
-    DriverService.AddDriver(
+    DriverService.addDriver(
       values,
       ({ data }) => {
         console.log(data);

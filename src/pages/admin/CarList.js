@@ -1,63 +1,90 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Table } from "antd";
+import { Layout, Table, Button, Popconfirm } from "antd";
 import dayjs from "dayjs";
 import { AddCarModal } from "../../components/AddCarModal";
 import { useHistory } from "react-router-dom";
 import { CarSerivce } from "../../utils/api";
 import { DashbordCardLoading } from "../../components/common/DashbordCard";
-
+import { EditOutlined, DeleteTwoTone } from "@ant-design/icons";
 const { Content } = Layout;
-
-const columns = [
-  {
-    title: "License Plate Number",
-    dataIndex: "vehicle_registration_number",
-    key: "vehicle_registration_number",
-    width: "25%",
-    align: "center",
-  },
-  {
-    title: "Car Detail",
-    dataIndex: "car_detail",
-    key: "car_detail",
-    render: (text, record) => (
-      <div style={{ wordWrap: "break-word", wordBreak: "break-word" }}>
-        {text}
-      </div>
-    ),
-    align: "center",
-  },
-
-  {
-    title: "Reg Date",
-    key: "registered_at",
-    render: (text, record) => (
-      <div>{dayjs(record.registered_at).format("DD/MM/YYYY")}</div>
-    ),
-    align: "center",
-  },
-  {
-    title: "Mfg Date",
-    key: "mfg_at",
-    render: (text, record) => (
-      <div>{dayjs(record.mfg_at).format("DD/MM/YYYY")}</div>
-    ),
-    align: "center",
-  },
-  {
-    title: "Car Age",
-    key: "age",
-    render: (text, record) => (
-      <div>{dayjs().from(dayjs(record.mfg_at)).substr(3)}</div>
-    ),
-    align: "center",
-  },
-];
 
 const CarList = () => {
   let history = useHistory();
   const [carData, setCarData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const columns = [
+    {
+      title: "License Plate Number",
+      dataIndex: "vehicle_registration_number",
+      key: "vehicle_registration_number",
+      width: "25%",
+      align: "center",
+    },
+    {
+      title: "Car Detail",
+      dataIndex: "car_detail",
+      key: "car_detail",
+      render: (text, record) => (
+        <div style={{ wordWrap: "break-word", wordBreak: "break-word" }}>
+          {text}
+        </div>
+      ),
+      align: "center",
+    },
+
+    {
+      title: "Reg Date",
+      key: "registered_at",
+      render: (text, record) => (
+        <div>{dayjs(record.registered_at).format("DD/MM/YYYY")}</div>
+      ),
+      align: "center",
+    },
+    {
+      title: "Mfg Date",
+      key: "mfg_at",
+      render: (text, record) => (
+        <div>{dayjs(record.mfg_at).format("DD/MM/YYYY")}</div>
+      ),
+      align: "center",
+    },
+    {
+      title: "Car Age",
+      key: "age",
+      render: (text, record) => (
+        <div>{dayjs().from(dayjs(record.mfg_at)).substr(3)}</div>
+      ),
+      align: "center",
+    },
+    {
+      title: "Action",
+      key: "operation",
+      fixed: "right",
+      align: "center",
+      width: "100px",
+      render: (_, record) =>
+        carData.length >= 1 ? (
+          <span>
+            <Button
+              type="link"
+              size="small"
+              disabled={true}
+              icon={<EditOutlined />}
+            />
+            <Popconfirm
+              title="Sure to delete?"
+              onConfirm={() => handleDelete(record.car_id)}
+            >
+              <Button
+                type="link"
+                size="small"
+                icon={<DeleteTwoTone twoToneColor="#cc0000" />}
+              />
+            </Popconfirm>
+          </span>
+        ) : null,
+    },
+  ];
   useEffect(() => {
     fetchAllCar();
   }, []);
@@ -73,6 +100,20 @@ const CarList = () => {
       }
     );
   };
+  const handleDelete = (car_id) => {
+    CarSerivce.deleteCar(
+      car_id,
+      ({ data }) => {
+        console.log(data);
+        setCarData(carData.filter((item) => item.car_id !== car_id));
+      },
+      (response) => {
+        console.log(response.message);
+      }
+    );
+    console.log(car_id);
+  };
+
   return (
     <Layout style={{ height: "100%" }}>
       <Content className="children-page-content">

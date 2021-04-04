@@ -43,7 +43,7 @@ const CarForm = ({ visible, setVisible, refresh, setLoading }) => {
     values.mfg_at = values.mfg_at.$d;
     setConfirmLoading(true);
     setLoading(true);
-    CarSerivce.AddCar(
+    CarSerivce.addCar(
       values,
       ({ data }) => {
         console.log(data);

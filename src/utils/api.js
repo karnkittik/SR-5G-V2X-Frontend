@@ -174,7 +174,7 @@ export const DriverService = {
         onRejected(response.response ? response.response.data : response);
       });
   },
-  AddDriver: (payload, callback, onRejected) => {
+  addDriver: (payload, callback, onRejected) => {
     authApi
       .post("/driver", payload)
       .then(({ data }) => callback(data))
@@ -241,9 +241,17 @@ export const CarSerivce = {
         onRejected(response.response ? response.response.data : response);
       });
   },
-  AddCar: (payload, callback, onRejected) => {
+  addCar: (payload, callback, onRejected) => {
     authApi
       .post("/car", payload)
+      .then(({ data }) => callback(data))
+      .catch((response) => {
+        onRejected(response.response ? response.response.data : response);
+      });
+  },
+  deleteCar: (payload, callback, onRejected) => {
+    authApi
+      .delete(`/car/${payload}`)
       .then(({ data }) => callback(data))
       .catch((response) => {
         onRejected(response.response ? response.response.data : response);
