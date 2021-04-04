@@ -14,19 +14,19 @@ const disabledDate = (current) => {
   return current && current > dayjs().subtract(18, "year");
 };
 
-export const AddDriverModal = (props) => {
+export const EditDriverModal = (props) => {
   const [visible, setVisible] = useState(false);
   return (
     <>
       <Button
-        type="primary"
+        type="link"
+        size="small"
         onClick={() => setVisible(true)}
-        icon={<UserAddOutlined />}
+        icon={props.icon}
         className="add-employee-btn"
-      >
-        Driver
-      </Button>
+      />
       <DriverForm
+        initialValues={props.initialValues}
         visible={visible}
         setVisible={setVisible}
         refresh={props.refresh}
@@ -36,16 +36,24 @@ export const AddDriverModal = (props) => {
   );
 };
 
-const DriverForm = ({ visible, setVisible, refresh, setLoading }) => {
+const DriverForm = ({
+  visible,
+  setVisible,
+  refresh,
+  setLoading,
+  initialValues,
+}) => {
+  const { firstname, lastname, date_of_birth, driver_id } = initialValues;
   const [form] = Form.useForm();
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [successful, setSuccessful] = useState(false);
   const [failed, setFailed] = useState(false);
-  const onCreate = (values) => {
-    values.date_of_birth = values.DOB.$d;
+  const onEdit = (values) => {
+    values.date_of_birth = values.date_of_birth.$d;
     setConfirmLoading(true);
     setLoading(true);
-    DriverService.addDriver(
+    DriverService.editDriver(
+      driver_id,
       values,
       ({ data }) => {
         console.log(data);
@@ -54,7 +62,7 @@ const DriverForm = ({ visible, setVisible, refresh, setLoading }) => {
         form.resetFields();
         setTimeout(() => {
           setVisible(false);
-          refresh();
+          refresh(driver_id, values);
         }, 500);
       },
       (response) => {
@@ -67,7 +75,7 @@ const DriverForm = ({ visible, setVisible, refresh, setLoading }) => {
   };
   return (
     <Modal
-      title="New driver"
+      title="Edit driver"
       style={{ top: "60px" }}
       className="add-employee-modal"
       okText="Submit"
@@ -79,7 +87,7 @@ const DriverForm = ({ visible, setVisible, refresh, setLoading }) => {
         form
           .validateFields()
           .then((values) => {
-            onCreate(values);
+            onEdit(values);
           })
           .catch((info) => {
             console.log("Validate Failed:", info);
@@ -88,7 +96,15 @@ const DriverForm = ({ visible, setVisible, refresh, setLoading }) => {
       visible={visible}
       confirmLoading={confirmLoading}
     >
-      <Form {...layout} form={form}>
+      <Form
+        {...layout}
+        form={form}
+        initialValues={{
+          firstname,
+          lastname,
+          date_of_birth: dayjs(date_of_birth),
+        }}
+      >
         <Form.Item
           label="Firstname"
           name="firstname"
@@ -130,17 +146,7 @@ const DriverForm = ({ visible, setVisible, refresh, setLoading }) => {
           <Input />
         </Form.Item>
         <Form.Item
-          name="gender"
-          label="Gender"
-          rules={[{ required: true, message: "Please input your gender!" }]}
-        >
-          <Select allowClear>
-            <Option value="0">Male</Option>
-            <Option value="1">Female</Option>
-          </Select>
-        </Form.Item>
-        <Form.Item
-          name="DOB"
+          name="date_of_birth"
           label="Date of Birth"
           rules={[
             {
@@ -155,78 +161,6 @@ const DriverForm = ({ visible, setVisible, refresh, setLoading }) => {
             popupStyle={{ zIndex: "9999" }}
             disabledDate={disabledDate}
           />
-        </Form.Item>
-        <Form.Item
-          label="Username"
-          name="username"
-          hasFeedback
-          rules={[
-            { required: true, message: "Please input your username!" },
-            () => ({
-              validator(_, value) {
-                if (
-                  !value ||
-                  value.match("^[A-Za-z]([A-Za-z'-@.0-9]){0,11}$")
-                ) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(
-                  "Username must be started with an alphabet and not exceed 12 characters!"
-                );
-              },
-            }),
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Password"
-          name="password"
-          hasFeedback
-          rules={[
-            { required: true, message: "Please input your password!" },
-            () => ({
-              validator(_, value) {
-                if (
-                  !value ||
-                  value.match(
-                    "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9@$!%*?.&']{8,12}$"
-                  )
-                ) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(
-                  "Password must have minimum 8 and maximum 12 characters, at least one uppercase letter, one lowercase letter and one number!"
-                );
-              },
-            }),
-          ]}
-        >
-          <Input.Password />
-        </Form.Item>
-        <Form.Item
-          name="confirm"
-          label="Confirm Password"
-          dependencies={["password"]}
-          hasFeedback
-          rules={[
-            {
-              required: true,
-              message: "Please confirm your password!",
-            },
-            ({ getFieldValue }) => ({
-              validator(_, value) {
-                if (!value || getFieldValue("password") === value) {
-                  return Promise.resolve();
-                }
-                return Promise.reject(
-                  "The two passwords that you entered do not match!"
-                );
-              },
-            }),
-          ]}
-        >
-          <Input.Password />
         </Form.Item>
       </Form>
       <div style={{ height: "20px" }}>

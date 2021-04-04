@@ -4,6 +4,7 @@ import { DeleteTwoTone, EditOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { useHistory } from "react-router-dom";
 import { AddDriverModal } from "../../components/AddDriverModal";
+import { EditDriverModal } from "../../components/EditDriverModal";
 import { DriverService } from "../../utils/api";
 import { DashbordCardLoading } from "../../components/common/DashbordCard";
 import { DriverDataDetail } from "../../mock/Driver";
@@ -149,11 +150,11 @@ const DriverList = () => {
       render: (_, record) =>
         driverData.length >= 1 ? (
           <span>
-            <Button
-              type="link"
-              size="small"
-              disabled={true}
+            <EditDriverModal
               icon={<EditOutlined />}
+              initialValues={record}
+              setLoading={setLoading}
+              refresh={refreshEdit}
             />
             <Popconfirm
               title="Sure to delete?"
@@ -187,6 +188,17 @@ const DriverList = () => {
       }
     );
     console.log(driver_id);
+  };
+  const refreshEdit = (driver_id, values) => {
+    let driverIndex = driverData.findIndex(
+      (item) => item.driver_id === driver_id
+    );
+    if (driverIndex >= 0) {
+      driverData[driverIndex].firstname = values.firstname;
+      driverData[driverIndex].lastname = values.lastname;
+      driverData[driverIndex].date_of_birth = values.date_of_birth;
+    }
+    setLoading(false);
   };
   useEffect(() => {
     fetchAllDriver();

@@ -222,6 +222,14 @@ export const DriverService = {
         onRejected(response.response ? response.response.data : response);
       });
   },
+  editDriver: (driver_id, payload, callback, onRejected) => {
+    authApi
+      .patch(`/driver/${driver_id}`, payload)
+      .then(({ data }) => callback(data))
+      .catch((response) => {
+        onRejected(response.response ? response.response.data : response);
+      });
+  },
 };
 
 export const CarSerivce = {
