@@ -79,7 +79,7 @@ const DrowsinessStatistics = () => {
     <Layout>
       <Content className="real-content">
         <Row>
-          <Col xs={24} lg={9}>
+          <Col xs={24} lg={12}>
             <DashbordCardLoading
               // width="420px"
               loading={calendarLoading}
@@ -107,15 +107,15 @@ const DrowsinessStatistics = () => {
             >
               <HeatMapCalendar
                 data={calendarData}
-                height="220px"
+                height="320px"
                 style={{ width: "100%" }}
               />
-            </DashbordCardLoading>
+            </DashbordCardLoading>{" "}
           </Col>
-          <Col xs={24} lg={9}>
+          <Col xs={24} lg={12}>
             <DashbordCardLoading
               loading={countLoading}
-              title="Total Accident"
+              title="Total Drowsiness"
               header={
                 <span>
                   <Select
@@ -173,7 +173,7 @@ const DrowsinessStatistics = () => {
             <DashbordCardLoading
               // width="420px"
               loading={timeBarLoading}
-              title="Hour on day"
+              title="Hourly Drowsiness"
               disablePaddingBottom={true}
               header={
                 <div>
@@ -196,7 +196,7 @@ const DrowsinessStatistics = () => {
                 </div>
               }
             >
-              <TimeBarChart data={timeBarData} height="200px" />
+              <TimeBarChart data={timeBarData} height="190px" />
             </DashbordCardLoading>
           </Col>
         </Row>

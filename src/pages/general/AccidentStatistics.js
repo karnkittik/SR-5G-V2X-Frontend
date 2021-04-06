@@ -103,7 +103,7 @@ const AccidentStatistics = () => {
     <Layout>
       <Content className="real-content">
         <Row>
-          <Col xs={24} lg={9}>
+          <Col xs={24} lg={12}>
             <DashbordCardLoading
               loading={calendarLoading}
               title="Heatmap Calendar"
@@ -131,13 +131,13 @@ const AccidentStatistics = () => {
             >
               <HeatMapCalendar
                 data={calendarData}
-                height="220px"
+                height="258px"
                 style={{ width: "100%" }}
               />
             </DashbordCardLoading>
             <DashbordCardLoading
               loading={timeBarLoading}
-              title="Hour on day"
+              title="Hourly Accident"
               // width="420px"
               disablePaddingBottom={true}
               header={
@@ -164,7 +164,7 @@ const AccidentStatistics = () => {
               <TimeBarChart data={timeBarData} height="200px" />
             </DashbordCardLoading>
           </Col>
-          <Col xs={24} lg={9}>
+          <Col xs={24} lg={12}>
             <DashbordCardLoading
               loading={countLoading}
               title="Total Accident"
@@ -224,7 +224,7 @@ const AccidentStatistics = () => {
             </DashbordCardLoading>
             <DashbordCardLoading
               loading={topTenLoading}
-              title="Top 10 Road"
+              title="Top 10 Roads"
               header={
                 <div>
                   <span className="date-label">Year: </span>

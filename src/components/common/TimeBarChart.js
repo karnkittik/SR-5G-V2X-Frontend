@@ -65,7 +65,7 @@ const TimeBarChart = (props) => {
       },
     },
     fill: {
-      colors: [
+      old_colors: [
         function ({ value, seriesIndex, w }) {
           if (value < 5) {
             return "#6AAED6";
@@ -76,6 +76,7 @@ const TimeBarChart = (props) => {
           }
         },
       ],
+      colors: ["#c59c6a"],
     },
     dataLabels: {
       enabled: false,

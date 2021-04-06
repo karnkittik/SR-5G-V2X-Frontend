@@ -99,7 +99,7 @@ const DriverIndivAccident = () => {
               "accident" + record.accident.time + record.accident.username
             }
             pagination={{
-              pageSize: 8,
+              pageSize: 6,
               showTotal: (total) => `Total ${total} items`,
               showSizeChanger: false,
             }}

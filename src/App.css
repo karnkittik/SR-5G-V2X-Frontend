@@ -270,7 +270,11 @@
 .card-title {
   font-size: 16px;
   font-weight: 400;
-  color: #666;
+  /* color: #666; */
+  color: black;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 /*--Date-Picker--*/
 .date-label {
@@ -283,10 +287,25 @@
   border-radius: 50%;
   width: 25px;
   height: 25px;
-  background: #fff;
+  background-color: #fff;
   border: 1px solid #666;
   /* color: #666; */
   text-align: center;
+}
+.numberCircle.rank1 {
+  border: 1px solid rgb(206, 68, 68);
+  background-color: rgb(206, 68, 68);
+  color: white;
+}
+.numberCircle.rank2 {
+  border: 1px solid rgb(218, 118, 118);
+  background-color: rgb(218, 118, 118);
+  color: white;
+}
+.numberCircle.rank3 {
+  border: 1px solid rgb(235, 176, 176);
+  background-color: rgb(235, 176, 176);
+  color: white;
 }
 /*---Count----*/
 .count {

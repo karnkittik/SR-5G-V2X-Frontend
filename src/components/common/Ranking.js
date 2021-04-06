@@ -5,7 +5,9 @@ const Ranking = (props) => {
       title: "No.",
       key: "index",
       render: (value, item, index) => (
-        <div className="numberCircle">{index + 1}</div>
+        <div className={index < 3 ? `numberCircle rank${1}` : ""}>
+          {index + 1}
+        </div>
       ),
       align: "center",
       width: "40px",

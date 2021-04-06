@@ -36,6 +36,7 @@ const AccidentMap = () => {
     let start = dayjs().startOf("hour").unix();
     let end = dayjs().endOf("hour").unix();
     let payload = { start, end };
+    setLoading(true);
     AccidentService.fetchLocationMap(
       payload,
       ({ data }) => {
@@ -52,6 +53,7 @@ const AccidentMap = () => {
       start: dayjs(date[0]).startOf("day").unix(),
       end: dayjs(date[1]).endOf("day").unix(),
     };
+    setLoading(true);
     AccidentService.fetchLocationMap(
       payload,
       ({ data }) => {
@@ -108,7 +110,6 @@ const AccidentMap = () => {
                   checkedChildren={<HeatMapOutlined />}
                   onChange={() => {
                     setHeatMap(!heatMap);
-                    setLoading(true);
                   }}
                 />
               </div>

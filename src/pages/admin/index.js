@@ -85,7 +85,7 @@ const Admin = () => {
       );
     };
     return (
-      <Tooltip placement="bottomLeft" title="Sign Out">
+      <Tooltip placement="bottomLeft" title="Log Out">
         <Button
           type="link"
           size="large"
