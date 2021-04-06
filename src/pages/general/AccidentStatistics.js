@@ -107,7 +107,7 @@ const AccidentStatistics = () => {
             <DashbordCardLoading
               loading={calendarLoading}
               title="Heatmap Calendar"
-              width="420px"
+              // width="420px"
               disablePaddingBottom={true}
               header={
                 <div>
@@ -138,7 +138,7 @@ const AccidentStatistics = () => {
             <DashbordCardLoading
               loading={timeBarLoading}
               title="Hour on day"
-              width="420px"
+              // width="420px"
               disablePaddingBottom={true}
               header={
                 <div>

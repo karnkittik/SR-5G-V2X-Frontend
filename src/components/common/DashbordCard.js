@@ -18,7 +18,7 @@ const DashbordCard = styled.div`
   border-radius: 10px;
   /* border: 1px solid rgba(0, 0, 0, 0.2); */
   &:hover {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.1);
   }
 `;
 export const ContentCard = styled.div`
@@ -98,7 +98,10 @@ export const DashbordCardLoading = (props) => {
       disablePaddingBottom={props.disablePaddingBottom}
     >
       <TitleCard>
-        <div className="card-title">{props.title}</div>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          {props.back}
+          <div className="card-title">{props.title}</div>
+        </div>
         {props.header}
       </TitleCard>
       <Spin spinning={props.loading || false} tip="Loading...">

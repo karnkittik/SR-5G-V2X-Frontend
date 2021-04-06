@@ -81,7 +81,7 @@ const DrowsinessStatistics = () => {
         <Row>
           <Col xs={24} lg={10}>
             <DashbordCardLoading
-              width="420px"
+              // width="420px"
               loading={calendarLoading}
               title="Heatmap Calendar"
               disablePaddingBottom={true}
@@ -171,7 +171,7 @@ const DrowsinessStatistics = () => {
               </div>
             </DashbordCardLoading>
             <DashbordCardLoading
-              width="420px"
+              // width="420px"
               loading={timeBarLoading}
               title="Hour on day"
               disablePaddingBottom={true}

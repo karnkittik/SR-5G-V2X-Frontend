@@ -59,20 +59,15 @@ export const ProfileCar = (props) => {
   ];
 
   return (
-    <ContentCard>
-      <div className="title-card">Profile</div>
-      <Row>
-        <Col xs={24}>
-          <Table
-            columns={columns}
-            dataSource={props.data}
-            rowKey={(record) => record.car_id + "indiv"}
-            pagination={false}
-            loading={props.loading}
-          />
-        </Col>
-      </Row>
-    </ContentCard>
+    <Table
+      columns={columns}
+      dataSource={props.data}
+      rowKey={(record) => record.car_id + "indiv"}
+      pagination={false}
+      size="small"
+      bordered={false}
+      loading={props.loading}
+    />
   );
 };
 const CarIndiv = () => {
@@ -100,44 +95,43 @@ const CarIndiv = () => {
     fetchCar();
   }, [car_id]);
   return (
-    <Layout>
-      <Header className="header">
-        <div className="header-title">Car Information</div>
-        <Button
-          type="text"
-          icon={<ArrowLeftOutlined />}
-          className="car-back-btn"
-          onClick={() => {
-            history.push("/admin/car");
-          }}
-        />
-      </Header>
+    <Layout style={{ height: "100%" }}>
       <Content className="real-content">
-        <Row style={{ height: "100%", backgroundColor: "white" }}>
+        <Row>
           <Col xs={24}>
-            <DashbordCard height="auto">
+            <DashbordCardLoading
+              loading={loading}
+              title="Car Information"
+              back={
+                <Button
+                  type="text"
+                  icon={<ArrowLeftOutlined />}
+                  onClick={() => {
+                    history.push("/admin/car");
+                  }}
+                />
+              }
+            >
               <ProfileCar
                 data={[carData.car ? carData.car : {}]}
                 loading={loading}
               />
-            </DashbordCard>
+            </DashbordCardLoading>
           </Col>
         </Row>
         <Row>
-          <Col xs={12}>
-            <DashbordCardLoading height="auto" loading={loading}>
-              <CountCard
-                title="Accident Count"
-                count={carData.accident_count}
-              />
+          <Col xs={6}>
+            <DashbordCardLoading loading={loading} title="Accident Count">
+              <div className="count">
+                <div>{carData.accident_count}</div>
+              </div>
             </DashbordCardLoading>
           </Col>
-          <Col xs={12}>
-            <DashbordCardLoading height="auto" loading={loading}>
-              <CountCard
-                title="Drowsiness Count"
-                count={carData.drowsiness_count}
-              />
+          <Col xs={6}>
+            <DashbordCardLoading loading={loading} title="Drowsiness Count">
+              <div className="count">
+                <div>{carData.drowsiness_count}</div>
+              </div>
             </DashbordCardLoading>
           </Col>
         </Row>

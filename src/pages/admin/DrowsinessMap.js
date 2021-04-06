@@ -33,9 +33,10 @@ const DrowsinessMap = () => {
     fetchHeatMap(date);
   }, [date, heatMap]);
   const fetchLocationMap = (time) => {
-    let start = dayjs().startOf("hour").unix();
-    let end = dayjs().endOf("hour").unix();
+    let start = dayjs(time).startOf("hour").unix();
+    let end = dayjs(time).endOf("hour").unix();
     let payload = { start, end };
+    setLoading(true);
     DrowsinessService.fetchMap(
       payload,
       ({ data }) => {
@@ -52,6 +53,7 @@ const DrowsinessMap = () => {
       start: dayjs(date[0]).startOf("day").unix(),
       end: dayjs(date[1]).endOf("day").unix(),
     };
+    setLoading(true);
     DrowsinessService.fetchMap(
       payload,
       ({ data }) => {
@@ -108,7 +110,6 @@ const DrowsinessMap = () => {
                   checkedChildren={<HeatMapOutlined />}
                   onChange={() => {
                     setHeatMap(!heatMap);
-                    setLoading(true);
                   }}
                 />
               </div>
