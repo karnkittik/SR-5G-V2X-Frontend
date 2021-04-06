@@ -103,7 +103,7 @@ const AccidentStatistics = () => {
     <Layout>
       <Content className="real-content">
         <Row>
-          <Col xs={24} lg={10}>
+          <Col xs={24} lg={9}>
             <DashbordCardLoading
               loading={calendarLoading}
               title="Heatmap Calendar"
@@ -164,7 +164,7 @@ const AccidentStatistics = () => {
               <TimeBarChart data={timeBarData} height="200px" />
             </DashbordCardLoading>
           </Col>
-          <Col xs={24} lg={8}>
+          <Col xs={24} lg={9}>
             <DashbordCardLoading
               loading={countLoading}
               title="Total Accident"

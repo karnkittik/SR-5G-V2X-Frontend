@@ -79,7 +79,7 @@ const DrowsinessStatistics = () => {
     <Layout>
       <Content className="real-content">
         <Row>
-          <Col xs={24} lg={10}>
+          <Col xs={24} lg={9}>
             <DashbordCardLoading
               // width="420px"
               loading={calendarLoading}
@@ -112,7 +112,7 @@ const DrowsinessStatistics = () => {
               />
             </DashbordCardLoading>
           </Col>
-          <Col xs={24} lg={10}>
+          <Col xs={24} lg={9}>
             <DashbordCardLoading
               loading={countLoading}
               title="Total Accident"
