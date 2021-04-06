@@ -83,54 +83,65 @@ const DriverIndivDrowsiness = () => {
   };
   return (
     <>
-      <Row style={{ height: "100%", backgroundColor: "white" }}>
+      <Row>
         <Col xs={24} lg={11}>
-          <DashbordCard height="auto">
-            <ProfileDriver indiv="drowsiness" />
-          </DashbordCard>
-          <DashbordCardLoading height="auto" loading={drowsinessLoading}>
-            <CountCard
-              title="Average Response Time"
-              // count={drowsinessData[0].response_time}
-              count={
-                drowsinessData.length !== 0
-                  ? `${(
-                      drowsinessData.reduce(
-                        (a, b) => a + b["response_time"],
-                        0
-                      ) / drowsinessData.length
-                    ).toFixed(2)} s`
-                  : "- s"
-              }
-            />
-          </DashbordCardLoading>
-          <DashbordCardLoading loading={timeBarLoading}>
-            <TimeBarChart data={timeBarData} title="Drowsiness on Hour" />
+          <Row>
+            <Col xs={12} lg={12}>
+              <DashbordCardLoading
+                title="Average Time Before First Drowsiness"
+                loading={drowsinessLoading}
+                height="150px"
+              >
+                <div className="count">
+                  <div>
+                    {drowsinessData.avg1stDrivingHour
+                      ? drowsinessData.avg1stDrivingHour.toFixed(2) + " s"
+                      : "-"}
+                  </div>
+                </div>
+              </DashbordCardLoading>
+            </Col>
+            <Col xs={12} lg={12}>
+              <DashbordCardLoading
+                title="Average Response Time"
+                loading={drowsinessLoading}
+                height="150px"
+              >
+                <div className="count">
+                  <div>
+                    {drowsinessData.avgResponse
+                      ? drowsinessData.avgResponse.toFixed(2) + " s"
+                      : "-"}
+                  </div>
+                </div>
+              </DashbordCardLoading>
+            </Col>
+          </Row>
+          <DashbordCardLoading
+            title="Drowsiness on Hour"
+            disablePaddingBottom={true}
+            loading={timeBarLoading}
+          >
+            <TimeBarChart data={timeBarData} height="220px" />
           </DashbordCardLoading>
         </Col>
         <Col xs={24} lg={13}>
-          <DashbordCard height="auto">
-            <ContentCard>
-              <div className="title-card">Records</div>
-              <Row>
-                <Col xs={24}>
-                  <Table
-                    columns={columns}
-                    dataSource={drowsinessData}
-                    loading={drowsinessLoading}
-                    rowKey={(record) =>
-                      "drowsiness" + record.time + record.username
-                    }
-                    pagination={{
-                      pageSize: 6,
-                      showTotal: (total) => `Total ${total} items`,
-                      showSizeChanger: false,
-                    }}
-                  />
-                </Col>
-              </Row>
-            </ContentCard>
-          </DashbordCard>
+          <DashbordCardLoading
+            title="Drowsiness Records"
+            loading={drowsinessLoading}
+          >
+            <Table
+              columns={columns}
+              dataSource={drowsinessData.records}
+              rowKey={(record) => "drowsiness" + record.time + record.username}
+              pagination={{
+                pageSize: 6,
+                showTotal: (total) => `Total ${total} items`,
+                showSizeChanger: false,
+              }}
+              size="small"
+            />
+          </DashbordCardLoading>
         </Col>
       </Row>
     </>

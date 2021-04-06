@@ -76,19 +76,6 @@ const DriverList = () => {
       onFilter: (value, record) => record.gender === value,
       // width: "15%",
     },
-    // {
-    //   title: "Date of Birth",
-    //   key: "dob",
-    //   render: (text, record) => (
-    //     <div>
-    //       {!record.date_of_birth
-    //         ? ""
-    //         : dayjs(record.date_of_birth).format("DD/MM/YYYY")}
-    //     </div>
-    //   ),
-    //   align: "center",
-    //   // width: "15%",
-    // },
     {
       title: "Age",
       key: "age",

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import { Layout, Table, Menu, Button, Row, Col } from "antd";
+import { Layout, Table, Radio, Button, Row, Col } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
-import { ContentCard } from "../../components/common/DashbordCard";
+import { DashbordCardLoading } from "../../components/common/DashbordCard";
 import dayjs from "dayjs";
 import DriverIndivAccident from "./DriverIndivAccident";
 import DriverIndivDrowsiness from "./DriverIndivDrowsiness";
@@ -37,6 +37,19 @@ export const ProfileDriver = (props) => {
       align: "center",
     },
     {
+      title: "Date of Birth",
+      key: "dob",
+      render: (text, record) => (
+        <div>
+          {!record.date_of_birth
+            ? ""
+            : dayjs(record.date_of_birth).format("DD/MM/YYYY")}
+        </div>
+      ),
+      align: "center",
+      // width: "15%",
+    },
+    {
       title: "Age",
       key: "age_profile",
       render: (text, record) => (
@@ -69,60 +82,56 @@ export const ProfileDriver = (props) => {
     );
   };
   return (
-    <ContentCard>
-      <div className="title-card">Profile</div>
-      <Row>
-        <Col xs={24}>
-          <Table
-            columns={columns}
-            dataSource={[driverData]}
-            loading={loading}
-            rowKey={(record) => record.driver_id + "profile"}
-            pagination={false}
-          />
-        </Col>
-      </Row>
-    </ContentCard>
+    <Table
+      columns={columns}
+      dataSource={[driverData]}
+      loading={loading}
+      rowKey={(record) => record.driver_id + "profile"}
+      pagination={false}
+      size="small"
+    />
   );
-};
-const DriverComp = {
-  accident: <DriverIndivAccident />,
-  drowsiness: <DriverIndivDrowsiness />,
 };
 const DriverIndiv = () => {
   let history = useHistory();
-  const [render, updateRender] = useState("accident");
-  const handleClick = (menu) => {
-    updateRender(menu.key);
-  };
+  const [view, setView] = useState("accident");
+  const options = [
+    { label: "Accident", value: "accident" },
+    { label: "Drowsiness", value: "drowsiness" },
+  ];
   return (
-    <Layout>
-      <Header className="header" style={{ paddingRight: "12px" }}>
-        <Menu theme="light" mode="horizontal" defaultSelectedKeys={"accident"}>
-          <Button
-            type="text"
-            icon={<ArrowLeftOutlined />}
-            onClick={() => {
-              history.push("/admin");
-            }}
-          />
-          <Menu.Item
-            key="accident"
-            className="driver-menu"
-            onClick={handleClick}
-          >
-            Accident
-          </Menu.Item>
-          <Menu.Item
-            key="drowsiness"
-            className="driver-menu"
-            onClick={handleClick}
-          >
-            Drowsiness
-          </Menu.Item>
-        </Menu>
-      </Header>
-      <Content className="real-content">{DriverComp[render]}</Content>
+    <Layout style={{ height: "100%" }}>
+      <Content className="real-content">
+        <Row>
+          <Col xs={24}>
+            <DashbordCardLoading
+              title="Driver Information"
+              back={
+                <Button
+                  type="text"
+                  icon={<ArrowLeftOutlined />}
+                  onClick={() => {
+                    history.push("/admin");
+                  }}
+                />
+              }
+              header={
+                <Radio.Group
+                  options={options}
+                  onChange={(e) => setView(e.target.value)}
+                  value={view}
+                  optionType="button"
+                  buttonStyle="solid"
+                />
+              }
+            >
+              <ProfileDriver />
+            </DashbordCardLoading>
+          </Col>
+        </Row>
+        {view === "accident" && <DriverIndivAccident />}
+        {view === "drowsiness" && <DriverIndivDrowsiness />}
+      </Content>
     </Layout>
   );
 };

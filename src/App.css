@@ -49,6 +49,9 @@
   padding-left: 0;
   padding-right: 0;
 }
+.real-content {
+  overflow: auto;
+}
 /* @media only screen and (min-width: 768px) {
   .real-layout {
     padding-left: 200px !important;

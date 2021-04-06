@@ -80,44 +80,34 @@ const DriverIndivAccident = () => {
     );
   };
   return (
-    <>
-      <Row style={{ height: "100%", backgroundColor: "white" }}>
-        <Col xs={24} lg={11}>
-          <DashbordCard height="auto">
-            <ProfileDriver indiv="accident" />
-          </DashbordCard>
-          <DashbordCardLoading loading={timeBarLoading}>
-            <TimeBarChart data={timeBarData} title="Accident on Hour" />
-          </DashbordCardLoading>
-        </Col>
-        <Col xs={24} lg={13}>
-          <DashbordCard height="auto">
-            <ContentCard>
-              <div className="title-card">Records</div>
-              <Row>
-                <Col xs={24}>
-                  <Table
-                    columns={columns}
-                    dataSource={accidentData}
-                    loading={accidentLoading}
-                    rowKey={(record) =>
-                      "accident" +
-                      record.accident.time +
-                      record.accident.username
-                    }
-                    pagination={{
-                      pageSize: 8,
-                      showTotal: (total) => `Total ${total} items`,
-                      showSizeChanger: false,
-                    }}
-                  />
-                </Col>
-              </Row>
-            </ContentCard>
-          </DashbordCard>
-        </Col>
-      </Row>
-    </>
+    <Row>
+      <Col xs={24} lg={11}>
+        <DashbordCardLoading title="Accident on Hour" loading={timeBarLoading}>
+          <TimeBarChart
+            data={timeBarData}
+            disablePaddingBottom={true}
+            height="220px"
+          />
+        </DashbordCardLoading>
+      </Col>
+      <Col xs={24} lg={13}>
+        <DashbordCardLoading title="Accident Records" loading={accidentLoading}>
+          <Table
+            columns={columns}
+            dataSource={accidentData}
+            rowKey={(record) =>
+              "accident" + record.accident.time + record.accident.username
+            }
+            pagination={{
+              pageSize: 8,
+              showTotal: (total) => `Total ${total} items`,
+              showSizeChanger: false,
+            }}
+            size="small"
+          />
+        </DashbordCardLoading>
+      </Col>
+    </Row>
   );
 };
 
