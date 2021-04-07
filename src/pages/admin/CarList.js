@@ -6,7 +6,7 @@ import { EditCarModal } from "../../components/EditCarModal";
 import { useHistory } from "react-router-dom";
 import { CarSerivce } from "../../utils/api";
 import { DashbordCardLoading } from "../../components/common/DashbordCard";
-import { EditOutlined, DeleteTwoTone } from "@ant-design/icons";
+import { EditTwoTone, DeleteTwoTone } from "@ant-design/icons";
 const { Content } = Layout;
 
 const CarList = () => {
@@ -20,6 +20,10 @@ const CarList = () => {
       key: "vehicle_registration_number",
       width: "25%",
       align: "center",
+      sorter: (a, b) =>
+        a.vehicle_registration_number.localeCompare(
+          b.vehicle_registration_number
+        ),
     },
     {
       title: "Car Detail",
@@ -40,6 +44,7 @@ const CarList = () => {
         <div>{dayjs(record.registered_at).format("DD/MM/YYYY")}</div>
       ),
       align: "center",
+      sorter: (a, b) => dayjs(a.registered_at) - dayjs(b.registered_at),
     },
     {
       title: "Mfg Date",
@@ -48,6 +53,7 @@ const CarList = () => {
         <div>{dayjs(record.mfg_at).format("DD/MM/YYYY")}</div>
       ),
       align: "center",
+      sorter: (a, b) => dayjs(a.mfg_at) - dayjs(b.mfg_at),
     },
     {
       title: "Car Age",
@@ -56,6 +62,9 @@ const CarList = () => {
         <div>{dayjs().from(dayjs(record.mfg_at)).substr(3)}</div>
       ),
       align: "center",
+      sorter: (a, b) =>
+        parseInt(dayjs().from(dayjs(a.date_of_birth)).substr(3).split(" ")[0]) -
+        parseInt(dayjs().from(dayjs(b.date_of_birth)).substr(3).split(" ")[0]),
     },
     {
       title: "Action",
@@ -67,7 +76,7 @@ const CarList = () => {
         carData.length >= 1 ? (
           <span>
             <EditCarModal
-              icon={<EditOutlined />}
+              icon={<EditTwoTone twoToneColor="#5272c2" />}
               initialValues={record}
               setLoading={setLoading}
               refresh={refreshEdit}
@@ -127,6 +136,7 @@ const CarList = () => {
     <Layout style={{ height: "100%" }}>
       <Content className="children-page-content">
         <DashbordCardLoading
+          notHideTitle={true}
           loading={loading}
           title="Car List"
           width="calc(100% - 20px)"
@@ -152,6 +162,8 @@ const CarList = () => {
                 },
               };
             }}
+            scroll={{ x: 768 }}
+            showSorterTooltip={false}
           />
         </DashbordCardLoading>
       </Content>

@@ -23,6 +23,8 @@ export const ProfileDriver = (props) => {
         </div>
       ),
       align: "center",
+      fixed: "left",
+      width: "100px",
     },
     {
       title: "Username",
@@ -89,6 +91,7 @@ export const ProfileDriver = (props) => {
       rowKey={(record) => record.driver_id + "profile"}
       pagination={false}
       size="small"
+      scroll={{ x: 768 }}
     />
   );
 };

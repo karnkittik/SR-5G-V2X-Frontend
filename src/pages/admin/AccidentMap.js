@@ -86,7 +86,7 @@ const AccidentMap = () => {
                     }}
                     bordered={false}
                     size="small"
-                    style={{ width: "240px" }}
+                    style={{ width: "230px" }}
                     disabledDate={(current) => {
                       return current && current > dayjs().endOf("day");
                     }}

@@ -100,7 +100,11 @@ export const DashbordCardLoading = (props) => {
       <TitleCard>
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           {props.back}
-          <div className="card-title">{props.title}</div>
+          <div
+            className={"card-title" + (props.notHideTitle ? "" : " withHeader")}
+          >
+            {props.title}
+          </div>
         </div>
         {props.header}
       </TitleCard>

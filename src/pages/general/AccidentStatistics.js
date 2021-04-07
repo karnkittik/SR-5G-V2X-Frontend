@@ -107,7 +107,7 @@ const AccidentStatistics = () => {
             <DashbordCardLoading
               loading={calendarLoading}
               title="Heatmap Calendar"
-              // width="420px"
+              notHideTitle={true}
               disablePaddingBottom={true}
               header={
                 <div>
@@ -153,7 +153,7 @@ const AccidentStatistics = () => {
                     }}
                     bordered={false}
                     size="small"
-                    style={{ width: "240px" }}
+                    style={{ width: "230px" }}
                     disabledDate={(current) => {
                       return current && current > dayjs().endOf("day");
                     }}
@@ -167,7 +167,8 @@ const AccidentStatistics = () => {
           <Col xs={24} lg={12}>
             <DashbordCardLoading
               loading={countLoading}
-              title="Total Accident"
+              notHideTitle={true}
+              title="Total Count"
               header={
                 <span>
                   <Select
@@ -224,6 +225,7 @@ const AccidentStatistics = () => {
             </DashbordCardLoading>
             <DashbordCardLoading
               loading={topTenLoading}
+              notHideTitle={true}
               title="Top 10 Roads"
               header={
                 <div>

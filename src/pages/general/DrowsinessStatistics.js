@@ -81,7 +81,7 @@ const DrowsinessStatistics = () => {
         <Row>
           <Col xs={24} lg={12}>
             <DashbordCardLoading
-              // width="420px"
+              notHideTitle={true}
               loading={calendarLoading}
               title="Heatmap Calendar"
               disablePaddingBottom={true}
@@ -115,7 +115,8 @@ const DrowsinessStatistics = () => {
           <Col xs={24} lg={12}>
             <DashbordCardLoading
               loading={countLoading}
-              title="Total Drowsiness"
+              notHideTitle={true}
+              title="Total Count"
               header={
                 <span>
                   <Select
@@ -188,7 +189,7 @@ const DrowsinessStatistics = () => {
                     }}
                     bordered={false}
                     size="small"
-                    style={{ width: "240px" }}
+                    style={{ width: "230px" }}
                     disabledDate={(current) => {
                       return current && current > dayjs().endOf("day");
                     }}

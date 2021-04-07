@@ -67,6 +67,7 @@ export const ProfileCar = (props) => {
       size="small"
       bordered={false}
       loading={props.loading}
+      scroll={{ x: 768 }}
     />
   );
 };
@@ -101,6 +102,7 @@ const CarIndiv = () => {
           <Col xs={24}>
             <DashbordCardLoading
               loading={loading}
+              notHideTitle={true}
               title="Car Information"
               back={
                 <Button
@@ -120,15 +122,23 @@ const CarIndiv = () => {
           </Col>
         </Row>
         <Row>
-          <Col xs={6}>
-            <DashbordCardLoading loading={loading} title="Accident Count">
+          <Col xs={12}>
+            <DashbordCardLoading
+              notHideTitle={true}
+              loading={loading}
+              title="Accident Count"
+            >
               <div className="count">
                 <div>{carData.accident_count}</div>
               </div>
             </DashbordCardLoading>
           </Col>
-          <Col xs={6}>
-            <DashbordCardLoading loading={loading} title="Drowsiness Count">
+          <Col xs={12}>
+            <DashbordCardLoading
+              notHideTitle={true}
+              loading={loading}
+              title="Drowsiness Count"
+            >
               <div className="count">
                 <div>{carData.drowsiness_count}</div>
               </div>

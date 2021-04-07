@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Layout, Table, Popconfirm, Checkbox, Button, Tooltip } from "antd";
-import { DeleteTwoTone, EditOutlined } from "@ant-design/icons";
+import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { useHistory } from "react-router-dom";
 import { AddDriverModal } from "../../components/AddDriverModal";
@@ -27,9 +27,8 @@ const DriverList = () => {
       title: "No.",
       key: "index",
       render: (value, item, index) => index + 1,
-      fixed: "left",
       align: "center",
-      width: "70px",
+      width: "50px",
     },
     {
       title: "Name",
@@ -46,7 +45,6 @@ const DriverList = () => {
         `${a.firstname} ${a.lastname}`.localeCompare(
           `${b.firstname} ${b.lastname}`
         ),
-      fixed: "left",
       // width: "25%",
     },
     {
@@ -138,7 +136,7 @@ const DriverList = () => {
         driverData.length >= 1 ? (
           <span>
             <EditDriverModal
-              icon={<EditOutlined />}
+              icon={<EditTwoTone twoToneColor="#5272c2" />}
               initialValues={record}
               setLoading={setLoading}
               refresh={refreshEdit}
@@ -216,7 +214,13 @@ const DriverList = () => {
           height="calc(100vh - 70px)"
           disablePaddingBottom={true}
           header={
-            <span>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
               <Checkbox.Group
                 options={options}
                 defaultValue={[]}
@@ -227,7 +231,7 @@ const DriverList = () => {
                 refresh={fetchAllDriver}
                 setLoading={setLoading}
               />
-            </span>
+            </div>
           }
         >
           <Table
@@ -248,7 +252,7 @@ const DriverList = () => {
                 },
               };
             }}
-            scroll={{ x: 720 }}
+            scroll={{ x: 768 }}
             showSorterTooltip={false}
           />
         </DashbordCardLoading>

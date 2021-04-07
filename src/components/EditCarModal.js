@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Modal, Form, Input, DatePicker, Alert } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { CarSerivce } from "../utils/api";
@@ -42,6 +42,9 @@ const CarForm = ({
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [successful, setSuccessful] = useState(false);
   const [failed, setFailed] = useState(false);
+  useEffect(() => {
+    form.resetFields();
+  }, [form, visible]);
   const onEdit = (values) => {
     setConfirmLoading(true);
     setLoading(true);
@@ -52,7 +55,6 @@ const CarForm = ({
         console.log(data);
         setConfirmLoading(false);
         setSuccessful(true);
-        form.resetFields();
         setTimeout(() => {
           setVisible(false);
           refresh(car_id, values);

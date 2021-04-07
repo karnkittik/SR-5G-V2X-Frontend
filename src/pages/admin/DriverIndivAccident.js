@@ -82,7 +82,11 @@ const DriverIndivAccident = () => {
   return (
     <Row>
       <Col xs={24} lg={11}>
-        <DashbordCardLoading title="Accident on Hour" loading={timeBarLoading}>
+        <DashbordCardLoading
+          notHideTitle={true}
+          title="Accident on Hour"
+          loading={timeBarLoading}
+        >
           <TimeBarChart
             data={timeBarData}
             disablePaddingBottom={true}
@@ -91,7 +95,11 @@ const DriverIndivAccident = () => {
         </DashbordCardLoading>
       </Col>
       <Col xs={24} lg={13}>
-        <DashbordCardLoading title="Accident Records" loading={accidentLoading}>
+        <DashbordCardLoading
+          notHideTitle={true}
+          title="Accident Records"
+          loading={accidentLoading}
+        >
           <Table
             columns={columns}
             dataSource={accidentData}
@@ -104,6 +112,7 @@ const DriverIndivAccident = () => {
               showSizeChanger: false,
             }}
             size="small"
+            scroll={{ x: 768 }}
           />
         </DashbordCardLoading>
       </Col>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Modal, Form, Input, Select, DatePicker, Alert } from "antd";
 import { UserAddOutlined } from "@ant-design/icons";
 import { DriverService } from "../utils/api";
@@ -48,6 +48,9 @@ const DriverForm = ({
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [successful, setSuccessful] = useState(false);
   const [failed, setFailed] = useState(false);
+  useEffect(() => {
+    form.resetFields();
+  }, [form, visible]);
   const onEdit = (values) => {
     values.date_of_birth = values.date_of_birth.$d;
     setConfirmLoading(true);
@@ -59,7 +62,6 @@ const DriverForm = ({
         console.log(data);
         setConfirmLoading(false);
         setSuccessful(true);
-        form.resetFields();
         setTimeout(() => {
           setVisible(false);
           refresh(driver_id, values);

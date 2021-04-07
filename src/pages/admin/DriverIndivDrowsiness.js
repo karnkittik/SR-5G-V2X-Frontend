@@ -88,7 +88,8 @@ const DriverIndivDrowsiness = () => {
           <Row>
             <Col xs={12} lg={12}>
               <DashbordCardLoading
-                title="Avg Time for 1st Drowsiness"
+                title="Avg 1st Time"
+                notHideTitle={true}
                 loading={drowsinessLoading}
               >
                 <div className="count">
@@ -102,6 +103,7 @@ const DriverIndivDrowsiness = () => {
             </Col>
             <Col xs={12} lg={12}>
               <DashbordCardLoading
+                notHideTitle={true}
                 title="Avg Response Time"
                 loading={drowsinessLoading}
               >
@@ -116,6 +118,7 @@ const DriverIndivDrowsiness = () => {
             </Col>
           </Row>
           <DashbordCardLoading
+            notHideTitle={true}
             title="Hourly Drowsiness"
             disablePaddingBottom={true}
             loading={timeBarLoading}
@@ -125,6 +128,7 @@ const DriverIndivDrowsiness = () => {
         </Col>
         <Col xs={24} lg={13}>
           <DashbordCardLoading
+            notHideTitle={true}
             title="Drowsiness Records"
             loading={drowsinessLoading}
           >
@@ -138,6 +142,7 @@ const DriverIndivDrowsiness = () => {
                 showSizeChanger: false,
               }}
               size="small"
+              scroll={{ x: 768 }}
             />
           </DashbordCardLoading>
         </Col>
