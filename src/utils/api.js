@@ -75,7 +75,7 @@ export const AccidentService = {
   },
   fetchMap: ({ start, end }, callback, onRejected) => {
     authApi
-      .get(`/accident/map/?start=${start}&end=${end}`)
+      .get(`/accident/map?start=${start}&end=${end}`)
       .then(({ data }) => callback(data))
       .catch((response) => {
         onRejected(response.response ? response.response.data : response);
@@ -122,7 +122,7 @@ export const DrowsinessService = {
   },
   fetchMap: ({ start, end }, callback, onRejected) => {
     authApi
-      .get(`/drowsiness/map/?start=${start}&end=${end}`)
+      .get(`/drowsiness/map?start=${start}&end=${end}`)
       .then(({ data }) => callback(data))
       .catch((response) => {
         onRejected(response.response ? response.response.data : response);
