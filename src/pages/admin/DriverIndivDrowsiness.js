@@ -95,7 +95,14 @@ const DriverIndivDrowsiness = () => {
                 <div className="count">
                   <div>
                     {drowsinessData.avg1stDrivingHour
-                      ? drowsinessData.avg1stDrivingHour.toFixed(2) + " s"
+                      ? Math.floor(drowsinessData.avg1stDrivingHour) +
+                        "hr " +
+                        Math.floor(
+                          (drowsinessData.avg1stDrivingHour -
+                            Math.floor(drowsinessData.avg1stDrivingHour)) *
+                            60
+                        ) +
+                        "min"
                       : "-"}
                   </div>
                 </div>
@@ -137,12 +144,12 @@ const DriverIndivDrowsiness = () => {
               dataSource={drowsinessData.records}
               rowKey={(record) => "drowsiness" + record.time + record.username}
               pagination={{
-                pageSize: 6,
+                pageSize: 5,
                 showTotal: (total) => `Total ${total} items`,
                 showSizeChanger: false,
               }}
               size="small"
-              scroll={{ x: 768 }}
+              scroll={{ x: 568 }}
             />
           </DashbordCardLoading>
         </Col>

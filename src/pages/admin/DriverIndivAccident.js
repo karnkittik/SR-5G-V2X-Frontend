@@ -112,7 +112,7 @@ const DriverIndivAccident = () => {
               showSizeChanger: false,
             }}
             size="small"
-            scroll={{ x: 768 }}
+            scroll={{ x: 568 }}
           />
         </DashbordCardLoading>
       </Col>

@@ -39,50 +39,6 @@ const HeatMapCalendar = (props) => (
           radius: 0,
           useFillColorAsStroke: false,
           colorScale: {
-            // ranges1: [
-            //   {
-            //     from: 0,
-            //     to: 0,
-            //     name: "none",
-            //     color: "#2066AC",
-            //   },
-            //   {
-            //     from: 1,
-            //     to: 5,
-            //     name: "1-5",
-            //     color: "#66A9CE",
-            //   },
-            //   {
-            //     from: 6,
-            //     to: 20,
-            //     name: "6-20",
-            //     color: "#D2E4F0",
-            //   },
-            //   {
-            //     from: 21,
-            //     to: 35,
-            //     name: "21-35",
-            //     color: "#F7F7F7",
-            //   },
-            //   {
-            //     from: 36,
-            //     to: 50,
-            //     name: "36-50",
-            //     color: "#FDDBC7",
-            //   },
-            //   {
-            //     from: 51,
-            //     to: 70,
-            //     name: "51-70",
-            //     color: "#EF8B62",
-            //   },
-            //   {
-            //     from: 71,
-            //     to: 100,
-            //     name: "71-100",
-            //     color: "#B2172B",
-            //   },
-            // ],
             ranges: [
               {
                 from: 0,
@@ -137,54 +93,23 @@ const HeatMapCalendar = (props) => (
             fontWeight: "inherit",
           },
           title: {
-            formatter: (seriesName) => `${seriesName}: 
-          count`,
+            formatter: (seriesName) => `${seriesName}:
+          Count`,
+          },
+        },
+        x: {
+          formatter: function (val, opts) {
+            return ordinalSuffix(val);
           },
         },
       },
       title: {
-        // text: props.title,
         text: undefined,
         style: {
           align: "center",
           fontSize: "18px",
           fontWeight: 400,
           color: "#666",
-        },
-      },
-      xaxis: {
-        // tickAmount: 16,
-        tickPlacement: "on",
-        tooltip: {
-          enabled: true,
-          formatter: function (val, opts) {
-            return ordinalSuffix(val);
-          },
-          offsetY: 0,
-        },
-        labels: {
-          rotate: 0,
-          rotateAlways: false,
-          offsetX: 0,
-          offsetY: 0,
-        },
-      },
-      yaxis: {
-        labels: {
-          show: true,
-          align: "right",
-          minWidth: 10,
-          maxWidth: 160,
-          style: {
-            colors: [],
-            height: "10px",
-          },
-          offsetX: 0,
-          offsetY: 0,
-          rotate: 0,
-          formatter: (value) => {
-            return value;
-          },
         },
       },
       zoom: {

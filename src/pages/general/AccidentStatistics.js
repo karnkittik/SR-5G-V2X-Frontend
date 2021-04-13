@@ -129,11 +129,15 @@ const AccidentStatistics = () => {
                 </div>
               }
             >
-              <HeatMapCalendar
-                data={calendarData}
-                height="258px"
-                style={{ width: "100%" }}
-              />
+              {calendarLoading ? (
+                <div style={{ height: "258px" }}></div>
+              ) : (
+                <HeatMapCalendar
+                  data={calendarData || []}
+                  height="258px"
+                  style={{ width: "100%" }}
+                />
+              )}
             </DashbordCardLoading>
             <DashbordCardLoading
               loading={timeBarLoading}

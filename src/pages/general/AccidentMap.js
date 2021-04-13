@@ -94,7 +94,7 @@ const AccidentMap = () => {
                 </span>
               ) : (
                 <span>
-                  <span className="date-label">Hour: </span>
+                  <span className="date-label">Today: </span>
                   <DateTimeTypePicker
                     n={n}
                     setTime={setTime}
