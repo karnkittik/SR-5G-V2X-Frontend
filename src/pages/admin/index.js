@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Badge, Tooltip, Button } from "antd";
+import { Layout, Tag, Tooltip, Button } from "antd";
 import Sider from "../../components/common/Sider";
 import {
   LogoutOutlined,
@@ -68,8 +68,10 @@ const Admin = () => {
   const pageIndex = pageListGroup.map((group) => group.pageList.length);
   const Logo = () => (
     <>
-      {/* <Badge.Ribbon text="admin" placement="end" color="gold"></Badge.Ribbon>  */}
       <div className="sider-weblogo admin">5G-V2X</div>
+      <Tag color="#faad14" style={{ margin: "0", fontWeight: "700" }}>
+        admin
+      </Tag>
     </>
   );
   const SignOutButton = () => {

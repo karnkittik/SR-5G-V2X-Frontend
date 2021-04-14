@@ -101,7 +101,6 @@ const CarIndiv = () => {
         <Row>
           <Col xs={24}>
             <DashbordCardLoading
-              loading={loading}
               notHideTitle={true}
               title="Car Information"
               back={
@@ -129,7 +128,7 @@ const CarIndiv = () => {
               title="Accident Count"
             >
               <div className="count">
-                <div>{carData.accident_count}</div>
+                <div>{carData.accident_count || 0}</div>
               </div>
             </DashbordCardLoading>
           </Col>
@@ -140,7 +139,7 @@ const CarIndiv = () => {
               title="Drowsiness Count"
             >
               <div className="count">
-                <div>{carData.drowsiness_count}</div>
+                <div>{carData.drowsiness_count || 0}</div>
               </div>
             </DashbordCardLoading>
           </Col>

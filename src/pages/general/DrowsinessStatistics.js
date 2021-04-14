@@ -105,11 +105,15 @@ const DrowsinessStatistics = () => {
                 </div>
               }
             >
-              <HeatMapCalendar
-                data={calendarData}
-                height="320px"
-                style={{ width: "100%" }}
-              />
+              {calendarLoading ? (
+                <div style={{ height: "320px" }}></div>
+              ) : (
+                <HeatMapCalendar
+                  data={calendarData}
+                  height="320px"
+                  style={{ width: "100%" }}
+                />
+              )}
             </DashbordCardLoading>{" "}
           </Col>
           <Col xs={24} lg={12}>
