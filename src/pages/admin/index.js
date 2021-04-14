@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Tag, Tooltip, Button } from "antd";
+import { Layout, Tag, Tooltip, Button, Badge } from "antd";
 import Sider from "../../components/common/Sider";
 import {
   LogoutOutlined,
@@ -9,9 +9,13 @@ import {
   CarOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
+  BarChartOutlined,
+  StarFilled,
 } from "@ant-design/icons";
 import AccidentMap from "./AccidentMap";
 import DrowsinessMap from "./DrowsinessMap";
+import AccidentStatistics from "../general/AccidentStatistics";
+import DrowsinessStatistics from "../general/DrowsinessStatistics";
 import Driver from "./Driver";
 import Car from "./Car";
 import { AuthService } from "../../utils/api";
@@ -21,30 +25,42 @@ const { Content, Header } = Layout;
 const Admin = () => {
   const pageListGroup = [
     {
-      name: "Overview",
+      name: "Accident",
       pageList: [
         {
           title: "Accident Map",
-          short: "Accident Map",
+          short: "Map",
           component: <AccidentMap />,
           icon: <ExclamationCircleOutlined />,
         },
         {
+          title: "Accident Statistics",
+          short: "Statistics",
+          component: <AccidentStatistics />,
+          icon: <BarChartOutlined />,
+        },
+      ],
+    },
+    {
+      name: "Drowsiness",
+      pageList: [
+        {
           title: "Drowsiness Map",
-          short: "Drowsiness Map",
+          short: "Map",
           component: <DrowsinessMap />,
           icon: <EyeOutlined />,
+        },
+        {
+          title: "Drowsiness Statistics",
+          short: "Statistics",
+          component: <DrowsinessStatistics />,
+          icon: <BarChartOutlined />,
         },
       ],
     },
     {
       name: "Driver",
       pageList: [
-        // {
-        //   title: "Driver Statistics",
-        //   component: <DriverStatistics />,
-        //   icon: <BarChartOutlined />,
-        // },
         {
           title: "Drivers",
           short: "Drivers",
@@ -66,13 +82,38 @@ const Admin = () => {
     },
   ];
   const pageIndex = pageListGroup.map((group) => group.pageList.length);
-  const Logo = () => (
-    <>
-      <div className="sider-weblogo admin">5G-V2X</div>
-      <Tag color="#faad14" style={{ margin: "0", fontWeight: "700" }}>
+  const Logo = (props) => (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      {props.hideLogo && (
+        <Badge
+          count={<StarFilled style={{ color: "#faad14" }} />}
+          className="hideOnDesktop"
+        >
+          <div className="sider-weblogo admin">5G-V2X</div>
+        </Badge>
+      )}
+      <div
+        className={
+          "sider-weblogo admin" + (props.hideLogo ? " hideOnMobile" : "")
+        }
+      >
+        5G-V2X
+      </div>
+      <Tag
+        color="#faad14"
+        style={{ margin: "0", fontWeight: "700" }}
+        className={props.hideLogo ? " hideOnMobile" : ""}
+      >
         admin
       </Tag>
-    </>
+    </div>
   );
   const SignOutButton = () => {
     const signOut = () => {
@@ -178,8 +219,11 @@ const Admin = () => {
                 style: { width: "60px", fontSize: "18px" },
               }
             )}
-            <div className="header-title">
+            <div className="header-title hideOnMobile">
               {pageListGroup[firstIndex].pageList[secondIndex].title}
+            </div>
+            <div className="header-title hideOnDesktop">
+              {pageListGroup[firstIndex].name}
             </div>
           </div>
           <div
@@ -190,8 +234,10 @@ const Admin = () => {
               width: "auto",
             }}
           >
-            <Logo />
-            <SignOutButton />
+            <Logo hideLogo={true} />
+            <div style={{ height: "100%", paddingTop: "2px" }}>
+              <SignOutButton />
+            </div>
           </div>
         </Header>
         <Layout className="full ">

@@ -19,7 +19,7 @@ const Drawer = (props) => {
       visible={visible}
       logo={logo}
       className="hideOnDesktop sider"
-      bodyStyle={{ padding: "10vh 0" }}
+      bodyStyle={{ padding: "10vh 0", overflow: "hidden" }}
     >
       <div style={{ width: "100%", textAlign: "center" }}>{logo}</div>
       <div style={{ height: "80px" }}></div>

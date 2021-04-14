@@ -59,8 +59,8 @@
   }
 } */
 @media only screen and (max-width: 768px) {
-  .real-content {
-    /* padding: 10px; */
+  .header-title {
+    padding: 0;
   }
 }
 .children-page-content {
@@ -81,7 +81,7 @@
 
 /*---- Sider ----*/
 .sider-weblogo {
-  padding: 10px 0;
+  /* padding: 10px 0; */
   margin: 0 10px;
   width: auto;
   font-size: 24px;
@@ -251,20 +251,20 @@
 }
 
 .hideOnMobile {
-  display: none;
+  display: none !important;
 }
 @media only screen and (min-width: 768px) {
   .hideOnMobile {
-    display: block;
+    display: block !important;
   }
 }
 
 .hideOnDesktop {
-  display: block;
+  display: block !important;
 }
 @media only screen and (min-width: 768px) {
   .hideOnDesktop {
-    display: none;
+    display: none !important;
   }
 }
 /*-----*/
@@ -282,6 +282,9 @@
 @media only screen and (max-width: 768px) {
   .card-title.withHeader {
     display: none;
+  }
+  .hideLogo {
+    display: none !important;
   }
 }
 /*--Date-Picker--*/
