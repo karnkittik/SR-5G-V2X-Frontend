@@ -153,6 +153,7 @@ const DriverForm = ({ visible, setVisible, refresh, setLoading }) => {
           <DatePicker
             style={{ width: "100%" }}
             popupStyle={{ zIndex: "9999" }}
+            defaultPickerValue={dayjs().subtract(18, "year")}
             disabledDate={disabledDate}
           />
         </Form.Item>
