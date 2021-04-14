@@ -76,7 +76,7 @@ const DrowsinessStatistics = () => {
     );
   };
   return (
-    <Layout>
+    <Layout style={{ height: "100%" }}>
       <Content className="real-content">
         <Row>
           <Col xs={24} lg={12}>
