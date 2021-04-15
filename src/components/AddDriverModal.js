@@ -155,6 +155,7 @@ const DriverForm = ({ visible, setVisible, refresh, setLoading }) => {
             popupStyle={{ zIndex: "9999" }}
             defaultPickerValue={dayjs().subtract(18, "year")}
             disabledDate={disabledDate}
+            inputReadOnly={true}
           />
         </Form.Item>
         <Form.Item

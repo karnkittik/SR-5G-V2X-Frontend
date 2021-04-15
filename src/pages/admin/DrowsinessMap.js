@@ -90,6 +90,7 @@ const DrowsinessMap = () => {
                     disabledDate={(current) => {
                       return current && current > dayjs().endOf("day");
                     }}
+                    inputReadOnly={true}
                   />
                 </span>
               ) : (

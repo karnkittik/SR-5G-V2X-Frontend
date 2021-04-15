@@ -55,3 +55,8 @@ thead[class*="ant-table-thead"] th {
   max-width: 60px !important;
   flex: 0 0 60px !important;
 }
+.ant-picker-panel-container {
+  overflow: auto;
+  max-width: calc(100vw - 10px);
+  margin: 0 5px !important;
+}
