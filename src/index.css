@@ -1,13 +1,62 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* -moz-osx-font-smoothing: grayscale;
+  font-family: "Kanit", sans-serif;
+  font-family: "Roboto", sans-serif; */
+  height: 100%;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.ant-layout-sider-zero-width-trigger {
+  position: absolute;
+  top: 12px;
+  left: 0px;
+  z-index: 9999;
+}
+.ant-layout-sider-children {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.apexcharts-tooltip {
+  background: white;
+}
+thead[class*="ant-table-thead"] th {
+  background-color: #e9e9e9 !important;
+  /* color: white !important; */
+  font-size: 16px;
+  font-weight: 500;
+}
+/*---------- Car ------------*/
+.car-back-btn {
+  position: absolute !important;
+  top: 16px !important;
+}
+/*---------- Test ------------*/
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
+.ant-menu-inline-collapsed {
+  width: 60px;
+}
+.ant-layout-sider-collapsed {
+  width: 60px !important;
+  min-width: 60px !important;
+  max-width: 60px !important;
+  flex: 0 0 60px !important;
+}
+.ant-picker-panel-container {
+  overflow: auto;
+  max-width: calc(100vw - 10px);
+  margin: 0 5px !important;
 }

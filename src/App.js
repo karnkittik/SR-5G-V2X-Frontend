@@ -1,41 +1,91 @@
-import React, { useState } from "react";
-import { Layout } from "antd";
-import Sider from "./Sider";
-import "./App.less";
+import React, { useState, useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
+import "./App.css";
+import General from "./pages/general/index";
+import Admin from "./pages/admin/index";
+import LogInPage from "./pages/admin/LogIn";
+import styled from "styled-components";
+import { AuthService } from "./utils/api";
+import Loading from "./pages/admin/Loading";
+import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.extend(relativeTime);
+dayjs.tz.setDefault("Asia/Bangkok");
 
-const { Content } = Layout;
 const App = () => {
-  const style = {
-    fontSize: "30px",
-    height: "100%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    margin: "10px 0",
-  };
-
-  const components = {
-    1: <div style={style}>อุบัติเหตุทั้งหมด</div>,
-    2: <div style={style}>อาการง่วงนอนทั้งหมด</div>,
-    3: <div style={style}>ภาพรวมอุบัติเหตุ</div>,
-    4: <div style={style}>ภาพรวมอุบัติเหตุรายวัน</div>,
-  };
-
-  const [render, updateRender] = useState(1);
-
-  const handleMenuClick = (menu) => {
-    updateRender(menu.key);
-  };
-
+  const [islogin, setIsLogin] = useState(false);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(true);
+    AuthService.getProfile(
+      ({ data }) => {
+        setIsLogin(true);
+        setLoading(false);
+        console.log(data);
+      },
+      (response) => {
+        setIsLogin(false);
+        setLoading(false);
+        console.log(response.message);
+      }
+    );
+  }, [islogin]);
   return (
-    <div className="App">
-      <Layout style={{ minHeight: "100vh" }}>
-        <Sider handleClick={handleMenuClick} />
-        <Layout>
-          <Content>{components[render]}</Content>
-        </Layout>
-      </Layout>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <General />
+        </Route>
+        <Route
+          path="/admin"
+          exact
+          render={(props) =>
+            loading ? (
+              <Loading />
+            ) : !islogin ? (
+              <Redirect to="/login" />
+            ) : (
+              <Admin />
+            )
+          }
+        />
+        <Route
+          path="/login"
+          exact
+          render={(props) => {
+            return islogin ? <Redirect to="/admin" /> : <LogInPage />;
+          }}
+        />
+        <Route
+          path="/admin"
+          render={(props) => {
+            return !islogin ? <LogInPage /> : <Redirect to="/admin" />;
+          }}
+        />
+        <Route path="*">
+          <NotFound />
+        </Route>
+      </Switch>
+    </Router>
   );
+};
+const FullPage = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  height: calc(var(--vh, 1vh) * 100);
+`;
+const NotFound = () => {
+  return <FullPage>404: Page Not Found</FullPage>;
 };
 export default App;
