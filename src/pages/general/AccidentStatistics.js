@@ -142,9 +142,10 @@ const AccidentStatistics = () => {
             </DashbordCardLoading>
             <DashbordCardLoading
               loading={timeBarLoading}
-              title="Hourly Accident"
+              title="Hourly"
               // width="420px"
               disablePaddingBottom={true}
+              notHideTitle={true}
               header={
                 <div>
                   <span className="date-label">Date: </span>

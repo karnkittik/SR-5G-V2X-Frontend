@@ -188,7 +188,8 @@ const DrowsinessStatistics = () => {
             <DashbordCardLoading
               // width="420px"
               loading={timeBarLoading}
-              title="Hourly Drowsiness"
+              notHideTitle={true}
+              title="Hourly"
               disablePaddingBottom={true}
               header={
                 <div>
