@@ -104,6 +104,9 @@
     height: 160px;
   }
 }
+.drawer {
+  height: calc(var(--vh, 1vh) * 100);
+}
 .sider {
   height: calc(var(--vh, 1vh) * 100 - 48px);
   /* position: fixed !important;
