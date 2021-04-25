@@ -128,7 +128,7 @@ const CarIndiv = () => {
               title="Accident Count"
             >
               <div className="count">
-                <div>{carData.accident_count || 0}</div>
+                <div>{carData.accident_count || "0"}</div>
               </div>
             </DashbordCardLoading>
           </Col>
@@ -139,7 +139,7 @@ const CarIndiv = () => {
               title="Drowsiness Count"
             >
               <div className="count">
-                <div>{carData.drowsiness_count || 0}</div>
+                <div>{carData.drowsiness_count || "0"}</div>
               </div>
             </DashbordCardLoading>
           </Col>

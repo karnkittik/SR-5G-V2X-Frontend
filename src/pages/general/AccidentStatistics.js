@@ -125,6 +125,7 @@ const AccidentStatistics = () => {
                       return current && current > dayjs().endOf("year");
                     }}
                     bordered={false}
+                    inputReadOnly={true}
                   />
                 </div>
               }
@@ -141,9 +142,10 @@ const AccidentStatistics = () => {
             </DashbordCardLoading>
             <DashbordCardLoading
               loading={timeBarLoading}
-              title="Hourly Accident"
+              title="Hourly"
               // width="420px"
               disablePaddingBottom={true}
+              notHideTitle={true}
               header={
                 <div>
                   <span className="date-label">Date: </span>
@@ -161,6 +163,7 @@ const AccidentStatistics = () => {
                     disabledDate={(current) => {
                       return current && current > dayjs().endOf("day");
                     }}
+                    inputReadOnly={true}
                   />
                 </div>
               }
@@ -179,7 +182,14 @@ const AccidentStatistics = () => {
                     value={type}
                     onChange={setType}
                     bordered={false}
-                    style={{ width: "90px" }}
+                    style={{
+                      width:
+                        type === "quarter"
+                          ? "95px"
+                          : type === "year" || type === "date"
+                          ? "75px"
+                          : "90px",
+                    }}
                   >
                     <Option value="date">Date</Option>
                     <Option value="week">Week</Option>
@@ -198,6 +208,7 @@ const AccidentStatistics = () => {
                       }}
                       allowClear={false}
                       style={{ width: "120px" }}
+                      inputReadOnly={true}
                     />
                   ) : (
                     <DatePicker
@@ -218,6 +229,7 @@ const AccidentStatistics = () => {
                         return current && current > dayjs().endOf(type);
                       }}
                       allowClear={false}
+                      inputReadOnly={true}
                     />
                   )}
                 </span>
@@ -247,6 +259,7 @@ const AccidentStatistics = () => {
                       return current && current > dayjs().endOf("year");
                     }}
                     bordered={false}
+                    inputReadOnly={true}
                   />
                 </div>
               }

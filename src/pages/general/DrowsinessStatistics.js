@@ -101,6 +101,7 @@ const DrowsinessStatistics = () => {
                       return current && current > dayjs().endOf("year");
                     }}
                     bordered={false}
+                    inputReadOnly={true}
                   />
                 </div>
               }
@@ -127,7 +128,14 @@ const DrowsinessStatistics = () => {
                     value={type}
                     onChange={setType}
                     bordered={false}
-                    style={{ width: "90px" }}
+                    style={{
+                      width:
+                        type === "quarter"
+                          ? "95px"
+                          : type === "year" || type === "date"
+                          ? "75px"
+                          : "90px",
+                    }}
                   >
                     <Option value="date">Date</Option>
                     <Option value="week">Week</Option>
@@ -146,6 +154,7 @@ const DrowsinessStatistics = () => {
                       }}
                       allowClear={false}
                       style={{ width: "120px" }}
+                      inputReadOnly={true}
                     />
                   ) : (
                     <DatePicker
@@ -166,6 +175,7 @@ const DrowsinessStatistics = () => {
                         return current && current > dayjs().endOf(type);
                       }}
                       allowClear={false}
+                      inputReadOnly={true}
                     />
                   )}
                 </span>
@@ -178,7 +188,8 @@ const DrowsinessStatistics = () => {
             <DashbordCardLoading
               // width="420px"
               loading={timeBarLoading}
-              title="Hourly Drowsiness"
+              notHideTitle={true}
+              title="Hourly"
               disablePaddingBottom={true}
               header={
                 <div>
@@ -197,6 +208,7 @@ const DrowsinessStatistics = () => {
                     disabledDate={(current) => {
                       return current && current > dayjs().endOf("day");
                     }}
+                    inputReadOnly={true}
                   />
                 </div>
               }

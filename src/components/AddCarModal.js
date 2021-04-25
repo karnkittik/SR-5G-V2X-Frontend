@@ -102,6 +102,7 @@ const CarForm = ({ visible, setVisible, refresh, setLoading }) => {
             style={{ width: "100%" }}
             popupStyle={{ zIndex: "9999" }}
             disabledDate={disabledDate}
+            inputReadOnly={true}
           />
         </Form.Item>
         <Form.Item

@@ -59,7 +59,7 @@ const Admin = () => {
       ],
     },
     {
-      name: "Driver",
+      name: "Drivers",
       pageList: [
         {
           title: "Drivers",
@@ -70,7 +70,7 @@ const Admin = () => {
       ],
     },
     {
-      name: "Car",
+      name: "Cars",
       pageList: [
         {
           title: "Cars",

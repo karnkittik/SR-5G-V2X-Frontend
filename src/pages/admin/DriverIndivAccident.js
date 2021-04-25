@@ -84,7 +84,7 @@ const DriverIndivAccident = () => {
       <Col xs={24} lg={11}>
         <DashbordCardLoading
           notHideTitle={true}
-          title="Accident on Hour"
+          title="Hourly Accident"
           loading={timeBarLoading}
         >
           <TimeBarChart
