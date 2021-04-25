@@ -159,24 +159,38 @@
 }
 /*---- AccidentStatistics ----*/
 /*---------- LogIn------------*/
+.hero-image {
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100%;
+  /* background-color: #5272c2; */
+  background-image: url("./assets/TuringCar.jpg");
+  background-repeat: no-repeat;
+  background-position: 40% 50%;
+  background-size: fill;
+}
 .login {
   height: calc(var(--vh, 1vh) * 100);
   background-color: white;
+  overflow: hidden auto;
+  width: 100%;
+  padding: 0 30px;
 }
 .login-logo {
-  height: calc(var(--vh, 1vh) * 40);
+  height: calc(var(--vh, 1vh) * 35);
   max-height: 400px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 700;
   padding-bottom: 50px;
   color: #5272c2;
 }
 .login-logo-text {
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   text-align: center;
+  padding: 0 15px;
   padding-top: 20px;
 }
 .login-form {
@@ -207,6 +221,9 @@
   .login-form {
     width: 100%;
     padding: 0 32px;
+  }
+  .hero-image {
+    display: none;
   }
 }
 /*---------- AddDriver------------*/
