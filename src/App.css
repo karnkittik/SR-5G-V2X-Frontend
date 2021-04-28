@@ -216,6 +216,9 @@
   width: 100%;
 }
 @media only screen and (max-width: 768px) {
+  .login {
+    padding: 0 10px;
+  }
   .login-logo-text {
     width: 100%;
     padding: 0 32px;
@@ -231,7 +234,7 @@
 }
 /*---------- AddDriver------------*/
 .add-employee-modal {
-  width: 70% !important;
+  width: 90% !important;
   max-width: 800px !important;
 }
 /* @media only screen and (min-width: 768px) {
