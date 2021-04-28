@@ -26,8 +26,8 @@ const AccidentMap = (props) => {
     fetchHeatMap(date);
   }, [date, heatMap]);
   const fetchLocationMap = (time) => {
-    let start = dayjs().startOf("hour").unix();
-    let end = dayjs().endOf("hour").unix();
+    let start = dayjs().hour(time).startOf("hour").unix();
+    let end = dayjs().hour(time).endOf("hour").unix();
     let payload = { start, end };
     setLoading(true);
     AccidentService.fetchLocationMap(

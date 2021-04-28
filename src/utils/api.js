@@ -21,14 +21,6 @@ const authApi = axios.create({
 });
 
 export const AccidentService = {
-  fetchHeatmap: (payload, callback, onRejected) => {
-    accidentApi
-      .get(`/heatmap/${payload}`)
-      .then(({ data }) => callback(data))
-      .catch((response) => {
-        onRejected(response.response ? response.response.data : response);
-      });
-  },
   fetchStatCalendar: (payload, callback, onRejected) => {
     accidentApi
       .get(`/stat/calendar?year=${payload}`)
