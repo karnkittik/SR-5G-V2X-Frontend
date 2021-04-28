@@ -16,7 +16,7 @@ import {
 import Drawer from "../../components/common/Drawer";
 
 const { Content, Header } = Layout;
-const General = () => {
+const General = (props) => {
   const pageListGroup = [
     {
       name: "Accident",
@@ -24,7 +24,7 @@ const General = () => {
         {
           title: "Accident Map",
           short: "Map",
-          component: <AccidentMap />,
+          component: <AccidentMap location={props.location} />,
           icon: <ExclamationCircleOutlined />,
         },
         {
@@ -41,7 +41,7 @@ const General = () => {
         {
           title: "Drowsiness HeatMap",
           short: "HeatMap",
-          component: <DrowsinessHeatMap />,
+          component: <DrowsinessHeatMap location={props.location} />,
           icon: <EyeOutlined />,
         },
         {

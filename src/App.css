@@ -130,6 +130,9 @@
   font-weight: 500 !important;
 }
 /*---- AccidentHeatMap ----*/
+.map {
+  height: calc(var(--vh, 1vh) * 100 - 135px);
+}
 .content-block-full {
   height: 100%;
 }
