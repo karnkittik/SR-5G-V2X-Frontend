@@ -136,7 +136,7 @@ const CarForm = ({ visible, setVisible, refresh, setLoading }) => {
           <Input.TextArea placeholder="Example: Taiwan EV" />
         </Form.Item>
       </Form>
-      <div style={{ height: "20px" }}>
+      <div style={{ height: "auto", margin: "5px 0" }}>
         {successful ? (
           <Alert
             message="Success"

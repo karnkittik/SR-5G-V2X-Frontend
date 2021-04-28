@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Layout, Tag, Tooltip, Button, Badge } from "antd";
 import Sider from "../../components/common/Sider";
-import SmartCarAdmin from "./../../assets/smart-car-admin.png";
 import {
   LogoutOutlined,
   EyeOutlined,
@@ -156,8 +155,6 @@ const Admin = (props) => {
   };
   useEffect(() => {
     document.title = "Admin 5G-V2X";
-    const favicon = document.getElementById("favicon");
-    favicon.href = SmartCarAdmin;
   }, []);
   useEffect(() => {
     var a = 0;

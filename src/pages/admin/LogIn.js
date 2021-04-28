@@ -1,6 +1,5 @@
 import { Layout, Form, Input, Button, Badge, Alert, Row, Col } from "antd";
 import { useEffect, useState } from "react";
-import SmartCarAdmin from "./../../assets/smart-car-admin.png";
 import { AuthService } from "../../utils/api";
 const layout = {
   labelCol: {
@@ -66,8 +65,6 @@ const LogInPage = () => {
   }, []);
   useEffect(() => {
     document.title = "Admin 5G-V2X";
-    const favicon = document.getElementById("favicon");
-    favicon.href = SmartCarAdmin;
   }, []);
   const LoginSection = () => (
     <div className="login container">
@@ -109,7 +106,7 @@ const LogInPage = () => {
           >
             <Input.Password size="large" />
           </Form.Item>
-          <div style={{ height: "20px", margin: "5px 0" }}>
+          <div style={{ height: "auto", margin: "5px 0" }}>
             {failed ? (
               <Alert
                 message={failed.message}

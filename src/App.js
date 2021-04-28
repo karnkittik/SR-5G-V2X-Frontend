@@ -17,7 +17,6 @@ import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { useWatchLocation } from "./components/common/Map";
-import SmartCar from "./assets/smart-car.png";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -107,8 +106,6 @@ const FullPage = styled.div`
 `;
 const NotFound = () => {
   document.title = "5G-V2X";
-  const favicon = document.getElementById("favicon");
-  favicon.href = SmartCar;
   return <FullPage>404: Page Not Found</FullPage>;
 };
 export default App;
