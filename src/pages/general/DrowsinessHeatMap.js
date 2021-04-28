@@ -61,11 +61,7 @@ const DrowsinessHeatMap = () => {
             </span>
           }
         >
-          <div
-            style={{
-              height: "calc(100vh - 135px)",
-            }}
-          >
+          <div className="map">
             <MyMapComponent
               zoom={8}
               isShownHere={false}

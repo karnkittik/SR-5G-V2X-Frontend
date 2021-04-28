@@ -117,11 +117,7 @@ const DrowsinessMap = () => {
             </div>
           }
         >
-          <div
-            style={{
-              height: "calc(100vh - 135px)",
-            }}
-          >
+          <div className="map">
             {loading ? null : !heatMap ? (
               <GoogleMap
                 isShownHere
