@@ -6,8 +6,6 @@ const Sider = (props) => {
     collapsed,
     handleClick,
     pageListGroup,
-    logo,
-    bottom,
     onClose,
     setCollapsed,
     pageIndex,

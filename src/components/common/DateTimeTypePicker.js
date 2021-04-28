@@ -1,5 +1,4 @@
 import { Select } from "antd";
-import dayjs from "dayjs";
 const { Option } = Select;
 const DateTimeTypePicker = (props) => {
   var n = props.n;

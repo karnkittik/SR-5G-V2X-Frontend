@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import { Button, Modal, Form, Input, DatePicker, Alert } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { Button, Modal, Form, Input, Alert } from "antd";
 import { CarSerivce } from "../utils/api";
-import dayjs from "dayjs";
 const layout = {
   labelCol: { span: 10 },
   wrapperCol: { span: 14 },

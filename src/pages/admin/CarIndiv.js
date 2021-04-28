@@ -1,15 +1,11 @@
 import { useHistory, useParams } from "react-router-dom";
 import { Layout, Table, Button, Row, Col } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
-import DashbordCard, {
-  ContentCard,
-  CountCard,
-  DashbordCardLoading,
-} from "../../components/common/DashbordCard";
+import { DashbordCardLoading } from "../../components/common/DashbordCard";
 import dayjs from "dayjs";
 import { CarSerivce } from "../../utils/api";
 import { useEffect, useState } from "react";
-const { Header, Content } = Layout;
+const { Content } = Layout;
 export const ProfileCar = (props) => {
   const columns = [
     {

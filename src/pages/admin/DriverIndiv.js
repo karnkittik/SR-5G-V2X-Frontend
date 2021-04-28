@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 import DriverIndivAccident from "./DriverIndivAccident";
 import DriverIndivDrowsiness from "./DriverIndivDrowsiness";
 import { DriverService } from "../../utils/api";
-const { Header, Content } = Layout;
+const { Content } = Layout;
 
 export const ProfileDriver = (props) => {
   const { driver_id } = useParams();

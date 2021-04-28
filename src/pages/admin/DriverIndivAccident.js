@@ -1,11 +1,7 @@
 import dayjs from "dayjs";
 import { Table, Row, Col } from "antd";
-import DashbordCard, {
-  ContentCard,
-  DashbordCardLoading,
-} from "../../components/common/DashbordCard";
+import { DashbordCardLoading } from "../../components/common/DashbordCard";
 import TimeBarChart from "../../components/common/TimeBarChart";
-import { ProfileDriver } from "./DriverIndiv";
 import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import { DriverService } from "../../utils/api";

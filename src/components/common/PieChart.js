@@ -22,7 +22,7 @@ const blues = [
   .filter((blue, index) => index % 4 === 0);
 
 const PieChart = (props) => {
-  var { title, data } = props;
+  var { data } = props;
   var noData = true;
   if (data && data.labels && data.labels.length !== 0) {
     noData = false;

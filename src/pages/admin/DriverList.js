@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Table, Popconfirm, Checkbox, Button, Tooltip } from "antd";
+import { Layout, Table, Popconfirm, Checkbox, Button } from "antd";
 import { DeleteTwoTone, EditTwoTone } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { useHistory } from "react-router-dom";
@@ -7,9 +7,7 @@ import { AddDriverModal } from "../../components/AddDriverModal";
 import { EditDriverModal } from "../../components/EditDriverModal";
 import { DriverService } from "../../utils/api";
 import { DashbordCardLoading } from "../../components/common/DashbordCard";
-import { DriverDataDetail } from "../../mock/Driver";
-import { SearchOutlined } from "@ant-design/icons";
-const { Content, Header } = Layout;
+const { Content } = Layout;
 const DriverList = () => {
   let history = useHistory();
   const [driverData, setDriverData] = useState([]);

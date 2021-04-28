@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
-import { Button, Modal, Form, Input, Select, DatePicker, Alert } from "antd";
-import { UserAddOutlined } from "@ant-design/icons";
+import { Button, Modal, Form, Input, DatePicker, Alert } from "antd";
 import { DriverService } from "../utils/api";
 import dayjs from "dayjs";
-const { Option } = Select;
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 12 },

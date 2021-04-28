@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Layout, Button, Badge } from "antd";
+import { Layout, Button } from "antd";
 import Sider from "../../components/common/Sider";
 import AccidentMap from "./AccidentMap";
 import AccidentStatistics from "./AccidentStatistics";

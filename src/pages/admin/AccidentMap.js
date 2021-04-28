@@ -7,7 +7,6 @@ import GoogleMap from "../../components/common/ClusterMap";
 import { DashbordCardLoading } from "../../components/common/DashbordCard";
 import { HeatMapOutlined, EnvironmentOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
-import { newData } from "../../mock/Coordinate";
 const { Content } = Layout;
 const { RangePicker } = DatePicker;
 const AccidentMap = (props) => {
