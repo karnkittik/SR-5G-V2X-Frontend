@@ -119,11 +119,11 @@ const Admin = (props) => {
     const signOut = () => {
       AuthService.logout(
         ({ data }) => {
-          console.log(data);
+          //console.log(data);
           window.location.reload();
         },
         (response) => {
-          console.log(response.message);
+          //console.log(response.message);
         }
       );
     };

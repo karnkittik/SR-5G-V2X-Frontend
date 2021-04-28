@@ -103,10 +103,10 @@ const CarList = () => {
       ({ data }) => {
         setCarData(data.reverse());
         setLoading(false);
-        console.log(data);
+        //console.log(data);
       },
       (response) => {
-        console.log(response.message);
+        //console.log(response.message);
       }
     );
   };
@@ -114,14 +114,14 @@ const CarList = () => {
     CarSerivce.deleteCar(
       car_id,
       ({ data }) => {
-        console.log(data);
+        //console.log(data);
         setCarData(carData.filter((item) => item.car_id !== car_id));
       },
       (response) => {
-        console.log(response.message);
+        //console.log(response.message);
       }
     );
-    console.log(car_id);
+    //console.log(car_id);
   };
   const refreshEdit = (car_id, values) => {
     let carIndex = carData.findIndex((item) => item.car_id === car_id);

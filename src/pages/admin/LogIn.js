@@ -30,22 +30,22 @@ const LogInPage = () => {
     AuthService.login(
       payload,
       ({ data }) => {
-        console.log(data);
+        //console.log(data);
         window.location.reload();
       },
       (response) => {
-        console.log(response.message);
+        //console.log(response.message);
         setFailed({ message: response.message });
       }
     );
   };
   const onFinish = (values) => {
-    console.log("Success:", values);
+    //console.log("Success:", values);
     signIn(values.username, values.password);
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    //console.log("Failed:", errorInfo);
   };
   const setTheme = () => {
     window.less

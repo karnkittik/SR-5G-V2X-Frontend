@@ -46,7 +46,7 @@ const CarForm = ({ visible, setVisible, refresh, setLoading }) => {
     CarSerivce.addCar(
       values,
       ({ data }) => {
-        console.log(data);
+        //console.log(data);
         setConfirmLoading(false);
         setSuccessful(true);
         form.resetFields();
@@ -56,7 +56,7 @@ const CarForm = ({ visible, setVisible, refresh, setLoading }) => {
         }, 500);
       },
       (response) => {
-        console.log(response.message);
+        //console.log(response.message);
         setConfirmLoading(false);
         setLoading(false);
         setFailed({ message: response.message });
@@ -80,7 +80,7 @@ const CarForm = ({ visible, setVisible, refresh, setLoading }) => {
             onCreate(values);
           })
           .catch((info) => {
-            console.log("Validate Failed:", info);
+            //console.log("Validate Failed:", info);
           });
       }}
       visible={visible}

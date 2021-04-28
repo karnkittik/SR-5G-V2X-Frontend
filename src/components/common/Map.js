@@ -32,7 +32,7 @@ export const useWatchLocation = (options = {}) => {
     return cancelLocationWatch;
   }, [options]);
   if (error) {
-    console.log(error);
+    //console.log(error);
   }
   return { location, cancelLocationWatch, error };
 };

@@ -36,10 +36,10 @@ const DrowsinessStatistics = () => {
       ({ data }) => {
         setCountData(data);
         setCountLoading(false);
-        console.log(data);
+        //console.log(data);
       },
       (response) => {
-        console.log(response.message);
+        //console.log(response.message);
       }
     );
   };
@@ -50,10 +50,10 @@ const DrowsinessStatistics = () => {
       ({ data }) => {
         setCalendarData(data);
         setCalendarLoading(false);
-        console.log(data);
+        //console.log(data);
       },
       (response) => {
-        console.log(response.message);
+        //console.log(response.message);
       }
     );
   };
@@ -68,10 +68,10 @@ const DrowsinessStatistics = () => {
       ({ data }) => {
         setTimeBarData(data);
         setTimeBarLoading(false);
-        console.log(data);
+        //console.log(data);
       },
       (response) => {
-        console.log(response.message);
+        //console.log(response.message);
       }
     );
   };

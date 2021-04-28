@@ -59,7 +59,7 @@ const DriverForm = ({
       driver_id,
       values,
       ({ data }) => {
-        console.log(data);
+        //console.log(data);
         setConfirmLoading(false);
         setSuccessful(true);
         setTimeout(() => {
@@ -68,7 +68,7 @@ const DriverForm = ({
         }, 500);
       },
       (response) => {
-        console.log(response.message);
+        //console.log(response.message);
         setConfirmLoading(false);
         setFailed({ message: response.message });
         setLoading(false);
@@ -92,7 +92,7 @@ const DriverForm = ({
             onEdit(values);
           })
           .catch((info) => {
-            console.log("Validate Failed:", info);
+            //console.log("Validate Failed:", info);
           });
       }}
       visible={visible}

@@ -48,12 +48,12 @@ const App = () => {
       ({ data }) => {
         setIsLogin(true);
         setLoading(false);
-        console.log(data);
+        //console.log(data);
       },
       (response) => {
         setIsLogin(false);
         setLoading(false);
-        console.log(response.message);
+        //console.log(response.message);
       }
     );
   }, [islogin]);

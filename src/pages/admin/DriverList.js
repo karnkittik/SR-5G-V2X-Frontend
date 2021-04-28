@@ -156,23 +156,23 @@ const DriverList = () => {
     },
   ];
   const onCheck = (checkedValues) => {
-    console.log("checked = ", checkedValues);
+    //console.log("checked = ", checkedValues);
     setCheckedFilter(checkedValues);
   };
   const handleDelete = (driver_id) => {
     DriverService.deleteDriver(
       driver_id,
       ({ data }) => {
-        console.log(data);
+        //console.log(data);
         setDriverData(
           driverData.filter((item) => item.driver_id !== driver_id)
         );
       },
       (response) => {
-        console.log(response.message);
+        //console.log(response.message);
       }
     );
-    console.log(driver_id);
+    //console.log(driver_id);
   };
   const refreshEdit = (driver_id, values) => {
     let driverIndex = driverData.findIndex(
@@ -197,10 +197,10 @@ const DriverList = () => {
       ({ data }) => {
         setDriverData(data.reverse());
         setLoading(false);
-        console.log(data);
+        //console.log(data);
       },
       (response) => {
-        console.log(response.message);
+        //console.log(response.message);
       }
     );
   };

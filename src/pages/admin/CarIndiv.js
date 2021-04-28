@@ -83,13 +83,13 @@ const CarIndiv = () => {
         ({ data }) => {
           data.accident_count = data.accident.length;
           data.drowsiness_count = data.drowsiness.length;
-          console.log(data);
+          //console.log(data);
           setCarData(data);
           setLoading(false);
-          console.log(data);
+          //console.log(data);
         },
         (response) => {
-          console.log(response.message);
+          //console.log(response.message);
         }
       );
     };

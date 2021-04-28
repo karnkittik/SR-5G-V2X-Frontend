@@ -22,10 +22,10 @@ const DrowsinessHeatMap = (props) => {
       payload,
       ({ data }) => {
         setData(data);
-        console.log(data);
+        //console.log(data);
       },
       (response) => {
-        console.log(response.message);
+        //console.log(response.message);
       }
     );
   };

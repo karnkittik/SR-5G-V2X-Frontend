@@ -48,7 +48,7 @@ const DriverForm = ({ visible, setVisible, refresh, setLoading }) => {
     DriverService.addDriver(
       values,
       ({ data }) => {
-        console.log(data);
+        //console.log(data);
         setConfirmLoading(false);
         setSuccessful(true);
         form.resetFields();
@@ -58,7 +58,7 @@ const DriverForm = ({ visible, setVisible, refresh, setLoading }) => {
         }, 500);
       },
       (response) => {
-        console.log(response.message);
+        //console.log(response.message);
         setConfirmLoading(false);
         setFailed({ message: response.message });
         setLoading(false);
@@ -82,7 +82,7 @@ const DriverForm = ({ visible, setVisible, refresh, setLoading }) => {
             onCreate(values);
           })
           .catch((info) => {
-            console.log("Validate Failed:", info);
+            //console.log("Validate Failed:", info);
           });
       }}
       visible={visible}

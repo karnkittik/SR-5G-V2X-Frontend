@@ -37,7 +37,7 @@ const AccidentMap = (props) => {
         setLoading(false);
       },
       (response) => {
-        console.log(response.message);
+        //console.log(response.message);
       }
     );
   };
@@ -54,7 +54,7 @@ const AccidentMap = (props) => {
         setLoading(false);
       },
       (response) => {
-        console.log(response.message);
+        //console.log(response.message);
       }
     );
   };

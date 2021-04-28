@@ -61,10 +61,10 @@ const DriverIndivDrowsiness = () => {
       ({ data }) => {
         setDrowsinessData(data);
         setDrowsinessLoading(false);
-        console.log(data);
+        //console.log(data);
       },
       (response) => {
-        console.log(response.message);
+        //console.log(response.message);
       }
     );
   };
@@ -74,10 +74,10 @@ const DriverIndivDrowsiness = () => {
       ({ data }) => {
         setTimeBarData(data);
         setTimeBarLoading(false);
-        console.log(data);
+        //console.log(data);
       },
       (response) => {
-        console.log(response.message);
+        //console.log(response.message);
       }
     );
   };

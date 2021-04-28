@@ -52,7 +52,7 @@ const CarForm = ({
       car_id,
       values,
       ({ data }) => {
-        console.log(data);
+        //console.log(data);
         setConfirmLoading(false);
         setSuccessful(true);
         setTimeout(() => {
@@ -61,7 +61,7 @@ const CarForm = ({
         }, 500);
       },
       (response) => {
-        console.log(response.message);
+        //console.log(response.message);
         setConfirmLoading(false);
         setLoading(false);
         setFailed({ message: response.message });
@@ -85,7 +85,7 @@ const CarForm = ({
             onEdit(values);
           })
           .catch((info) => {
-            console.log("Validate Failed:", info);
+            //console.log("Validate Failed:", info);
           });
       }}
       visible={visible}

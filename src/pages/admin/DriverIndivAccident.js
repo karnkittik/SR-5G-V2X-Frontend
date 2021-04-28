@@ -59,10 +59,10 @@ const DriverIndivAccident = () => {
       ({ data }) => {
         setAccidentData(data);
         setAccidentLoading(false);
-        console.log(data);
+        //console.log(data);
       },
       (response) => {
-        console.log(response.message);
+        //console.log(response.message);
       }
     );
   };
@@ -72,10 +72,10 @@ const DriverIndivAccident = () => {
       ({ data }) => {
         setTimeBarData(data);
         setTimeBarLoading(false);
-        console.log(data);
+        //console.log(data);
       },
       (response) => {
-        console.log(response.message);
+        //console.log(response.message);
       }
     );
   };

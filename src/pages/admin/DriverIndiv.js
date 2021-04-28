@@ -76,10 +76,10 @@ export const ProfileDriver = (props) => {
       ({ data }) => {
         setDriverData(data);
         setLoading(false);
-        console.log(data);
+        //console.log(data);
       },
       (response) => {
-        console.log(response.message);
+        //console.log(response.message);
       }
     );
   };
