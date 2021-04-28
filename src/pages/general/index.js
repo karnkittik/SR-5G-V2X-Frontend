@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Layout, Button, Badge } from "antd";
+import SmartCar from "./../../assets/smart-car.png";
 import Sider from "../../components/common/Sider";
 import AccidentMap from "./AccidentMap";
 import AccidentStatistics from "./AccidentStatistics";
@@ -118,7 +119,11 @@ const General = (props) => {
   useEffect(() => {
     setTheme();
   }, []);
-
+  useEffect(() => {
+    document.title = "5G-V2X";
+    const favicon = document.getElementById("favicon");
+    favicon.href = SmartCar;
+  }, []);
   return (
     <div className="App">
       <Layout className="full">
