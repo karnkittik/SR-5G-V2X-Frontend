@@ -16,6 +16,7 @@ import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { useWatchLocation } from "./components/common/Map";
 dayjs.extend(utc);
 dayjs.extend(timezone);
 dayjs.extend(relativeTime);
@@ -24,6 +25,23 @@ dayjs.tz.setDefault("Asia/Bangkok");
 const App = () => {
   const [islogin, setIsLogin] = useState(false);
   const [loading, setLoading] = useState(true);
+  const geolocationOptions = {
+    enableHighAccuracy: true,
+    timeout: 1000 * 60 * 3,
+    // maximumAge: 1000 * 3600 * 24, // 24 hour
+  };
+  const { location, cancelLocationWatch, error } = useWatchLocation(
+    geolocationOptions
+  );
+  useEffect(() => {
+    if (!location) return;
+    setTimeout(() => {
+      cancelLocationWatch();
+    }, 3000);
+  }, [location, cancelLocationWatch]);
+  if (error) {
+    console.log(error);
+  }
   useEffect(() => {
     setLoading(true);
     AuthService.getProfile(
@@ -43,7 +61,7 @@ const App = () => {
     <Router>
       <Switch>
         <Route exact path="/">
-          <General />
+          <General location={location} />
         </Route>
         <Route
           path="/admin"
@@ -54,7 +72,7 @@ const App = () => {
             ) : !islogin ? (
               <Redirect to="/login" />
             ) : (
-              <Admin />
+              <Admin location={location} />
             )
           }
         />

@@ -22,7 +22,7 @@ import { AuthService } from "../../utils/api";
 import Drawer from "../../components/common/Drawer";
 
 const { Content, Header } = Layout;
-const Admin = () => {
+const Admin = (props) => {
   const pageListGroup = [
     {
       name: "Accident",
@@ -30,7 +30,7 @@ const Admin = () => {
         {
           title: "Accident Map",
           short: "Map",
-          component: <AccidentMap />,
+          component: <AccidentMap location={props.location} />,
           icon: <ExclamationCircleOutlined />,
         },
         {
@@ -47,7 +47,7 @@ const Admin = () => {
         {
           title: "Drowsiness Map",
           short: "Map",
-          component: <DrowsinessMap />,
+          component: <DrowsinessMap location={props.location} />,
           icon: <EyeOutlined />,
         },
         {

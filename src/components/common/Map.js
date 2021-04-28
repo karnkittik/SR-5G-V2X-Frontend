@@ -57,18 +57,6 @@ const createMapOptions = (maps) => {
   };
 };
 const MyMapComponent = (props) => {
-  const { location, cancelLocationWatch, error } = useWatchLocation();
-  useEffect(() => {
-    if (!location) return;
-    // setTimeout(() => {
-    return function cleanUp() {
-      cancelLocationWatch();
-    };
-    // }, 3000);
-  }, [location, cancelLocationWatch]);
-  if (error) {
-    console.log(error);
-  }
   return (
     <div className="content-block-full">
       <GoogleMapReact
@@ -78,8 +66,8 @@ const MyMapComponent = (props) => {
           libraries: ["visualization"],
         }}
         center={{
-          lat: location?.latitude,
-          lng: location?.longitude,
+          lat: props.location?.latitude,
+          lng: props.location?.longitude,
         }}
         defaultCenter={bangkokCoords}
         defaultZoom={props.zoom || 8}
@@ -90,8 +78,11 @@ const MyMapComponent = (props) => {
         }}
         hoverDistance={20}
       >
-        {props.isShownHere && location && (
-          <Here lat={location?.latitude} lng={location?.longitude} />
+        {props.isShownHere && props.location && (
+          <Here
+            lat={props.location?.latitude}
+            lng={props.location?.longitude}
+          />
         )}
       </GoogleMapReact>
     </div>

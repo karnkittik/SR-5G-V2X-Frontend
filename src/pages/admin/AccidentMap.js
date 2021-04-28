@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { DatePicker, Layout, Switch } from "antd";
-import MyMapComponent, { useWatchLocation } from "../../components/common/Map";
+import MyMapComponent from "../../components/common/Map";
 import DateTimeTypePicker from "../../components/common/DateTimeTypePicker";
 import { AccidentService } from "../../utils/api";
 import GoogleMap from "../../components/common/ClusterMap";
@@ -10,7 +10,7 @@ import dayjs from "dayjs";
 import { newData } from "../../mock/Coordinate";
 const { Content } = Layout;
 const { RangePicker } = DatePicker;
-const AccidentMap = () => {
+const AccidentMap = (props) => {
   var d = new Date();
   var n = d.getHours();
   const [time, setTime] = useState(n);
@@ -18,14 +18,7 @@ const AccidentMap = () => {
   const [heatMap, setHeatMap] = useState(false);
   const [date, setDate] = useState([dayjs(), dayjs()]);
   const [heatData, setHeatData] = useState([]);
-  const { location, cancelLocationWatch } = useWatchLocation();
   const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    if (!location) return;
-    return function cleanUp() {
-      cancelLocationWatch();
-    };
-  }, [location, cancelLocationWatch]);
   useEffect(() => {
     fetchLocationMap(time);
   }, [time, heatMap]);
@@ -128,14 +121,15 @@ const AccidentMap = () => {
                   detail: point.detail,
                 }))}
                 here={{
-                  lat: location?.latitude,
-                  lng: location?.longitude,
+                  lat: props.location?.latitude,
+                  lng: props.location?.longitude,
                 }}
               />
             ) : (
               <MyMapComponent
                 zoom={8}
                 isShownHere={false}
+                location={props.location}
                 heatMapData={heatData.map((point) => point.coordinate)}
               />
             )}

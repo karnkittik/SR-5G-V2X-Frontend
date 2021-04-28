@@ -7,7 +7,7 @@ import dayjs from "dayjs";
 const { Content } = Layout;
 const { RangePicker } = DatePicker;
 
-const DrowsinessHeatMap = () => {
+const DrowsinessHeatMap = (props) => {
   const [data, setData] = useState([]);
   const [month, setMonth] = useState([dayjs(), dayjs()]);
   useEffect(() => {
@@ -65,6 +65,7 @@ const DrowsinessHeatMap = () => {
             <MyMapComponent
               zoom={8}
               isShownHere={false}
+              location={props.location}
               heatMapData={
                 data.length !== 0 ? data.map((point) => point.coordinate) : []
               }
