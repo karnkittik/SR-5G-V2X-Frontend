@@ -1,5 +1,6 @@
 import { Layout, Form, Input, Button, Badge, Alert, Row, Col } from "antd";
 import { useEffect, useState } from "react";
+import SmartCarAdmin from "./../../assets/smart-car-admin.png";
 import { AuthService } from "../../utils/api";
 const layout = {
   labelCol: {
@@ -62,6 +63,11 @@ const LogInPage = () => {
   const [failed, setFailed] = useState(false);
   useEffect(() => {
     setTheme();
+  }, []);
+  useEffect(() => {
+    document.title = "Admin 5G-V2X";
+    const favicon = document.getElementById("favicon");
+    favicon.href = SmartCarAdmin;
   }, []);
   const LoginSection = () => (
     <div className="login container">
