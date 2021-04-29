@@ -66,8 +66,8 @@ const MyMapComponent = (props) => {
           libraries: ["visualization"],
         }}
         center={{
-          lat: props.location?.latitude,
-          lng: props.location?.longitude,
+          lat: props.location ? props.location.latitude : bangkokCoords.lat,
+          lng: props.location ? props.location.longitude : bangkokCoords.lng,
         }}
         defaultCenter={bangkokCoords}
         defaultZoom={props.zoom || 8}

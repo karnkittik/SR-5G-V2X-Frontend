@@ -101,6 +101,7 @@ const DrowsinessStatistics = () => {
                       return current && current > dayjs().endOf("year");
                     }}
                     bordered={false}
+                    allowClear={false}
                     inputReadOnly={true}
                   />
                 </div>
@@ -208,6 +209,7 @@ const DrowsinessStatistics = () => {
                     disabledDate={(current) => {
                       return current && current > dayjs().endOf("day");
                     }}
+                    allowClear={false}
                     inputReadOnly={true}
                   />
                 </div>

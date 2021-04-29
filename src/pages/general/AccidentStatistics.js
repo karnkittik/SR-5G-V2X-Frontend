@@ -126,6 +126,7 @@ const AccidentStatistics = () => {
                     }}
                     bordered={false}
                     inputReadOnly={true}
+                    allowClear={false}
                   />
                 </div>
               }
@@ -157,6 +158,7 @@ const AccidentStatistics = () => {
                         dayjs(value?.[1]?.$d),
                       ]);
                     }}
+                    allowClear={false}
                     bordered={false}
                     size="small"
                     style={{ width: "230px" }}
@@ -258,6 +260,7 @@ const AccidentStatistics = () => {
                     disabledDate={(current) => {
                       return current && current > dayjs().endOf("year");
                     }}
+                    allowClear={false}
                     bordered={false}
                     inputReadOnly={true}
                   />

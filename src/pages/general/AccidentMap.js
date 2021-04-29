@@ -83,6 +83,7 @@ const AccidentMap = (props) => {
                       return current && current > dayjs().endOf("day");
                     }}
                     inputReadOnly={true}
+                    allowClear={false}
                   />
                 </span>
               ) : (

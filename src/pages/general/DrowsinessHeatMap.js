@@ -56,6 +56,7 @@ const DrowsinessHeatMap = (props) => {
                 disabledDate={(current) => {
                   return current && current > dayjs().endOf("month");
                 }}
+                allowClear={false}
                 inputReadOnly={true}
               />
             </span>
