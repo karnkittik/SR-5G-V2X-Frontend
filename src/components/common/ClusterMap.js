@@ -76,42 +76,51 @@ export class GoogleMap extends React.PureComponent {
 
   render() {
     return (
-      <GoogleMapReact
-        defaultZoom={MAP.defaultZoom}
-        defaultCenter={bangkokCoords}
-        options={MAP.options}
-        onChange={this.handleMapChange}
-        yesIWantToUseGoogleMapApiInternals
-        bootstrapURLKeys={{
-          key: config.googleMapAPI,
-          libraries: ["visualization"],
-        }}
-      >
-        {this.props.isShownHere && (
-          <Here lat={this.props.here.lat} lng={this.props.here.lng} />
-        )}
-        {this.state.clusters.map((item) => {
-          if (item.numPoints === 1) {
+      <>
+        {this.props.isShownHere ? (
+          !this.props.here.lat || !this.props.here.lng ? (
+            <div className="map-alert">Getting current location...</div>
+          ) : null
+        ) : null}
+        <GoogleMapReact
+          defaultZoom={MAP.defaultZoom}
+          defaultCenter={bangkokCoords}
+          options={MAP.options}
+          onChange={this.handleMapChange}
+          yesIWantToUseGoogleMapApiInternals
+          bootstrapURLKeys={{
+            key: config.googleMapAPI,
+            libraries: ["visualization"],
+          }}
+        >
+          {this.props.isShownHere &&
+            this.props.here.lat &&
+            this.props.here.lng && (
+              <Here lat={this.props.here.lat} lng={this.props.here.lng} />
+            )}
+          {this.state.clusters.map((item) => {
+            if (item.numPoints === 1) {
+              return (
+                <Marker
+                  key={item.id}
+                  lat={item.points[0].lat}
+                  lng={item.points[0].lng}
+                  detail={item.points[0].detail}
+                />
+              );
+            }
+
             return (
-              <Marker
+              <ClusterMarker
                 key={item.id}
-                lat={item.points[0].lat}
-                lng={item.points[0].lng}
-                detail={item.points[0].detail}
+                lat={item.lat}
+                lng={item.lng}
+                points={item.points}
               />
             );
-          }
-
-          return (
-            <ClusterMarker
-              key={item.id}
-              lat={item.lat}
-              lng={item.lng}
-              points={item.points}
-            />
-          );
-        })}
-      </GoogleMapReact>
+          })}
+        </GoogleMapReact>
+      </>
     );
   }
 }

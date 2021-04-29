@@ -133,6 +133,14 @@
 .map {
   height: calc(var(--vh, 1vh) * 100 - 135px);
 }
+.map-alert {
+  position: absolute;
+  background-color: rgba(62, 61, 61, 0.8);
+  color: #fff;
+  top: 0px;
+  z-index: 1;
+  font-size: 12px;
+}
 .content-block-full {
   height: 100%;
 }
