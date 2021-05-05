@@ -65,7 +65,7 @@ const CarForm = ({ visible, setVisible, refresh, setLoading }) => {
   };
   return (
     <Modal
-      title="New car"
+      title="New Car Information"
       style={{ top: "60px" }}
       className="add-employee-modal"
       okText="Submit"

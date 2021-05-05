@@ -75,7 +75,7 @@ const DriverForm = ({
   };
   return (
     <Modal
-      title="Edit driver"
+      title="Edit Driver Information"
       style={{ top: "60px" }}
       className="add-employee-modal"
       okText="Submit"

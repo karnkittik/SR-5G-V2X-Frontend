@@ -68,7 +68,7 @@ const CarForm = ({
   };
   return (
     <Modal
-      title="Edit car"
+      title="Edit Car Information"
       style={{ top: "60px" }}
       className="add-employee-modal"
       okText="Submit"
